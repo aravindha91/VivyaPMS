@@ -1,0 +1,174 @@
+<% validatePage=function(slug){ return _.filter(userDetails.userPermission,{'page_name':slug})[0].view; } %>
+<nav class="navbar navbar-expand-lg navbar-ligh top-bar passport-scan-bg-dark">
+  <a class="navbar-brand" href="javascript:;">
+    <img src="<%- baseUrl -%>assets/img/logo-new.png" class="img-fluid" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-menu-bar"
+aria-controls="top-menu-bar" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="top-menu-bar">
+    <ul class="navbar-nav">
+      <% if(validatePage('dashboard')==='Y' ){ %>
+      <li class="nav-item">
+        <a class="nav-link <% if(menu=='dashboard') { %> passport-scan-text-color-green <% } %>"
+      href="<%- baseUrl -%>dashboard"><i class="fa fa-pie-chart" aria-hidden="true"></i>Dashboard</a>
+      </li>
+      <% } %>
+
+      <% if(userDetails.user_type==='user' ){ %>
+      <li class="nav-item">
+        <a class="nav-link <% if(menu=='checkin') { %> passport-scan-text-color-green <% } %>"
+      href="<%- baseUrl -%>quick-checkin/create"><i class="fa fa-bookmark" aria-hidden="true"></i>Quick
+      checkin</a>
+      </li>
+      <% } %>
+
+      <% if(validatePage('property-type')==='Y' ||  validatePage('property')==='Y' || validatePage('room-type')==='Y' || validatePage('room')==='Y' || validatePage('country')==='Y' || validatePage('visit-purpose')==='Y' || validatePage('document-type')==='Y' || validatePage('visa-type')==='Y'){ %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle <% if(menu=='report-checkin' || menu=='report-checkout' || menu=='report-inhouse' || menu=='report-monthly' || menu=='report-processed' || menu=='report-room-change') { %> passport-scan-text-color-green <% } %>"
+      href="#" id="master-menu-drop-down" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false"><i class="fa fa-flag" aria-hidden="true"></i>Master
+        </a>
+        <div class="dropdown-menu" aria-labelledby="master-menu-drop-down">
+          <% if(validatePage('property-type')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='property-type') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>property-type">Property type</a>
+          <% } %>
+
+          <% if(validatePage('property')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='property') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>property">Property</a>
+          <% } %>
+
+          <% if(validatePage('room-type')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='room-type') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>room-type">Room type</a>
+          <% } %>
+
+          <% if(validatePage('room')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='room') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>room">Room master</a>
+          <% } %>
+
+          <% if(validatePage('country')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='country') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>country">Country</a>
+          <% } %>
+
+          <% if(validatePage('visit-purpose')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='visit-purpose') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>visit-purpose">Visit Purpose</a>
+          <% } %>
+
+          <% if(validatePage('document-type')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='document-type') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>document-type">Document type</a>
+          <% } %>
+
+          <% if(validatePage('visa-type')==='Y' ){ %>
+          <a class="dropdown-item <% if(menu=='visa-type') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>visa-type">Visa type</a>
+          <% } %>
+
+        </div>
+      </li>
+      <% } %>
+
+      <% if(validatePage('user')==='Y' ){ %>
+      <li class="nav-item">
+        <a class="nav-link <% if(menu=='user') { %> passport-scan-text-color-green <% } %>"
+      href="<%- baseUrl -%>user"><i class="fa fa-book" aria-hidden="true"></i>User management</a>
+      </li>
+      <% } %>
+
+      <% if(validatePage('document-details')==='Y' ){ %>
+      <li class="nav-item">
+        <a class="nav-link <% if(menu=='document') { %> passport-scan-text-color-green <% } %>"
+      href="<%- baseUrl -%>document-details"><i class="fa fa-book" aria-hidden="true"></i>Document
+      details</a>
+      </li>
+    
+        <li class="nav-item">
+          <a class="nav-link <% if(menu=='document') { %> passport-scan-text-color-green <% } %>"
+        href="<%- baseUrl -%>document-details?reporcess=true"><i class="fa fa-book" aria-hidden="true"></i>Re-process</a>
+        </li>
+      <% } %>
+
+      <% if(userDetails.user_type==='user' ){ %>
+
+      <% if(validatePage('room-change')==='Y' ){ %>
+      <li class="nav-item">
+        <a class="nav-link <% if(menu=='room-change') { %> passport-scan-text-color-green <% } %>"
+      href="<%- baseUrl -%>room-change"><i class="fa fa-sort" aria-hidden="true"></i>Room
+      change</a>
+      </li>
+      <% } %>
+
+      <% if(validatePage('room-checkout')==='Y' ){ %>
+      <li class="nav-item">
+        <a class="nav-link <% if(menu=='room-checkout') { %> passport-scan-text-color-green <% } %>"
+      href="<%- baseUrl -%>room-checkout"><i class="fa fa-check-circle"
+      aria-hidden="true"></i>Check out</a>
+      </li>
+      <% } %>
+
+      <% } %>
+
+      <% if(validatePage('report-checkin')==='Y' || validatePage('report-checkout')==='Y' || validatePage('report-inhouse')==='Y' || validatePage('report-monthly')==='Y' || validatePage('report-processed')==='Y' || validatePage('report-room-change')==='Y'){ %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle <% if(menu=='report-checkin' || menu=='report-checkout' || menu=='report-inhouse' || menu=='report-monthly' || menu=='report-processed' || menu=='report-room-change') { %> passport-scan-text-color-green <% } %>"
+      href="#" id="navbar-right-side" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false"><i class="fa fa-filter" aria-hidden="true"></i>Report</a>
+        <div class="dropdown-menu" aria-labelledby="navbar-right-side">
+
+          <% if(validatePage('report-checkin')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='report-checkin') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>report-checkin">Check in</a>
+          <% } %>
+
+          <% if(validatePage('report-checkout')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='report-checkout') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>report-checkout">Check out</a>
+          <% } %>
+
+          <% if(validatePage('report-inhouse')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='report-inhouse') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>report-inhouse">In house</a>
+          <% } %>
+
+          <% if(validatePage('report-monthly')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='report-monthly') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>report-monthly">Monthly</a>
+          <% } %>
+
+          <% if(validatePage('report-processed')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='report-processed') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>report-processed">Processed record</a>
+          <% } %>
+
+          <% if(validatePage('report-room-change')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='report-room-change') { %> passport-scan-text-color-green <% } %>"
+          href="<%- baseUrl -%>report-room-change">Room change</a>
+          <% } %>
+        </div>
+      </li>
+      <% } %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbar-right-side"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+      class="fa fa-user" aria-hidden="true"></i>
+      <%- userDetails.first_name-%>
+      <%- userDetails.last_name-%>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbar-right-side">
+        <% if(validatePage('profile')==='Y' ){ %>
+          <a class="dropdown-item  <% if(menu=='profile') { %> passport-scan-text-color-green <% } %>"
+        href="<%- baseUrl -%>profile">Profile</a>
+        <% } %>
+          <a class="dropdown-item" href="<%- baseUrl -%>sign-out">Sign out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

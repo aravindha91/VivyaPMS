@@ -1,0 +1,1424 @@
+{
+    "country": [
+        {
+            "value": "AFG",
+            "text": "AFGHANISTAN"
+        },
+        {
+            "value": "ALA",
+            "text": "ALAND ISLANDS"
+        },
+        {
+            "value": "ALB",
+            "text": "ALBANIA"
+        },
+        {
+            "value": "DZA",
+            "text": "ALGERIA"
+        },
+        {
+            "value": "ASM",
+            "text": "AMERICAN SAMOA"
+        },
+        {
+            "value": "AND",
+            "text": "ANDORRA"
+        },
+        {
+            "value": "AGO",
+            "text": "ANGOLA"
+        },
+        {
+            "value": "AIA",
+            "text": "ANGUILLA"
+        },
+        {
+            "value": "ATA",
+            "text": "ANTARCTICA"
+        },
+        {
+            "value": "ATG",
+            "text": "ANTIGUA AND BARBUDA"
+        },
+        {
+            "value": "ARG",
+            "text": "ARGENTINA"
+        },
+        {
+            "value": "ARM",
+            "text": "ARMENIA"
+        },
+        {
+            "value": "ABW",
+            "text": "ARUBA"
+        },
+        {
+            "value": "AUS",
+            "text": "AUSTRALIA"
+        },
+        {
+            "value": "AUT",
+            "text": "AUSTRIA"
+        },
+        {
+            "value": "AZE",
+            "text": "AZERBAIJAN"
+        },
+        {
+            "value": "BHS",
+            "text": "BAHAMAS"
+        },
+        {
+            "value": "BHR",
+            "text": "BAHRAIN"
+        },
+        {
+            "value": "BGD",
+            "text": "BANGLADESH"
+        },
+        {
+            "value": "BRB",
+            "text": "BARBADOS"
+        },
+        {
+            "value": "BLR",
+            "text": "BELARUS"
+        },
+        {
+            "value": "BEL",
+            "text": "BELGIUM"
+        },
+        {
+            "value": "BLZ",
+            "text": "BELIZE"
+        },
+        {
+            "value": "BEN",
+            "text": "BENIN (DAHOMEY)"
+        },
+        {
+            "value": "BMU",
+            "text": "BERMUDA"
+        },
+        {
+            "value": "BTN",
+            "text": "BHUTAN"
+        },
+        {
+            "value": "BOL",
+            "text": "BOLIVIA"
+        },
+        {
+            "value": "BES",
+            "text": "BONAIRE, SINT EUSTATIUS AND SABA"
+        },
+        {
+            "value": "BIH",
+            "text": "BOSNIA AND HERZEGOVINA"
+        },
+        {
+            "value": "BWA",
+            "text": "BOTSWANA"
+        },
+        {
+            "value": "BVT",
+            "text": "BOUVET ISLAND"
+        },
+        {
+            "value": "BRA",
+            "text": "BRAZIL"
+        },
+        {
+            "value": "IOT",
+            "text": "BRITISH INDIAN OCEAN TERRITORY"
+        },
+        {
+            "value": "BRN",
+            "text": "BRUNEI DARUSSALAM"
+        },
+        {
+            "value": "BGR",
+            "text": "BULGARIA"
+        },
+        {
+            "value": "BFA",
+            "text": "BURKINA FASO ( UPPER VOLTA)"
+        },
+        {
+            "value": "BDI",
+            "text": "BURUNDI"
+        },
+        {
+            "value": "KHM",
+            "text": "CAMBODIA (KAMPUCHEA)"
+        },
+        {
+            "value": "CMR",
+            "text": "CAMEROON"
+        },
+        {
+            "value": "CAN",
+            "text": "CANADA"
+        },
+        {
+            "value": "CPV",
+            "text": "CAPE VERDE ISLANDS"
+        },
+        {
+            "value": "CYM",
+            "text": "CAYMAN ISLANDS"
+        },
+        {
+            "value": "CAF",
+            "text": "CENTRAL AFRICAN REPUBLIC"
+        },
+        {
+            "value": "TCD",
+            "text": "CHAD"
+        },
+        {
+            "value": "CHL",
+            "text": "CHILE"
+        },
+        {
+            "value": "CHN",
+            "text": "CHINA"
+        },
+        {
+            "value": "CXR",
+            "text": "CHRISTMAS ISLANDS"
+        },
+        {
+            "value": "CCK",
+            "text": "COCOS (KEELING) ISLANDS"
+        },
+        {
+            "value": "COL",
+            "text": "COLOMBIA"
+        },
+        {
+            "value": "COM",
+            "text": "COMOROS"
+        },
+        {
+            "value": "COG",
+            "text": "CONGO"
+        },
+        {
+            "value": "COD",
+            "text": "CONGO, DEMOCRATIC REPUBLIC OF THE (ZAIRE)"
+        },
+        {
+            "value": "COK",
+            "text": "COOK ISLANDS"
+        },
+        {
+            "value": "CRI",
+            "text": "COSTA RICA"
+        },
+        {
+            "value": "CIV",
+            "text": "COTE D'IVOIRE"
+        },
+        {
+            "value": "HRV",
+            "text": "CROTIA -REPUBLIC OF CROTIA"
+        },
+        {
+            "value": "CUB",
+            "text": "CUBA"
+        },
+        {
+            "value": "CUW",
+            "text": "CURACAO"
+        },
+        {
+            "value": "CYP",
+            "text": "CYPRUS"
+        },
+        {
+            "value": "CZE",
+            "text": "CZECH REPUBLIC"
+        },
+        {
+            "value": "DNK",
+            "text": "DENMARK"
+        },
+        {
+            "value": "DJI",
+            "text": "DJIBOUTI"
+        },
+        {
+            "value": "DMA",
+            "text": "DOMINICA"
+        },
+        {
+            "value": "DOM",
+            "text": "DOMINICAN REPUBLIC"
+        },
+        {
+            "value": "TLS",
+            "text": "EAST TIMOR, DEMOCRATIC REPUBLIC OF"
+        },
+        {
+            "value": "ECU",
+            "text": "ECUADOR"
+        },
+        {
+            "value": "EGY",
+            "text": "EGYPT"
+        },
+        {
+            "value": "SLV",
+            "text": "EL SALVADOR"
+        },
+        {
+            "value": "GNQ",
+            "text": "EQUITORIAL GUINEA"
+        },
+        {
+            "value": "ERI",
+            "text": "ERITREA"
+        },
+        {
+            "value": "EST",
+            "text": "ESTONIA"
+        },
+        {
+            "value": "ETH",
+            "text": "ETHIOPIA"
+        },
+        {
+            "value": "FLK",
+            "text": "FALKLAND ISLANDS (MALVINAS)"
+        },
+        {
+            "value": "FRO",
+            "text": "FAROE ISLANDS"
+        },
+        {
+            "value": "FIJ",
+            "text": "FIJI"
+        },
+        {
+            "value": "FIN",
+            "text": "FINLAND"
+        },
+        {
+            "value": "FRA",
+            "text": "FRANCE"
+        },
+        {
+            "value": "FXX",
+            "text": "FRANCE METROPOLITAN"
+        },
+        {
+            "value": "GUF",
+            "text": "FRENCH GUIANA"
+        },
+        {
+            "value": "ATF",
+            "text": "FRENCH SOUTHERN TERRITORIES"
+        },
+        {
+            "value": "GAB",
+            "text": "GABON"
+        },
+        {
+            "value": "GMB",
+            "text": "GAMBIA"
+        },
+        {
+            "value": "GEO",
+            "text": "GEORGIA"
+        },
+        {
+            "value": "DEU",
+            "text": "GERMANY"
+        },
+        {
+            "value": "GHA",
+            "text": "GHANA"
+        },
+        {
+            "value": "GIB",
+            "text": "GIBRALTAR"
+        },
+        {
+            "value": "GRC",
+            "text": "GREECE"
+        },
+        {
+            "value": "GRL",
+            "text": "GREENLAND"
+        },
+        {
+            "value": "GRD",
+            "text": "GRENADA"
+        },
+        {
+            "value": "GLP",
+            "text": "GUADELOUPE"
+        },
+        {
+            "value": "GUM",
+            "text": "GUAM"
+        },
+        {
+            "value": "GTM",
+            "text": "GUATEMALA"
+        },
+        {
+            "value": "GGY",
+            "text": "GUERNSEY"
+        },
+        {
+            "value": "GIN",
+            "text": "GUINEA"
+        },
+        {
+            "value": "GNB",
+            "text": "GUINEA BISSAU"
+        },
+        {
+            "value": "GUY",
+            "text": "GUYANA"
+        },
+        {
+            "value": "HTI",
+            "text": "HAITI"
+        },
+        {
+            "value": "HMD",
+            "text": "HEARD AND MCDONALD ISLANDS"
+        },
+        {
+            "value": "VAT",
+            "text": "HOLY SEE (VATICAN CITY STATE)"
+        },
+        {
+            "value": "HND",
+            "text": "HONDURAS"
+        },
+        {
+            "value": "HKG",
+            "text": "HONG KONG"
+        },
+        {
+            "value": "HUN",
+            "text": "HUNGURY"
+        },
+        {
+            "value": "ISL",
+            "text": "ICELAND"
+        },
+        {
+            "value": "IND",
+            "text": "INDIA"
+        },
+        {
+            "value": "IDN",
+            "text": "INDONESIA"
+        },
+        {
+            "value": "IRN",
+            "text": "IRAN"
+        },
+        {
+            "value": "IRQ",
+            "text": "IRAQ"
+        },
+        {
+            "value": "IRL",
+            "text": "IRELAND"
+        },
+        {
+            "value": "IMN",
+            "text": "ISLE OF MAN"
+        },
+        {
+            "value": "ISR",
+            "text": "ISRAEL"
+        },
+        {
+            "value": "ITA",
+            "text": "ITALY"
+        },
+        {
+            "value": "JAM",
+            "text": "JAMAICA"
+        },
+        {
+            "value": "JPN",
+            "text": "JAPAN"
+        },
+        {
+            "value": "JEY",
+            "text": "JERSEY"
+        },
+        {
+            "value": "JOR",
+            "text": "JORDAN"
+        },
+        {
+            "value": "KAZ",
+            "text": "KAZAKHSITAN"
+        },
+        {
+            "value": "KEN",
+            "text": "KENYA"
+        },
+        {
+            "value": "KIR",
+            "text": "KIRIBATI"
+        },
+        {
+            "value": "PRK",
+            "text": "KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF"
+        },
+        {
+            "value": "KOR",
+            "text": "KOREA, REPUBLIC OF"
+        },
+        {
+            "value": "KWT",
+            "text": "KUWAIT"
+        },
+        {
+            "value": "KGZ",
+            "text": "KYRGYZSTAN"
+        },
+        {
+            "value": "LAO",
+            "text": "LAOS"
+        },
+        {
+            "value": "LVA",
+            "text": "LATVIA"
+        },
+        {
+            "value": "LBN",
+            "text": "LEBANON"
+        },
+        {
+            "value": "LSO",
+            "text": "LESOTHO"
+        },
+        {
+            "value": "LBR",
+            "text": "LIBERIA"
+        },
+        {
+            "value": "LBY",
+            "text": "LIBYA"
+        },
+        {
+            "value": "LIE",
+            "text": "LIECHTENSTEIN"
+        },
+        {
+            "value": "LTU",
+            "text": "LITHUANIA"
+        },
+        {
+            "value": "LUX",
+            "text": "LUXEMBOURG"
+        },
+        {
+            "value": "MAC",
+            "text": "MACAU"
+        },
+        {
+            "value": "MKD",
+            "text": "MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF"
+        },
+        {
+            "value": "MDG",
+            "text": "MADAGASCAR"
+        },
+        {
+            "value": "MWI",
+            "text": "MALAWI"
+        },
+        {
+            "value": "MYS",
+            "text": "MALAYSIA"
+        },
+        {
+            "value": "MDV",
+            "text": "MALDIVES"
+        },
+        {
+            "value": "MLI",
+            "text": "MALI"
+        },
+        {
+            "value": "MLT",
+            "text": "MALTA"
+        },
+        {
+            "value": "MHL",
+            "text": "MARSHALL ISLANDS"
+        },
+        {
+            "value": "MTQ",
+            "text": "MARTINIQUE"
+        },
+        {
+            "value": "MRT",
+            "text": "MAURITANIA"
+        },
+        {
+            "value": "MUS",
+            "text": "MAURITIUS"
+        },
+        {
+            "value": "MYT",
+            "text": "MAYOTTE"
+        },
+        {
+            "value": "MEX",
+            "text": "MEXICO"
+        },
+        {
+            "value": "FSM",
+            "text": "MICRONESIA, FEDERATED STATES OF"
+        },
+        {
+            "value": "MDA",
+            "text": "MOLDOVA, REPUBLIC OF"
+        },
+        {
+            "value": "MCO",
+            "text": "MONACO"
+        },
+        {
+            "value": "MNG",
+            "text": "MONGOLIA"
+        },
+        {
+            "value": "MNE",
+            "text": "MONTENEGRO"
+        },
+        {
+            "value": "MSR",
+            "text": "MONTSERRAT"
+        },
+        {
+            "value": "MAR",
+            "text": "MOROCCO"
+        },
+        {
+            "value": "MOZ",
+            "text": "MOZAMBIQUE"
+        },
+        {
+            "value": "MMR",
+            "text": "MYANMAR (BURMA)"
+        },
+        {
+            "value": "NAM",
+            "text": "NAMIBIA"
+        },
+        {
+            "value": "NRU",
+            "text": "NAURU"
+        },
+        {
+            "value": "NPL",
+            "text": "NEPAL"
+        },
+        {
+            "value": "NLD",
+            "text": "NETHERLANDS"
+        },
+        {
+            "value": "ANT",
+            "text": "NETHERLANDS ANTILLES"
+        },
+        {
+            "value": "NTZ",
+            "text": "NEUTRAL ZONE"
+        },
+        {
+            "value": "NCL",
+            "text": "NEW CALEDONIA"
+        },
+        {
+            "value": "NZL",
+            "text": "NEW ZEALAND"
+        },
+        {
+            "value": "NIC",
+            "text": "NICARAGUA"
+        },
+        {
+            "value": "NER",
+            "text": "NIGER"
+        },
+        {
+            "value": "NGA",
+            "text": "NIGERIA"
+        },
+        {
+            "value": "NIU",
+            "text": "NIUE"
+        },
+        {
+            "value": "NFK",
+            "text": "NORFOLK ISLAND"
+        },
+        {
+            "value": "MNP",
+            "text": "NORTHERN MARIANA ISLANDS"
+        },
+        {
+            "value": "NOR",
+            "text": "NORWAY"
+        },
+        {
+            "value": "OMN",
+            "text": "OMAN"
+        },
+        {
+            "value": "OTH",
+            "text": "OTHERS"
+        },
+        {
+            "value": "PAK",
+            "text": "PAKISTAN"
+        },
+        {
+            "value": "PLW",
+            "text": "PALAU"
+        },
+        {
+            "value": "PSE",
+            "text": "PALESTINE"
+        },
+        {
+            "value": "PAN",
+            "text": "PANAMA"
+        },
+        {
+            "value": "PNG",
+            "text": "PAPUA NEW GUINEA"
+        },
+        {
+            "value": "PRY",
+            "text": "PARAGUAY"
+        },
+        {
+            "value": "PER",
+            "text": "PERU"
+        },
+        {
+            "value": "PHL",
+            "text": "PHILLIPPINES"
+        },
+        {
+            "value": "PCN",
+            "text": "PITCAIRN"
+        },
+        {
+            "value": "POL",
+            "text": "POLAND"
+        },
+        {
+            "value": "PRT",
+            "text": "PORTUGAL"
+        },
+        {
+            "value": "XXX",
+            "text": "PRESON OF UNSPECIFIED NATIONALITY"
+        },
+        {
+            "value": "PRI",
+            "text": "PUERPO RICO"
+        },
+        {
+            "value": "QAT",
+            "text": "QATAR"
+        },
+        {
+            "value": "XXB",
+            "text": "REFUGEE"
+        },
+        {
+            "value": "XXC",
+            "text": "REFUGEE (NON-CONVENTIONAL) OTHER THAN XXB"
+        },
+        {
+            "value": "UNK",
+            "text": "RESIDENT OF KOSOVO (UNMIK)"
+        },
+        {
+            "value": "REU",
+            "text": "REUNION ISLANDS"
+        },
+        {
+            "value": "ROU",
+            "text": "ROMANIA"
+        },
+        {
+            "value": "RUS",
+            "text": "RUSSIAN FEDERATION"
+        },
+        {
+            "value": "RWA",
+            "text": "RWANDA"
+        },
+        {
+            "value": "BLM",
+            "text": "SAINT BARTHELEMY"
+        },
+        {
+            "value": "SHN",
+            "text": "SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA"
+        },
+        {
+            "value": "KNA",
+            "text": "SAINT KITTS AND NEVIS"
+        },
+        {
+            "value": "LCA",
+            "text": "SAINT LUCIA"
+        },
+        {
+            "value": "MAF",
+            "text": "SAINT MARTIN (FRENCH PART)"
+        },
+        {
+            "value": "SPM",
+            "text": "SAINT PIERRE AND MIQUELON"
+        },
+        {
+            "value": "VCT",
+            "text": "SAINT VINCENT AND THE GRENADINES"
+        },
+        {
+            "value": "WSM",
+            "text": "SAMOA"
+        },
+        {
+            "value": "SMR",
+            "text": "SAN MARINO"
+        },
+        {
+            "value": "STP",
+            "text": "SAO TOME AND PRINCIP"
+        },
+        {
+            "value": "SAU",
+            "text": "SAUDI ARABIA"
+        },
+        {
+            "value": "SEN",
+            "text": "SENEGAL"
+        },
+        {
+            "value": "SRB",
+            "text": "SERBIA"
+        },
+        {
+            "value": "SCG",
+            "text": "SERBIA AND MONTENEGRO"
+        },
+        {
+            "value": "SYC",
+            "text": "SEYCHELLES"
+        },
+        {
+            "value": "SLE",
+            "text": "SIERRA LEONE"
+        },
+        {
+            "value": "SGP",
+            "text": "SINGAPORE"
+        },
+        {
+            "value": "SXM",
+            "text": "SINT MAARTEN (DUTCH PART)"
+        },
+        {
+            "value": "SVK",
+            "text": "SLOVAK REPUBLIC"
+        },
+        {
+            "value": "SVN",
+            "text": "SLOVENIA"
+        },
+        {
+            "value": "SLB",
+            "text": "SOLOMON ISLANDS"
+        },
+        {
+            "value": "SOM",
+            "text": "SOMALIA"
+        },
+        {
+            "value": "ZAF",
+            "text": "SOUTH AFRICA"
+        },
+        {
+            "value": "SGS",
+            "text": "SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS"
+        },
+        {
+            "value": "SSD",
+            "text": "SOUTH SUDAN"
+        },
+        {
+            "value": "XOM",
+            "text": "SOVEREIGN MILITARY ORDER OF MALTA"
+        },
+        {
+            "value": "ESP",
+            "text": "SPAIN"
+        },
+        {
+            "value": "LKA",
+            "text": "SRI LANKA"
+        },
+        {
+            "value": "XXA",
+            "text": "STATELESS PERSON"
+        },
+        {
+            "value": "SDN",
+            "text": "SUDAN"
+        },
+        {
+            "value": "SUR",
+            "text": "SURINAME"
+        },
+        {
+            "value": "SJM",
+            "text": "SVALBARD AND JAN MAYEN ISLANDS"
+        },
+        {
+            "value": "SWZ",
+            "text": "SWAZILAND"
+        },
+        {
+            "value": "SWE",
+            "text": "SWEDEN"
+        },
+        {
+            "value": "CHE",
+            "text": "SWITZERLAND"
+        },
+        {
+            "value": "SYR",
+            "text": "SYRIA"
+        },
+        {
+            "value": "TWN",
+            "text": "TAIWAN"
+        },
+        {
+            "value": "TZA",
+            "text": "TANZANIA"
+        },
+        {
+            "value": "TJK",
+            "text": "TAZIKISTAN"
+        },
+        {
+            "value": "THA",
+            "text": "THAILAND"
+        },
+        {
+            "value": "TBT",
+            "text": "TIBENTIAN ORIGIN"
+        },
+        {
+            "value": "TGO",
+            "text": "TOGO"
+        },
+        {
+            "value": "TKL",
+            "text": "TOKELAU"
+        },
+        {
+            "value": "TON",
+            "text": "TONGA"
+        },
+        {
+            "value": "TTO",
+            "text": "TRINIDAD AND TOBAGO "
+        },
+        {
+            "value": "TUN",
+            "text": "TUNISIA"
+        },
+        {
+            "value": "TUR",
+            "text": "TURKEY"
+        },
+        {
+            "value": "TKM",
+            "text": "TURKMENISTAN"
+        },
+        {
+            "value": "TCA",
+            "text": "TURKS AND CAICOS ISLANDS"
+        },
+        {
+            "value": "TUV",
+            "text": "TUVALU"
+        },
+        {
+            "value": "UGA",
+            "text": "UGANDA"
+        },
+        {
+            "value": "GBD",
+            "text": "UK BRITISH DEPENDENT TERRITORIES CITIZEN"
+        },
+        {
+            "value": "GBO",
+            "text": "UK BRITISH OVERSEAS CITIZEN"
+        },
+        {
+            "value": "GBN",
+            "text": "UK BRITISH OVERSEAS NATIONAL "
+        },
+        {
+            "value": "GBP",
+            "text": "UK BRITISH PROTECTED PERSON"
+        },
+        {
+            "value": "GBS",
+            "text": "UK BRITISH SUBJECT"
+        },
+        {
+            "value": "UKR",
+            "text": "UKRAINE"
+        },
+        {
+            "value": "ARE",
+            "text": "UNITED ARAB EMIRATES"
+        },
+        {
+            "value": "GBR",
+            "text": "UNITED KINGDOM"
+        },
+        {
+            "value": "UNA",
+            "text": "UNITED NATIONS"
+        },
+        {
+            "value": "UNO",
+            "text": "UNITED NATIONS ORGANIZATION"
+        },
+        {
+            "value": "UMI",
+            "text": "UNITED STATES MINOR OUTLYING ISLANDS"
+        },
+        {
+            "value": "USA",
+            "text": "UNITED STATES OF AMERICA"
+        },
+        {
+            "value": "URY",
+            "text": "URAGUAY"
+        },
+        {
+            "value": "UZB",
+            "text": "UZBEKISTAN"
+        },
+        {
+            "value": "VUT",
+            "text": "VANUATU (NEW HEBRIDES)"
+        },
+        {
+            "value": "VEN",
+            "text": "VENEZUELA"
+        },
+        {
+            "value": "VNM",
+            "text": "VIETNAM"
+        },
+        {
+            "value": "VGB",
+            "text": "VIRGIN ISLANDS (BRITISH)"
+        },
+        {
+            "value": "VIR",
+            "text": "VIRGIN ISLANDS (US)"
+        },
+        {
+            "value": "WLF",
+            "text": "WALLIS AND FUTUNA ISLANDS"
+        },
+        {
+            "value": "ESH",
+            "text": "WESTERN SAHARA"
+        },
+        {
+            "value": "YEM",
+            "text": "YEMEN"
+        },
+        {
+            "value": "YUG",
+            "text": "YUGOSLAVIA"
+        },
+        {
+            "value": "ZMB",
+            "text": "ZAMBIA"
+        },
+        {
+            "value": "ZWE",
+            "text": "ZIMBABWE"
+        }
+    ],
+    "special_category": [
+        {
+            "value": 3,
+            "text": "Crew"
+        },
+        {
+            "value": 7,
+            "text": "Diplomat Exempted"
+        },
+        {
+            "value": 4,
+            "text": "Emergency Transit"
+        },
+        {
+            "value": 1,
+            "text": "Newly Born"
+        },
+        {
+            "value": 10,
+            "text": "OCI"
+        },
+        {
+            "value": 6,
+            "text": "Official Exempted"
+        },
+        {
+            "value": 8,
+            "text": "Other Exempted"
+        },
+        {
+            "value": 9,
+            "text": "Others"
+        },
+        {
+            "value": 11,
+            "text": "PIO"
+        },
+        {
+            "value": 2,
+            "text": "Refugee"
+        },
+        {
+            "value": 5,
+            "text": "TLP"
+        }
+    ],
+    "tn_state": [
+        {
+            "value": "1",
+            "text": "ANDAMAN AND NICOBAR ISLANDS"
+        },
+        {
+            "value": "2",
+            "text": "ANDHRA PRADESH"
+        },
+        {
+            "value": "3",
+            "text": "ARUNACHAL PRADESH"
+        },
+        {
+            "value": "4",
+            "text": "ASSAM"
+        },
+        {
+            "value": "5",
+            "text": "BIHAR"
+        },
+        {
+            "value": "33",
+            "text": "CHANDIGARH"
+        },
+        {
+            "value": "6",
+            "text": "CHHATTISGARH"
+        },
+        {
+            "value": "34",
+            "text": "DADRA AND NAGAR HAVELI"
+        },
+        {
+            "value": "7",
+            "text": "DAMAN AND DIU"
+        },
+        {
+            "value": "8",
+            "text": "DELHI"
+        },
+        {
+            "value": "9",
+            "text": "GOA"
+        },
+        {
+            "value": "10",
+            "text": "GUJARAT"
+        },
+        {
+            "value": "11",
+            "text": "HARYANA"
+        },
+        {
+            "value": "12",
+            "text": "HIMACHAL PRADESH"
+        },
+        {
+            "value": "13",
+            "text": "JAMMU AND KASHMIR"
+        },
+        {
+            "value": "14",
+            "text": "JHARKHAND"
+        },
+        {
+            "value": "15",
+            "text": "KARNATAKA"
+        },
+        {
+            "value": "16",
+            "text": "KERALA"
+        },
+        {
+            "value": "35",
+            "text": "LAKSHADWEEP"
+        },
+        {
+            "value": "17",
+            "text": "MADHYA PRADESH"
+        },
+        {
+            "value": "18",
+            "text": "MAHARASHTRA"
+        },
+        {
+            "value": "19",
+            "text": "MANIPUR"
+        },
+        {
+            "value": "20",
+            "text": "MEGHALAYA"
+        },
+        {
+            "value": "21",
+            "text": "MIZORAM"
+        },
+        {
+            "value": "22",
+            "text": "NAGALAND"
+        },
+        {
+            "value": "23",
+            "text": "ORISSA"
+        },
+        {
+            "value": "24",
+            "text": "PUDUCHERRY"
+        },
+        {
+            "value": "25",
+            "text": "PUNJAB"
+        },
+        {
+            "value": "26",
+            "text": "RAJASTHAN"
+        },
+        {
+            "value": "27",
+            "text": "SIKKIM"
+        },
+        {
+            "value": "28",
+            "text": "TAMIL NADU"
+        },
+        {
+            "value": "29",
+            "text": "TRIPURA"
+        },
+        {
+            "value": "31",
+            "text": "UTTARAKHAND"
+        },
+        {
+            "value": "30",
+            "text": "UTTAR PRADESH"
+        },
+        {
+            "value": "32",
+            "text": "WEST BENGAL"
+        }
+    ],
+    "visa_types": [
+        {
+            "value": "MX",
+            "text": "ATTENDANT MEDICAL"
+        },
+        {
+            "value": "B",
+            "text": "BUSINESS VISA"
+        },
+        {
+            "value": "C",
+            "text": "CONFERENCE VISA"
+        },
+        {
+            "value": "D",
+            "text": "DIPLOMATIC VISA"
+        },
+        {
+            "value": "E",
+            "text": "EMPLOYMENT VISA"
+        },
+        {
+            "value": "XE",
+            "text": "ENTRY VISA"
+        },
+        {
+            "value": "J",
+            "text": "JOURNALIST VISA"
+        },
+        {
+            "value": "L",
+            "text": "LONG TERM VISA"
+        },
+        {
+            "value": "ME",
+            "text": "MEDICAL VISA"
+        },
+        {
+            "value": "SP",
+            "text": "MISC SP PERMISSION"
+        },
+        {
+            "value": "M",
+            "text": "MISSIONARY VISA"
+        },
+        {
+            "value": "OC",
+            "text": "OCI"
+        },
+        {
+            "value": "O",
+            "text": "OFFICIAL VISA"
+        },
+        {
+            "value": "PL",
+            "text": "PILGRIMES VISA"
+        },
+        {
+            "value": "P",
+            "text": "PIO Card Holder"
+        },
+        {
+            "value": "R",
+            "text": "RESEARCH OR TRAINING VISA"
+        },
+        {
+            "value": "S",
+            "text": "STUDENT VISA"
+        },
+        {
+            "value": "T",
+            "text": "TOURIST VISA"
+        },
+        {
+            "value": "TR",
+            "text": "TRANSIT VISA"
+        },
+        {
+            "value": "U",
+            "text": "UNITED NATION"
+        }
+    ],
+    "purpost_to_visit": [
+        {
+            "value": "18",
+            "text": "accompanying parents"
+        },
+        {
+            "value": "9",
+            "text": "Accompanying Patient"
+        },
+        {
+            "value": "10",
+            "text": "Accompanying Patient as Doctor"
+        },
+        {
+            "value": "17",
+            "text": "accompanying Spouse"
+        },
+        {
+            "value": "6",
+            "text": "Business"
+        },
+        {
+            "value": "12",
+            "text": "Diplomatic"
+        },
+        {
+            "value": "5",
+            "text": "Education"
+        },
+        {
+            "value": "13",
+            "text": "Employment"
+        },
+        {
+            "value": "19",
+            "text": "Internship"
+        },
+        {
+            "value": "2",
+            "text": "Joining spouse"
+        },
+        {
+            "value": "7",
+            "text": "Journalism"
+        },
+        {
+            "value": "8",
+            "text": "Medical Treatement of self"
+        },
+        {
+            "value": "1",
+            "text": "Meeting friends/relatives"
+        },
+        {
+            "value": "3",
+            "text": "Minor child(either parent is indian)"
+        },
+        {
+            "value": "11",
+            "text": "Offical"
+        },
+        {
+            "value": "15",
+            "text": "Others"
+        },
+        {
+            "value": "4",
+            "text": "Seminar/conference. in India"
+        },
+        {
+            "value": "14",
+            "text": "Studies"
+        },
+        {
+            "value": "16",
+            "text": "Tourism"
+        }
+    ]
+}

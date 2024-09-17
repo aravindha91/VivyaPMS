@@ -1,0 +1,117 @@
+<%- include ('../template/header') -%>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light top-bar passport-scan-bg-dark">
+            <a class="navbar-brand" href="javascript:;">
+                <img src="<%- baseUrl -%>assets/img/logo-new.png" class="img-fluid" />
+            </a>
+        </nav>
+    <div class="container-fluid mt-5 mb-5 pt-3 responsive-m-0">
+       <div class="row justify-content-center">
+           <div class="col-md-6 passport-scan-bg-white p-5 br-15 responsive-m-3 responsive-p-3">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img src="<%- baseUrl -%>assets/img/login-left-side-image.png" class="img-signin" style="width:100%" />
+                    </div>
+                    <div class="col-md-6 responsive-mt-33">
+                        <form id="login-form" method="post" autocomplete="off">
+                            <h2 class="form-login-heading mb-3 heading-bold">Sign in</h2>
+                            <div class="form-group mb-3">
+                                <label>Username or email</label>
+                                <input type="email" name="email" class="form-control no-ob" value="">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control no-ob" value="">
+                            </div>
+                            <div class="form-group">
+                                <button class="btn scan-btn small-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">Sign In</button>
+                            </div>
+                            <div class="form-group text-right d-none">
+                                <a href="javascript:;" class="passport-scan-text-color-gray font-size-14">Forgot your
+                                    password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+           </div>
+       </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('input[name="email"]').focus();
+            var page = '<%= typeof pageLogin !="undefined" ? "yes":"no" %>';
+            $('#login-form').validate({
+                rules: {
+                    email: {
+                        required: {
+                            depends: function () {
+                                $(this).val($.trim($(this).val()));
+                                return true;
+                            }
+                        },
+                        email: true
+                    }, password: {
+                        required: true
+                    }
+                },
+                highlight: function (input) {
+                    $(input).addClass('error-validation');
+                },
+                unhighlight: function (input) {
+                    $(input).removeClass('error-validation');
+                },
+                errorPlacement: function (error, element) {
+                    $(element).parents('.form-group').append(error);
+                },
+                messages: {
+                    email: {
+                        required: 'Provide the email',
+                        email: 'Provide valid email'
+                    }, password: {
+                        required: 'Provide the password'
+                    }
+                },
+                submitHandler: function () {
+                    var username = $('input[name="email"]').val();
+                    var password = $('input[name="password"]').val();
+                    $.ajax({
+                        url: `${apiUrl}login`,
+                        method: 'post',
+                        data: {
+                            username: username,
+                            password: password
+                        }, dataType: 'json',
+                        beforeSend: function () { },
+                        success: function (res) {
+                            if (res.status === true) {
+                                window.location.href = res.ac === 'S' ?`${baseUrl}license`: `${baseUrl}dashboard`;
+                            } else {
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Login",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                  });
+                            }
+                        }, error: function (error, execution) {
+                            var msg = getErrorMessage(error, execution);
+                            cuteAlert({
+                                type: "error",
+                                title: "Login",
+                                message: msg,
+                                buttonText: "Ok"
+                              });
+                        },
+                        complete: function () { }
+                    });
+                }
+            });
+        });
+        /*$(document).keypress(function (event) {
+            var keyCode = (event.keyCode ? event.keyCode : event.which);
+            if (keyCode===13)
+                $('#login-form').submit();
+        }); */
+    </script>
+    <%- include ('../template/footer') -%>

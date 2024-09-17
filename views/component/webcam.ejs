@@ -1,0 +1,99 @@
+
+<div class="webCamCapture d-none">
+    <div class="row p-3" style="position: relative;z-index: 999999999;">
+        <div class="col-6">
+            <button type="button"
+            class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white btn-camera-close"
+            data-dismiss="modal" onclick="closeWebCam()"> <i class="fa fa-close m-0" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-6 text-right">
+            <button type="button" id="takePhoto"
+            class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white btn-camera-capture">
+            <i class="fa fa-camera m-0" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div id="webCamera"></div>
+</div>
+
+
+
+
+
+<script>
+function captureAndSendImage() {
+    Webcam.snap(function(data_uri) {
+        // Send the image data to the server
+        fetch('/process-image', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ image: data_uri })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            // Handle the result here
+            if (data.success) {
+                // Optionally, you can display the processed image or boundary detection results
+                window.open(data.resultPath, '_blank'); // Open result image in a new tab
+            } else {
+                cuteAlert({
+                    type: "error",
+                    title: "Error",
+                    message: data.message,
+                    buttonText: "Ok"
+                });
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            cuteAlert({
+                type: "error",
+                title: "Error",
+                message: 'Failed to process the image',
+                buttonText: "Ok"
+            });
+        });
+    });
+}
+
+// Bind the capture function to the button click
+document.getElementById('takePhoto').addEventListener('click', captureAndSendImage);
+
+    function doOnOrientationChange() {
+        switch (window.orientation) {
+            case -90: case 90:
+                // landscape 
+                return true;
+                break;
+            default:
+                // portrait
+                return false;
+                break;
+        }
+    }
+    function onChangeRotate() {
+        switch (window.orientation) {
+            case -90: case 90:
+                // landscape 
+                return true;
+                break;
+            default:
+            closeWebCam();
+                cuteAlert({
+                    type: "warning",
+                    title: "Camera",
+                    message: 'Please rotate your phone landscap mode to capture image',
+                    buttonText: "Ok"
+                });
+                break;
+        }
+    }
+
+    window.addEventListener('orientationchange', onChangeRotate);
+
+
+
+</script>

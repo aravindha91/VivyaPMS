@@ -1,0 +1,103 @@
+<%- include ('../template/header') -%>
+    <%- include ('../component/webcam') -%>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light top-bar passport-scan-bg-gray">
+            <a class="navbar-brand" href="javascript:;">
+                <img src="<%- baseUrl -%>assets/img/logo.png" class="img-fluid" />
+            </a>
+        </nav>
+        <div class="container-fluid mt-5 mb-5 pt-3 responsive-m-0">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <input type="file" id="uploadFile">
+                </div>
+                <div class="col-md-12 m-4">
+                    <button type="button" class="btn btn-primary" id="showCamera">Camera</button>
+                </div>
+                <div class="col-md-12 loadRes"></div>
+
+            </div>
+        </div>
+      
+        <script>
+            $(document).ready(function () {
+                
+                $('#showCamera').click(function () {
+                    showWebCam();
+                });
+                // take photo from web cam primary
+                $(document).on("click", "#takePhoto", function () {
+                    // webcam image capture and upload
+                    Webcam.snap(function (data_uri, canvas, context) {
+                        // $('.captured-preview-place').html(`<img src="${data_uri}" class="img-fluid" />`);
+                        canvas.toBlob(function (blob) {
+                            // captured data upload to server
+                            var formData = new FormData();
+                            formData.append('file', blob);
+                            formData.append('blob', 'yes');
+                            $.ajax({
+                                url: `${baseUrl}nanonet`,
+                                method: 'POST',
+                                data: formData,
+                                contentType: false,
+                                processData: false,
+                                dataType: 'json',
+                                beforeSend: function () {
+                                    $('.loadRes').html('Please wait processing...');
+                                },
+                                success: function (res) {
+                                    
+                                    $('.loadRes').html(res);
+                                }, error: function (error, execution) {
+                                    // $('.progress-width').addClass('d-none');
+                                    var msg = getErrorMessage(error, execution);
+                                    $.fancyAlert({
+                                        title: "Upload document",
+                                        message: msg,
+                                        okButton: "Ok"
+                                    });
+                                }, complete: function () {
+                                }
+                            });
+                        });
+                        Webcam.reset();
+                        $("#webCam").modal("hide");
+                    });
+                });
+
+                // primary upload change file
+                $('#uploadFile').change(function () {
+                    var input = this;
+                    for (var i = 0; i < input.files.length; i++) {
+                        var formData = new FormData();
+                        formData.append('file', input.files[i]);
+                        formData.append('blob', 'no');
+                        $.ajax({
+                            url: `${baseUrl}nanonet`,
+                            method: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            dataType: 'json',
+                            beforeSend: function () {
+                                $('.loadRes').html('Please wait processing...');
+                            },
+                            success: function (res) {
+                               
+                                $('.loadRes').html(res);
+                            }, error: function (error, execution) {
+                                // $('.progress-width').addClass('d-none');
+                                var msg = getErrorMessage(error, execution);
+                                $.fancyAlert({
+                                    title: "Upload document",
+                                    message: msg,
+                                    okButton: "Ok"
+                                });
+                            }, complete: function () {
+                            }
+                        });
+                    }
+                });
+            });
+            
+        </script>
+        <%- include ('../template/footer') -%>

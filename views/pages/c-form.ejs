@@ -1,0 +1,761 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-store,no-cache, must-revalidate,post-check=0, pre-check=0,max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+ <script type="text/javascript">
+            function noBack(){window.history.forward()}
+            noBack();
+            window.onload=noBack;
+            window.onpageshow=function(evt){if(evt.persisted)noBack()}
+            window.onunload=function(){void(0)}
+            
+            function burstCache() {
+            findAppID();
+       if (!navigator.onLine) {
+           document.body.innerHTML = 'Loading...';
+       }
+   }
+     </script>
+<meta http-equiv="Expires" content="-1"> 
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Form C</title>
+	
+	<link href="commonstyle.css" rel="stylesheet" type="text/css" />
+		
+	<style type="text/css"> 
+		.ToolText{position:relative; } 
+		.ToolTextHover{position:relative;} 
+		.ToolText span{display: none;} 
+		.ToolTextHover span{ 
+								display:block; 
+								position:absolute; 
+								border:1px solid black; 
+								top:1.3em; 
+								left:5px; 
+								background-color:gray; color:white; 
+								text-align: center; 
+							} 
+	</style>
+
+		
+	<style type="text/css">
+		
+	<!--
+		body {
+				background-image: url(image/page_bg.gif);
+			 }
+		.style10 {color: #FF0000}
+		.style11 {font-size: 18px}
+		.style12 {font-size: 10pt}
+		.style13 {color: #666666}
+		.style14 {color: #FFFFFF}
+		.style15 {
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: 11px;
+					color: #FFFFFF;
+				 }
+		.style16 {
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: 11px;
+					color: #444444;
+				 }
+		.style38 {
+					font-family: Arial, Helvetica, sans-serif;
+					font-size: 11px;
+					color: #0066CC
+				 }
+		.style39 {
+					font-size: 11px;
+					color: #000000;
+					cursor: default;
+					font-family: Arial, Helvetica, sans-serif;
+				 }
+		.style43 {cursor: default; font-size: 12px; color: #0066FF;}
+		.style46 {
+					font-family: Verdana, Tahoma;
+					color: #CC33CC;
+					font-weight: bold;
+				 }
+		.style50 {color: #0066CC; font-weight: bold; }
+		.style51 {color: #CC33CC}
+		-->
+	</style>
+		
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</head>
+
+<body bgcolor="#c0c0c0">
+
+
+
+
+	
+<table width="77%" height="0" border="0" align="center" cellpadding="0" cellspacing="2">  		
+	 <tr>
+		<td width="0%" height="521">&nbsp; </td>			
+		<td width="100%" valign="top">
+	 	 <form name="Fileref" method="post" action="/frro/FormC/saveandexit">
+		<table width="100%" height="0" border="0" align="center" cellpadding="0" cellspacing="1" bordercolor="#FFDBAE" bgcolor="#FFFFFF">
+			<tr>
+				<td height="0" valign="top"></td>
+ 			</tr>
+ 			
+			<tr>		  
+				<td height="85" colspan="8" bgColor=#112aa3 valign="top" nowrap  > <br>
+					<p align="center" ><font color="white" size="5" ><strong>Online Form 'C' </strong>	</font>	<br>
+						<font color="#ffffff"></font> <font color="#ffffff"><strong>ARRIVAL REPORT OF FOREIGNER IN HOTEL </strong>	</font>
+					</p><br>					
+				</td>
+			</tr>
+		
+		<tr bgcolor="#95CFFF" background="image/heading.gif" align='right'>
+				<td height="15" colspan="8" nowrap background="image/heading.gif" class="style38" ><strong>&nbsp;&nbsp;&nbsp; <a href = "menu.jsp?t4g=CX8FY177D26284154EPMC154I70A74V6" ><font color="#ffffff"><u>Menu</u></font></a>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; <a href = "logout.jsp?t4g=CX8FY177D26284154EPMC154I70A74V6" ><font color="#ffffff"><u>Logout</u></font></a> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<a href="logoutnex.jsp?t4g=CX8FY177D26284154EPMC154I70A74V6"><font color="#ffffff"><u> Exit </u></font></a><br></strong></td>				
+		</tr>
+
+	 
+			<tr>
+				<td height="0" colspan="8" valign="top" nowrap bgcolor="#FFFFFF" class="text" >
+					<div align="right">
+						<span class="style39">
+						<span class="style43">If you have already filled the form, please type your Application ID
+						</span>
+						</span>
+						<input name="Filerfno" type="text" class="textBoxDashed" id="Filerfno" size="12" maxlength="12"  />
+						<input name="GetFileno" type="button" id="GetFileno" onClick='GetFileNo()'  value="  Go  " title="Enter your Temporary Application ID and Click Go">&nbsp;
+						<input name="Button" type="button" onClick="pdf();"  value="Print" title="Print already Registered Applications">
+						<input type="hidden" size="25" maxlength="25" name="t4g" value="CX8FY177D26284154EPMC154I70A74V6" readOnly />
+						<br> 
+						
+					</div>
+				</td>
+           
+			</tr>
+           
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="8" nowrap background="image/heading.gif" class="style38" >&nbsp; 
+				</td>
+			</tr>
+	
+			<tr >
+				<td height="15" colspan="8">Your Information will be saved, if you click <strong>Save and Continue </strong> button to Submit the form. Partial information will be saved, if you click <Strong> Save and Exit </Strong>button. You can continue entering the remaining information later using the Application ID. If you click <strong>Save and Continue </strong> button, the form will be submitted and No further changes can be made. If you click <strong>Logout</strong> without doing either of that, your information will be lost.</td>
+			</tr>
+			</table>
+	 		</form>
+	 		<form name="OnlineForm" method="post">
+	 		<table width="100%" height="0" border="0"align="center" cellpadding="0" cellspacing="1" bordercolor="#FFDBAE" bgcolor="#FFFFFF">
+	 	
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff">&nbsp;Accomodation Details (Hotel/DharamShala/Guest House/Lodge/ Individual House/ Institute etc.)</font></strong></td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff">&nbsp;Photo&nbsp;</font></strong></td>
+			</tr>
+	
+			<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right"> Name :&nbsp;  <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> The Suryaa New Delhi  </font></strong>
+				<br></td>
+				<td height="3" rowspan="7" colspan="7" valign="top" nowrap bgcolor="#F3F3F3" class="text style38"><div id="pict"></div></td>
+			</tr>
+	 
+			<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Address&nbsp; :   <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> Community Centre, New Friends Colony </font></strong>
+				<br></td>				
+			</tr>
+		
+			<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">State : <br></div>
+				</td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> DELHI </font></strong>
+				<br></td>
+				
+			</tr>
+            
+			<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">City/District : <br> </div>
+				</td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> DELHI                          </font></strong>
+				<br></td>				
+			</tr>
+          
+			
+ 			
+ 			<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Star Rating :&nbsp;  <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> Five Star</font></strong>
+				<br></td>				
+			</tr>
+ 			
+ 			<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Phone No :&nbsp;  <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> 26835070 </font></strong>
+				<br></td>
+				</tr>
+			
+				<tr>
+				<td  height="25" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Mobile No :&nbsp;  <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<strong><font size="1"> 9899147555 </font></strong>
+				<br></td>				
+			</tr>
+ 			
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" >
+					<strong><font color="#ffffff">&nbsp;Personal Details<br> </font></strong>
+				</td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff">&nbsp;Help</font></strong> <br></td>
+			</tr>
+			
+			
+			<tr>
+				<td  height="3" valign="top" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Photo  <br></td>
+				<td height="3" width="500" valign="top" bgcolor="#FFFFFF" >
+						<input type="file" accept="image/jpeg" onClick="lock=0;" class="text style16" name="file1" id="file1">
+						<input type="button" class="text style16" onClick="ajaxFileUpload();" value="Upload File"><br>
+			</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38"> Kindly click upload after selecting the photograph<br>Maximum photo size limit is 50 KB as per the passport<br> </td>
+			</tr>
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Surname <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_surname" type="text" class="textBoxDashed" onKeyUp="chkString(this);" id="applicant_surname" size="50" maxlength="50" value=""/>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">For reducing photo size:Resize photo or set dpi or crop photo<br> </td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Given Name <font color="red">*</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+						<input name="applicant_givenname" type="text" class="textBoxDashed" onKeyUp="chkString(this);"  id="applicant_givenname" size="50" maxlength="50" value=""/>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br></td>
+			</tr>
+			
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Sex <font color="red">*</font>&nbsp; </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF" class="style16">
+					<font size="3">
+						<select name="applicant_sex" class="style16" id="applicant_sex" style="">
+							<option value="">Select</option>
+							<option  value='M'> Male</option><option  value='F'> Female</option><option  value='T'> Transgender</option>
+						</select>
+					</font>
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="helpText">&nbsp;</td>
+			</tr>
+			
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Date of Birth Date Format <font color="red">*</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<select name="dobformat" class="style16" onchange="document.OnlineForm.applicant_dob.value='';document.OnlineForm.applicant_age.value=''"  onkeydown="if (event.keyCode == 8) event.keyCode=37+46; if(event.keyCode==13) event.keyCode=9;">					
+						<option value="">Date of birth Date Formats</option>
+						<option  value='DY'> Date of birth in DD/MM/YYYY</option><option  value='YY'> Year of birth in YYYY</option><option  value='MY'> Month & Year of birth in MM/YYYY</option><option  value='AG'> Age in XXX years</option>
+					</select>
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3"  class="text style38">&nbsp;Date of Birth (As per the passport)<br></td>
+			</tr>
+			
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Date of Birth <font color="red">*</font> <br></div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"  name="applicant_dob" id="applicant_dob" maxlength="10" size="11" onKeyUp="chkDatecharsdob(this);"  onblur="validateDOBformat()"  value="" onkeydown="if (event.keyCode == 8) event.keyCode=37+46; if(event.keyCode==13) event.keyCode=9;"><div id ="dobfield"></div>
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">If MM/YYYY is chosen, then Date is set <br>&nbsp;as 01/MM/YYYY<br>If YYYY is chosen, then Date is set as <br>&nbsp;01/01/YYYY<br> 
+				</td>
+			</tr>
+        
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Age <font color="red">*</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"   name="applicant_age" id="applicant_age" maxlength="3" size="7"  value = "" readOnly >					
+						<span class="text style38">&nbsp;(Age as on 2010)</span>
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; If AGE is chosen, then Date of birth is set <br>&nbsp;as 01/01/(2010 - (Age - (Current year - 2010)))</td>
+			</tr>	
+		
+				<!-- Added By Balmiki -->
+				<!--  
+				<tr>
+				<td height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16"><div align="right">Whether newly born child<br>(born in India only)<font color="red">*</font></div></td>
+						<td height="11" valign="middle" bgcolor="#FFFFFF">
+						<select name="new_born_child_flag" id="new_born_child_flag" onchange="newbornsel()" class="style16">  
+						
+							<!--  <option value="">Please choose</option>-->
+							
+							
+						   
+				<!--  		
+						</select>
+						<span class="text style38"></span>
+						</td>
+		      </tr>
+		           --> 
+		          <!-- End By Balmiki -->  
+		        
+		          
+		          <!-- Added By Balmiki -->
+				
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Special Category <font color="red">*</font>  
+				</td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+						<font size="1">
+						<select name="applicant_special_category" id="applicant_special_category" onchange="specialcategorysel()" class="style16" >
+							<option value="">Select</option>				
+							<option  value='3'> Crew</option><option  value='7'> Diplomat Exempted</option><option  value='4'> Emergency Transit</option><option  value='1'> Newly Born</option><option  value='10'> OCI</option><option  value='6'> Official Exempted</option><option  value='8'> Other Exempted</option><option  value='9'> Others</option><option  value='11'> PIO</option><option  value='2'> Refugee</option><option  value='5'> TLP</option>							
+						</select>
+						</font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;Choose <strong>Others</strong> always for general category<br> </td>
+			</tr>
+		          
+		          <!-- End By Balmiki -->     
+		          
+		     <tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Nationality <font color="red">*</font>  
+				</td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+						<font size="1">
+						<select name="applicant_nationality" id="applicant_nationality" class="style16" id="" style="">
+							<option value="">Select</option>				
+							<option  value='AFG'> AFGHANISTAN</option><option  value='ALA'> ALAND ISLANDS</option><option  value='ALB'> ALBANIA</option><option  value='DZA'> ALGERIA</option><option  value='ASM'> AMERICAN SAMOA</option><option  value='AND'> ANDORRA</option><option  value='AGO'> ANGOLA</option><option  value='AIA'> ANGUILLA</option><option  value='ATA'> ANTARCTICA</option><option  value='ATG'> ANTIGUA AND BARBUDA</option><option  value='ARG'> ARGENTINA</option><option  value='ARM'> ARMENIA</option><option  value='ABW'> ARUBA</option><option  value='AUS'> AUSTRALIA</option><option  value='AUT'> AUSTRIA</option><option  value='AZE'> AZERBAIJAN</option><option  value='BHS'> BAHAMAS</option><option  value='BHR'> BAHRAIN</option><option  value='BGD'> BANGLADESH</option><option  value='BRB'> BARBADOS</option><option  value='BLR'> BELARUS</option><option  value='BEL'> BELGIUM</option><option  value='BLZ'> BELIZE</option><option  value='BEN'> BENIN (DAHOMEY)</option><option  value='BMU'> BERMUDA</option><option  value='BTN'> BHUTAN</option><option  value='BOL'> BOLIVIA</option><option  value='BES'> BONAIRE, SINT EUSTATIUS AND SABA</option><option  value='BIH'> BOSNIA AND HERZEGOVINA</option><option  value='BWA'> BOTSWANA</option><option  value='BVT'> BOUVET ISLAND</option><option  value='BRA'> BRAZIL</option><option  value='IOT'> BRITISH INDIAN OCEAN TERRITORY</option><option  value='BRN'> BRUNEI DARUSSALAM</option><option  value='BGR'> BULGARIA</option><option  value='BFA'> BURKINA FASO ( UPPER VOLTA)</option><option  value='BDI'> BURUNDI</option><option  value='KHM'> CAMBODIA (KAMPUCHEA)</option><option  value='CMR'> CAMEROON</option><option  value='CAN'> CANADA</option><option  value='CPV'> CAPE VERDE ISLANDS</option><option  value='CYM'> CAYMAN ISLANDS</option><option  value='CAF'> CENTRAL AFRICAN REPUBLIC</option><option  value='TCD'> CHAD</option><option  value='CHL'> CHILE</option><option  value='CHN'> CHINA</option><option  value='CXR'> CHRISTMAS ISLANDS</option><option  value='CCK'> COCOS (KEELING) ISLANDS</option><option  value='COL'> COLOMBIA</option><option  value='COM'> COMOROS</option><option  value='COG'> CONGO</option><option  value='COD'> CONGO, DEMOCRATIC REPUBLIC OF THE (ZAIRE)</option><option  value='COK'> COOK ISLANDS</option><option  value='CRI'> COSTA RICA</option><option  value='CIV'> COTE D'IVOIRE</option><option  value='HRV'> CROTIA -REPUBLIC OF CROTIA</option><option  value='CUB'> CUBA</option><option  value='CUW'> CURACAO</option><option  value='CYP'> CYPRUS</option><option  value='CZE'> CZECH REPUBLIC</option><option  value='DNK'> DENMARK</option><option  value='DJI'> DJIBOUTI</option><option  value='DMA'> DOMINICA</option><option  value='DOM'> DOMINICAN REPUBLIC</option><option  value='TLS'> EAST TIMOR, DEMOCRATIC REPUBLIC OF</option><option  value='ECU'> ECUADOR</option><option  value='EGY'> EGYPT</option><option  value='SLV'> EL SALVADOR</option><option  value='GNQ'> EQUITORIAL GUINEA</option><option  value='ERI'> ERITREA</option><option  value='EST'> ESTONIA</option><option  value='ETH'> ETHIOPIA</option><option  value='FLK'> FALKLAND ISLANDS (MALVINAS)</option><option  value='FRO'> FAROE ISLANDS</option><option  value='FIJ'> FIJI</option><option  value='FIN'> FINLAND</option><option  value='FRA'> FRANCE</option><option  value='FXX'> FRANCE METROPOLITAN</option><option  value='GUF'> FRENCH GUIANA</option><option  value='ATF'> FRENCH SOUTHERN TERRITORIES</option><option  value='GAB'> GABON</option><option  value='GMB'> GAMBIA</option><option  value='GEO'> GEORGIA</option><option  value='DEU'> GERMANY</option><option  value='GHA'> GHANA</option><option  value='GIB'> GIBRALTAR</option><option  value='GRC'> GREECE</option><option  value='GRL'> GREENLAND</option><option  value='GRD'> GRENADA</option><option  value='GLP'> GUADELOUPE</option><option  value='GUM'> GUAM</option><option  value='GTM'> GUATEMALA</option><option  value='GGY'> GUERNSEY</option><option  value='GIN'> GUINEA</option><option  value='GNB'> GUINEA BISSAU</option><option  value='GUY'> GUYANA</option><option  value='HTI'> HAITI</option><option  value='HMD'> HEARD AND MCDONALD ISLANDS</option><option  value='VAT'> HOLY SEE (VATICAN CITY STATE)</option><option  value='HND'> HONDURAS</option><option  value='HKG'> HONG KONG</option><option  value='HUN'> HUNGURY</option><option  value='ISL'> ICELAND</option><option  value='IND'> INDIA</option><option  value='IDN'> INDONESIA</option><option  value='IRN'> IRAN</option><option  value='IRQ'> IRAQ</option><option  value='IRL'> IRELAND</option><option  value='IMN'> ISLE OF MAN</option><option  value='ISR'> ISRAEL</option><option  value='ITA'> ITALY</option><option  value='JAM'> JAMAICA</option><option  value='JPN'> JAPAN</option><option  value='JEY'> JERSEY</option><option  value='JOR'> JORDAN</option><option  value='KAZ'> KAZAKHSITAN</option><option  value='KEN'> KENYA</option><option  value='KIR'> KIRIBATI</option><option  value='PRK'> KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option><option  value='KOR'> KOREA, REPUBLIC OF</option><option  value='KWT'> KUWAIT</option><option  value='KGZ'> KYRGYZSTAN</option><option  value='LAO'> LAOS</option><option  value='LVA'> LATVIA</option><option  value='LBN'> LEBANON</option><option  value='LSO'> LESOTHO</option><option  value='LBR'> LIBERIA</option><option  value='LBY'> LIBYA</option><option  value='LIE'> LIECHTENSTEIN</option><option  value='LTU'> LITHUANIA</option><option  value='LUX'> LUXEMBOURG</option><option  value='MAC'> MACAU</option><option  value='MKD'> MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</option><option  value='MDG'> MADAGASCAR</option><option  value='MWI'> MALAWI</option><option  value='MYS'> MALAYSIA</option><option  value='MDV'> MALDIVES</option><option  value='MLI'> MALI</option><option  value='MLT'> MALTA</option><option  value='MHL'> MARSHALL ISLANDS</option><option  value='MTQ'> MARTINIQUE</option><option  value='MRT'> MAURITANIA</option><option  value='MUS'> MAURITIUS</option><option  value='MYT'> MAYOTTE</option><option  value='MEX'> MEXICO</option><option  value='FSM'> MICRONESIA, FEDERATED STATES OF</option><option  value='MDA'> MOLDOVA, REPUBLIC OF</option><option  value='MCO'> MONACO</option><option  value='MNG'> MONGOLIA</option><option  value='MNE'> MONTENEGRO</option><option  value='MSR'> MONTSERRAT</option><option  value='MAR'> MOROCCO</option><option  value='MOZ'> MOZAMBIQUE</option><option  value='MMR'> MYANMAR (BURMA)</option><option  value='NAM'> NAMIBIA</option><option  value='NRU'> NAURU</option><option  value='NPL'> NEPAL</option><option  value='NLD'> NETHERLANDS</option><option  value='ANT'> NETHERLANDS ANTILLES</option><option  value='NTZ'> NEUTRAL ZONE</option><option  value='NCL'> NEW CALEDONIA</option><option  value='NZL'> NEW ZEALAND</option><option  value='NIC'> NICARAGUA</option><option  value='NER'> NIGER</option><option  value='NGA'> NIGERIA</option><option  value='NIU'> NIUE</option><option  value='NFK'> NORFOLK ISLAND</option><option  value='MNP'> NORTHERN MARIANA ISLANDS</option><option  value='NOR'> NORWAY</option><option  value='OMN'> OMAN</option><option  value='OTH'> OTHERS</option><option  value='PAK'> PAKISTAN</option><option  value='PLW'> PALAU</option><option  value='PSE'> PALESTINE</option><option  value='PAN'> PANAMA</option><option  value='PNG'> PAPUA NEW GUINEA</option><option  value='PRY'> PARAGUAY</option><option  value='PER'> PERU</option><option  value='PHL'> PHILLIPPINES</option><option  value='PCN'> PITCAIRN</option><option  value='POL'> POLAND</option><option  value='PRT'> PORTUGAL</option><option  value='XXX'> PRESON OF UNSPECIFIED NATIONALITY</option><option  value='PRI'> PUERPO RICO</option><option  value='QAT'> QATAR</option><option  value='XXB'> REFUGEE</option><option  value='XXC'> REFUGEE (NON-CONVENTIONAL) OTHER THAN XXB</option><option  value='UNK'> RESIDENT OF KOSOVO (UNMIK)</option><option  value='REU'> REUNION ISLANDS</option><option  value='ROU'> ROMANIA</option><option  value='RUS'> RUSSIAN FEDERATION</option><option  value='RWA'> RWANDA</option><option  value='BLM'> SAINT BARTHELEMY</option><option  value='SHN'> SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA</option><option  value='KNA'> SAINT KITTS AND NEVIS</option><option  value='LCA'> SAINT LUCIA</option><option  value='MAF'> SAINT MARTIN (FRENCH PART)</option><option  value='SPM'> SAINT PIERRE AND MIQUELON</option><option  value='VCT'> SAINT VINCENT AND THE GRENADINES</option><option  value='WSM'> SAMOA</option><option  value='SMR'> SAN MARINO</option><option  value='STP'> SAO TOME AND PRINCIP</option><option  value='SAU'> SAUDI ARABIA</option><option  value='SEN'> SENEGAL</option><option  value='SRB'> SERBIA</option><option  value='SCG'> SERBIA AND MONTENEGRO</option><option  value='SYC'> SEYCHELLES</option><option  value='SLE'> SIERRA LEONE</option><option  value='SGP'> SINGAPORE</option><option  value='SXM'> SINT MAARTEN (DUTCH PART)</option><option  value='SVK'> SLOVAK REPUBLIC</option><option  value='SVN'> SLOVENIA</option><option  value='SLB'> SOLOMON ISLANDS</option><option  value='SOM'> SOMALIA</option><option  value='ZAF'> SOUTH AFRICA</option><option  value='SGS'> SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option><option  value='SSD'> SOUTH SUDAN</option><option  value='XOM'> SOVEREIGN MILITARY ORDER OF MALTA</option><option  value='ESP'> SPAIN</option><option  value='LKA'> SRI LANKA</option><option  value='XXA'> STATELESS PERSON</option><option  value='SDN'> SUDAN</option><option  value='SUR'> SURINAME</option><option  value='SJM'> SVALBARD AND JAN MAYEN ISLANDS</option><option  value='SWZ'> SWAZILAND</option><option  value='SWE'> SWEDEN</option><option  value='CHE'> SWITZERLAND</option><option  value='SYR'> SYRIA</option><option  value='TWN'> TAIWAN</option><option  value='TZA'> TANZANIA</option><option  value='TJK'> TAZIKISTAN</option><option  value='THA'> THAILAND</option><option  value='TBT'> TIBENTIAN ORIGIN</option><option  value='TGO'> TOGO</option><option  value='TKL'> TOKELAU</option><option  value='TON'> TONGA</option><option  value='TTO'> TRINIDAD AND TOBAGO </option><option  value='TUN'> TUNISIA</option><option  value='TUR'> TURKEY</option><option  value='TKM'> TURKMENISTAN</option><option  value='TCA'> TURKS AND CAICOS ISLANDS</option><option  value='TUV'> TUVALU</option><option  value='UGA'> UGANDA</option><option  value='GBD'> UK BRITISH DEPENDENT TERRITORIES CITIZEN</option><option  value='GBO'> UK BRITISH OVERSEAS CITIZEN</option><option  value='GBN'> UK BRITISH OVERSEAS NATIONAL </option><option  value='GBP'> UK BRITISH PROTECTED PERSON</option><option  value='GBS'> UK BRITISH SUBJECT</option><option  value='UKR'> UKRAINE</option><option  value='ARE'> UNITED ARAB EMIRATES</option><option  value='GBR'> UNITED KINGDOM</option><option  value='UNA'> UNITED NATIONS</option><option  value='UNO'> UNITED NATIONS ORGANIZATION</option><option  value='UMI'> UNITED STATES MINOR OUTLYING ISLANDS</option><option  value='USA'> UNITED STATES OF AMERICA</option><option  value='URY'> URAGUAY</option><option  value='UZB'> UZBEKISTAN</option><option  value='VUT'> VANUATU (NEW HEBRIDES)</option><option  value='VEN'> VENEZUELA</option><option  value='VNM'> VIETNAM</option><option  value='VGB'> VIRGIN ISLANDS (BRITISH)</option><option  value='VIR'> VIRGIN ISLANDS (US)</option><option  value='WLF'> WALLIS AND FUTUNA ISLANDS</option><option  value='ESH'> WESTERN SAHARA</option><option  value='YEM'> YEMEN</option><option  value='YUG'> YUGOSLAVIA</option><option  value='ZMB'> ZAMBIA</option><option  value='ZWE'> ZIMBABWE</option>							
+						</select>
+						</font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;<br> </td>
+			</tr>
+			
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" >
+					<strong><font color="#ffffff">&nbsp;Address in country where residing permanently<br></font></strong>
+				</td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff"></font></strong></td>
+			</tr>
+			
+			<tr>		
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Address in country where residing permanently <font color="red">*&nbsp;</font>   </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<font size="1">	<textarea name="applicant_permaddr" class="textBoxDashed" id="applicant_permaddr" cols="40"   onKeyUp="chkAddress(this);"  ></textarea></font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;As per the passport<br> </td>
+			</tr>
+ 
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">City <font color="red">*</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input name="applicant_permcity" type="text" class="textBoxDashed"  id="applicant_permcity" value="" size="43" maxlength="50" onKeyUp="chkString(this);" onBlur="trim1(this)">
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; City where residing permanently&nbsp;</td>
+			</tr>
+			<tr>		
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Country <font color="red">*</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<font size="1">
+						<select name="applicant_permcountry" class="style16" id="applicant_permcountry" style="">
+							<option value="">Select</option>
+							<option  value='AFG'> AFGHANISTAN</option><option  value='ALA'> ALAND ISLANDS</option><option  value='ALB'> ALBANIA</option><option  value='DZA'> ALGERIA</option><option  value='ASM'> AMERICAN SAMOA</option><option  value='AND'> ANDORRA</option><option  value='AGO'> ANGOLA</option><option  value='AIA'> ANGUILLA</option><option  value='ATA'> ANTARCTICA</option><option  value='ATG'> ANTIGUA AND BARBUDA</option><option  value='ARG'> ARGENTINA</option><option  value='ARM'> ARMENIA</option><option  value='ABW'> ARUBA</option><option  value='AUS'> AUSTRALIA</option><option  value='AUT'> AUSTRIA</option><option  value='AZE'> AZERBAIJAN</option><option  value='BHS'> BAHAMAS</option><option  value='BHR'> BAHRAIN</option><option  value='BGD'> BANGLADESH</option><option  value='BRB'> BARBADOS</option><option  value='BLR'> BELARUS</option><option  value='BEL'> BELGIUM</option><option  value='BLZ'> BELIZE</option><option  value='BEN'> BENIN (DAHOMEY)</option><option  value='BMU'> BERMUDA</option><option  value='BTN'> BHUTAN</option><option  value='BOL'> BOLIVIA</option><option  value='BES'> BONAIRE, SINT EUSTATIUS AND SABA</option><option  value='BIH'> BOSNIA AND HERZEGOVINA</option><option  value='BWA'> BOTSWANA</option><option  value='BVT'> BOUVET ISLAND</option><option  value='BRA'> BRAZIL</option><option  value='IOT'> BRITISH INDIAN OCEAN TERRITORY</option><option  value='BRN'> BRUNEI DARUSSALAM</option><option  value='BGR'> BULGARIA</option><option  value='BFA'> BURKINA FASO ( UPPER VOLTA)</option><option  value='BDI'> BURUNDI</option><option  value='KHM'> CAMBODIA (KAMPUCHEA)</option><option  value='CMR'> CAMEROON</option><option  value='CAN'> CANADA</option><option  value='CPV'> CAPE VERDE ISLANDS</option><option  value='CYM'> CAYMAN ISLANDS</option><option  value='CAF'> CENTRAL AFRICAN REPUBLIC</option><option  value='TCD'> CHAD</option><option  value='CHL'> CHILE</option><option  value='CHN'> CHINA</option><option  value='CXR'> CHRISTMAS ISLANDS</option><option  value='CCK'> COCOS (KEELING) ISLANDS</option><option  value='COL'> COLOMBIA</option><option  value='COM'> COMOROS</option><option  value='COG'> CONGO</option><option  value='COD'> CONGO, DEMOCRATIC REPUBLIC OF THE (ZAIRE)</option><option  value='COK'> COOK ISLANDS</option><option  value='CRI'> COSTA RICA</option><option  value='CIV'> COTE D'IVOIRE</option><option  value='HRV'> CROTIA -REPUBLIC OF CROTIA</option><option  value='CUB'> CUBA</option><option  value='CUW'> CURACAO</option><option  value='CYP'> CYPRUS</option><option  value='CZE'> CZECH REPUBLIC</option><option  value='DNK'> DENMARK</option><option  value='DJI'> DJIBOUTI</option><option  value='DMA'> DOMINICA</option><option  value='DOM'> DOMINICAN REPUBLIC</option><option  value='TLS'> EAST TIMOR, DEMOCRATIC REPUBLIC OF</option><option  value='ECU'> ECUADOR</option><option  value='EGY'> EGYPT</option><option  value='SLV'> EL SALVADOR</option><option  value='GNQ'> EQUITORIAL GUINEA</option><option  value='ERI'> ERITREA</option><option  value='EST'> ESTONIA</option><option  value='ETH'> ETHIOPIA</option><option  value='FLK'> FALKLAND ISLANDS (MALVINAS)</option><option  value='FRO'> FAROE ISLANDS</option><option  value='FIJ'> FIJI</option><option  value='FIN'> FINLAND</option><option  value='FRA'> FRANCE</option><option  value='FXX'> FRANCE METROPOLITAN</option><option  value='GUF'> FRENCH GUIANA</option><option  value='ATF'> FRENCH SOUTHERN TERRITORIES</option><option  value='GAB'> GABON</option><option  value='GMB'> GAMBIA</option><option  value='GEO'> GEORGIA</option><option  value='DEU'> GERMANY</option><option  value='GHA'> GHANA</option><option  value='GIB'> GIBRALTAR</option><option  value='GRC'> GREECE</option><option  value='GRL'> GREENLAND</option><option  value='GRD'> GRENADA</option><option  value='GLP'> GUADELOUPE</option><option  value='GUM'> GUAM</option><option  value='GTM'> GUATEMALA</option><option  value='GGY'> GUERNSEY</option><option  value='GIN'> GUINEA</option><option  value='GNB'> GUINEA BISSAU</option><option  value='GUY'> GUYANA</option><option  value='HTI'> HAITI</option><option  value='HMD'> HEARD AND MCDONALD ISLANDS</option><option  value='VAT'> HOLY SEE (VATICAN CITY STATE)</option><option  value='HND'> HONDURAS</option><option  value='HKG'> HONG KONG</option><option  value='HUN'> HUNGURY</option><option  value='ISL'> ICELAND</option><option  value='IND'> INDIA</option><option  value='IDN'> INDONESIA</option><option  value='IRN'> IRAN</option><option  value='IRQ'> IRAQ</option><option  value='IRL'> IRELAND</option><option  value='IMN'> ISLE OF MAN</option><option  value='ISR'> ISRAEL</option><option  value='ITA'> ITALY</option><option  value='JAM'> JAMAICA</option><option  value='JPN'> JAPAN</option><option  value='JEY'> JERSEY</option><option  value='JOR'> JORDAN</option><option  value='KAZ'> KAZAKHSITAN</option><option  value='KEN'> KENYA</option><option  value='KIR'> KIRIBATI</option><option  value='PRK'> KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option><option  value='KOR'> KOREA, REPUBLIC OF</option><option  value='KWT'> KUWAIT</option><option  value='KGZ'> KYRGYZSTAN</option><option  value='LAO'> LAOS</option><option  value='LVA'> LATVIA</option><option  value='LBN'> LEBANON</option><option  value='LSO'> LESOTHO</option><option  value='LBR'> LIBERIA</option><option  value='LBY'> LIBYA</option><option  value='LIE'> LIECHTENSTEIN</option><option  value='LTU'> LITHUANIA</option><option  value='LUX'> LUXEMBOURG</option><option  value='MAC'> MACAU</option><option  value='MKD'> MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</option><option  value='MDG'> MADAGASCAR</option><option  value='MWI'> MALAWI</option><option  value='MYS'> MALAYSIA</option><option  value='MDV'> MALDIVES</option><option  value='MLI'> MALI</option><option  value='MLT'> MALTA</option><option  value='MHL'> MARSHALL ISLANDS</option><option  value='MTQ'> MARTINIQUE</option><option  value='MRT'> MAURITANIA</option><option  value='MUS'> MAURITIUS</option><option  value='MYT'> MAYOTTE</option><option  value='MEX'> MEXICO</option><option  value='FSM'> MICRONESIA, FEDERATED STATES OF</option><option  value='MDA'> MOLDOVA, REPUBLIC OF</option><option  value='MCO'> MONACO</option><option  value='MNG'> MONGOLIA</option><option  value='MNE'> MONTENEGRO</option><option  value='MSR'> MONTSERRAT</option><option  value='MAR'> MOROCCO</option><option  value='MOZ'> MOZAMBIQUE</option><option  value='MMR'> MYANMAR (BURMA)</option><option  value='NAM'> NAMIBIA</option><option  value='NRU'> NAURU</option><option  value='NPL'> NEPAL</option><option  value='NLD'> NETHERLANDS</option><option  value='ANT'> NETHERLANDS ANTILLES</option><option  value='NTZ'> NEUTRAL ZONE</option><option  value='NCL'> NEW CALEDONIA</option><option  value='NZL'> NEW ZEALAND</option><option  value='NIC'> NICARAGUA</option><option  value='NER'> NIGER</option><option  value='NGA'> NIGERIA</option><option  value='NIU'> NIUE</option><option  value='NFK'> NORFOLK ISLAND</option><option  value='MNP'> NORTHERN MARIANA ISLANDS</option><option  value='NOR'> NORWAY</option><option  value='OMN'> OMAN</option><option  value='OTH'> OTHERS</option><option  value='PAK'> PAKISTAN</option><option  value='PLW'> PALAU</option><option  value='PSE'> PALESTINE</option><option  value='PAN'> PANAMA</option><option  value='PNG'> PAPUA NEW GUINEA</option><option  value='PRY'> PARAGUAY</option><option  value='PER'> PERU</option><option  value='PHL'> PHILLIPPINES</option><option  value='PCN'> PITCAIRN</option><option  value='POL'> POLAND</option><option  value='PRT'> PORTUGAL</option><option  value='XXX'> PRESON OF UNSPECIFIED NATIONALITY</option><option  value='PRI'> PUERPO RICO</option><option  value='QAT'> QATAR</option><option  value='XXB'> REFUGEE</option><option  value='XXC'> REFUGEE (NON-CONVENTIONAL) OTHER THAN XXB</option><option  value='UNK'> RESIDENT OF KOSOVO (UNMIK)</option><option  value='REU'> REUNION ISLANDS</option><option  value='ROU'> ROMANIA</option><option  value='RUS'> RUSSIAN FEDERATION</option><option  value='RWA'> RWANDA</option><option  value='BLM'> SAINT BARTHELEMY</option><option  value='SHN'> SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA</option><option  value='KNA'> SAINT KITTS AND NEVIS</option><option  value='LCA'> SAINT LUCIA</option><option  value='MAF'> SAINT MARTIN (FRENCH PART)</option><option  value='SPM'> SAINT PIERRE AND MIQUELON</option><option  value='VCT'> SAINT VINCENT AND THE GRENADINES</option><option  value='WSM'> SAMOA</option><option  value='SMR'> SAN MARINO</option><option  value='STP'> SAO TOME AND PRINCIP</option><option  value='SAU'> SAUDI ARABIA</option><option  value='SEN'> SENEGAL</option><option  value='SRB'> SERBIA</option><option  value='SCG'> SERBIA AND MONTENEGRO</option><option  value='SYC'> SEYCHELLES</option><option  value='SLE'> SIERRA LEONE</option><option  value='SGP'> SINGAPORE</option><option  value='SXM'> SINT MAARTEN (DUTCH PART)</option><option  value='SVK'> SLOVAK REPUBLIC</option><option  value='SVN'> SLOVENIA</option><option  value='SLB'> SOLOMON ISLANDS</option><option  value='SOM'> SOMALIA</option><option  value='ZAF'> SOUTH AFRICA</option><option  value='SGS'> SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option><option  value='SSD'> SOUTH SUDAN</option><option  value='XOM'> SOVEREIGN MILITARY ORDER OF MALTA</option><option  value='ESP'> SPAIN</option><option  value='LKA'> SRI LANKA</option><option  value='XXA'> STATELESS PERSON</option><option  value='SDN'> SUDAN</option><option  value='SUR'> SURINAME</option><option  value='SJM'> SVALBARD AND JAN MAYEN ISLANDS</option><option  value='SWZ'> SWAZILAND</option><option  value='SWE'> SWEDEN</option><option  value='CHE'> SWITZERLAND</option><option  value='SYR'> SYRIA</option><option  value='TWN'> TAIWAN</option><option  value='TZA'> TANZANIA</option><option  value='TJK'> TAZIKISTAN</option><option  value='THA'> THAILAND</option><option  value='TBT'> TIBENTIAN ORIGIN</option><option  value='TGO'> TOGO</option><option  value='TKL'> TOKELAU</option><option  value='TON'> TONGA</option><option  value='TTO'> TRINIDAD AND TOBAGO </option><option  value='TUN'> TUNISIA</option><option  value='TUR'> TURKEY</option><option  value='TKM'> TURKMENISTAN</option><option  value='TCA'> TURKS AND CAICOS ISLANDS</option><option  value='TUV'> TUVALU</option><option  value='UGA'> UGANDA</option><option  value='GBD'> UK BRITISH DEPENDENT TERRITORIES CITIZEN</option><option  value='GBO'> UK BRITISH OVERSEAS CITIZEN</option><option  value='GBN'> UK BRITISH OVERSEAS NATIONAL </option><option  value='GBP'> UK BRITISH PROTECTED PERSON</option><option  value='GBS'> UK BRITISH SUBJECT</option><option  value='UKR'> UKRAINE</option><option  value='ARE'> UNITED ARAB EMIRATES</option><option  value='GBR'> UNITED KINGDOM</option><option  value='UNA'> UNITED NATIONS</option><option  value='UNO'> UNITED NATIONS ORGANIZATION</option><option  value='UMI'> UNITED STATES MINOR OUTLYING ISLANDS</option><option  value='USA'> UNITED STATES OF AMERICA</option><option  value='URY'> URAGUAY</option><option  value='UZB'> UZBEKISTAN</option><option  value='VUT'> VANUATU (NEW HEBRIDES)</option><option  value='VEN'> VENEZUELA</option><option  value='VNM'> VIETNAM</option><option  value='VGB'> VIRGIN ISLANDS (BRITISH)</option><option  value='VIR'> VIRGIN ISLANDS (US)</option><option  value='WLF'> WALLIS AND FUTUNA ISLANDS</option><option  value='ESH'> WESTERN SAHARA</option><option  value='YEM'> YEMEN</option><option  value='YUG'> YUGOSLAVIA</option><option  value='ZMB'> ZAMBIA</option><option  value='ZWE'> ZIMBABWE</option>
+						</select>
+					</font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;<br></td>
+			</tr>
+
+			<tr bgcolor="#95CFFF" background="image/heading.gif"> 			
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" >
+					<strong>
+						<font color="#ffffff">&nbsp;Address/Reference in India<br> </font>
+					</strong>
+				</td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff"></font></strong></td>
+			</tr>
+			
+			<tr>		
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Address/reference in India <font color="red">*</font>   </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<font size="1">
+					<textarea name="applicant_refaddr" cols="40" id="applicant_refaddr" class="textBoxDashed" onKeyUp="chkAddress(this);"></textarea>
+					</font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;For Address/Reference in India </td>
+			</tr>
+			
+			<tr>
+				<td height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">State <font color="red">*</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<select name="applicant_refstate" class="style16" id="applicant_refstate" onchange="showcities(this.value,'citydata','applicant_refstatedistr','false');" >
+						<option  value="" selected="selected">Select</option>
+						<option  value='1'> ANDAMAN AND NICOBAR ISLANDS</option><option  value='2'> ANDHRA PRADESH</option><option  value='3'> ARUNACHAL PRADESH</option><option  value='4'> ASSAM</option><option  value='5'> BIHAR</option><option  value='33'> CHANDIGARH</option><option  value='6'> CHHATTISGARH</option><option  value='34'> DADRA AND NAGAR HAVELI</option><option  value='7'> DAMAN AND DIU</option><option  value='8'> DELHI</option><option  value='9'> GOA</option><option  value='10'> GUJARAT</option><option  value='11'> HARYANA</option><option  value='12'> HIMACHAL PRADESH</option><option  value='13'> JAMMU AND KASHMIR</option><option  value='14'> JHARKHAND</option><option  value='15'> KARNATAKA</option><option  value='16'> KERALA</option><option  value='35'> LAKSHADWEEP</option><option  value='17'> MADHYA PRADESH</option><option  value='18'> MAHARASHTRA</option><option  value='19'> MANIPUR</option><option  value='20'> MEGHALAYA</option><option  value='21'> MIZORAM</option><option  value='22'> NAGALAND</option><option  value='23'> ORISSA</option><option  value='24'> PUDUCHERRY</option><option  value='25'> PUNJAB</option><option  value='26'> RAJASTHAN</option><option  value='27'> SIKKIM</option><option  value='28'> TAMIL NADU</option><option  value='29'> TRIPURA</option><option  value='31'> UTTARAKHAND</option><option  value='30'> UTTAR PRADESH</option><option  value='32'> WEST BENGAL</option>						
+					</select>
+				</td>
+             
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br></td>
+			</tr>
+				
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">City/District <font color="red">*</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+				<div id="citydata">
+					<select name="applicant_refstatedistr" class="style16" id="applicant_refstatedistr">
+						<option  value="" selected="selected">Select</option>                
+												 
+					</select>
+				</div>
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br></td>
+			</tr>
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Pin Code <font color="red">*</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_refpincode" type="text" class="textBoxDashed" id="applicant_refpincode" size="20" onKeyUp="chkInt(this)" maxlength="6" value = ""/>
+					</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;<br> </td>
+			</tr>
+			
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" >
+					<strong><font color="#ffffff">&nbsp;Passport Details </font></strong>
+				</td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff"></font></strong></td>
+			</tr>
+
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Passport No<font color="red"> *&nbsp;</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_passpno" type="text" id="applicant_passpno" class="textBoxDashed" value="" size="20" onKeyUp="chkAlphaNum(this)" maxlength="20"/>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; In case of Nepali and Bhutani provide <br></td>
+			</tr>
+	 
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Place of issue <font color="red">*&nbsp;</font> </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+				<div class="text style16" >&nbsp;City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				  <input name="applicant_passplcofissue" class="textBoxDashed" type="text"id="applicant_passplcofissue" onKeyUp="chkAddress(this)" size="30" maxlength="50" value=""/></div>
+				
+		<div class="text style16" >&nbsp;Country<font size="1">
+						<select name="passport_issue_country" class="style16" id="passport_issue_country" >
+							<option value="">Select</option>
+							<option  value='AFG'> AFGHANISTAN</option><option  value='ALA'> ALAND ISLANDS</option><option  value='ALB'> ALBANIA</option><option  value='DZA'> ALGERIA</option><option  value='ASM'> AMERICAN SAMOA</option><option  value='AND'> ANDORRA</option><option  value='AGO'> ANGOLA</option><option  value='AIA'> ANGUILLA</option><option  value='ATA'> ANTARCTICA</option><option  value='ATG'> ANTIGUA AND BARBUDA</option><option  value='ARG'> ARGENTINA</option><option  value='ARM'> ARMENIA</option><option  value='ABW'> ARUBA</option><option  value='AUS'> AUSTRALIA</option><option  value='AUT'> AUSTRIA</option><option  value='AZE'> AZERBAIJAN</option><option  value='BHS'> BAHAMAS</option><option  value='BHR'> BAHRAIN</option><option  value='BGD'> BANGLADESH</option><option  value='BRB'> BARBADOS</option><option  value='BLR'> BELARUS</option><option  value='BEL'> BELGIUM</option><option  value='BLZ'> BELIZE</option><option  value='BEN'> BENIN (DAHOMEY)</option><option  value='BMU'> BERMUDA</option><option  value='BTN'> BHUTAN</option><option  value='BOL'> BOLIVIA</option><option  value='BES'> BONAIRE, SINT EUSTATIUS AND SABA</option><option  value='BIH'> BOSNIA AND HERZEGOVINA</option><option  value='BWA'> BOTSWANA</option><option  value='BVT'> BOUVET ISLAND</option><option  value='BRA'> BRAZIL</option><option  value='IOT'> BRITISH INDIAN OCEAN TERRITORY</option><option  value='BRN'> BRUNEI DARUSSALAM</option><option  value='BGR'> BULGARIA</option><option  value='BFA'> BURKINA FASO ( UPPER VOLTA)</option><option  value='BDI'> BURUNDI</option><option  value='KHM'> CAMBODIA (KAMPUCHEA)</option><option  value='CMR'> CAMEROON</option><option  value='CAN'> CANADA</option><option  value='CPV'> CAPE VERDE ISLANDS</option><option  value='CYM'> CAYMAN ISLANDS</option><option  value='CAF'> CENTRAL AFRICAN REPUBLIC</option><option  value='TCD'> CHAD</option><option  value='CHL'> CHILE</option><option  value='CHN'> CHINA</option><option  value='CXR'> CHRISTMAS ISLANDS</option><option  value='CCK'> COCOS (KEELING) ISLANDS</option><option  value='COL'> COLOMBIA</option><option  value='COM'> COMOROS</option><option  value='COG'> CONGO</option><option  value='COD'> CONGO, DEMOCRATIC REPUBLIC OF THE (ZAIRE)</option><option  value='COK'> COOK ISLANDS</option><option  value='CRI'> COSTA RICA</option><option  value='CIV'> COTE D'IVOIRE</option><option  value='HRV'> CROTIA -REPUBLIC OF CROTIA</option><option  value='CUB'> CUBA</option><option  value='CUW'> CURACAO</option><option  value='CYP'> CYPRUS</option><option  value='CZE'> CZECH REPUBLIC</option><option  value='DNK'> DENMARK</option><option  value='DJI'> DJIBOUTI</option><option  value='DMA'> DOMINICA</option><option  value='DOM'> DOMINICAN REPUBLIC</option><option  value='TLS'> EAST TIMOR, DEMOCRATIC REPUBLIC OF</option><option  value='ECU'> ECUADOR</option><option  value='EGY'> EGYPT</option><option  value='SLV'> EL SALVADOR</option><option  value='GNQ'> EQUITORIAL GUINEA</option><option  value='ERI'> ERITREA</option><option  value='EST'> ESTONIA</option><option  value='ETH'> ETHIOPIA</option><option  value='FLK'> FALKLAND ISLANDS (MALVINAS)</option><option  value='FRO'> FAROE ISLANDS</option><option  value='FIJ'> FIJI</option><option  value='FIN'> FINLAND</option><option  value='FRA'> FRANCE</option><option  value='FXX'> FRANCE METROPOLITAN</option><option  value='GUF'> FRENCH GUIANA</option><option  value='ATF'> FRENCH SOUTHERN TERRITORIES</option><option  value='GAB'> GABON</option><option  value='GMB'> GAMBIA</option><option  value='GEO'> GEORGIA</option><option  value='DEU'> GERMANY</option><option  value='GHA'> GHANA</option><option  value='GIB'> GIBRALTAR</option><option  value='GRC'> GREECE</option><option  value='GRL'> GREENLAND</option><option  value='GRD'> GRENADA</option><option  value='GLP'> GUADELOUPE</option><option  value='GUM'> GUAM</option><option  value='GTM'> GUATEMALA</option><option  value='GGY'> GUERNSEY</option><option  value='GIN'> GUINEA</option><option  value='GNB'> GUINEA BISSAU</option><option  value='GUY'> GUYANA</option><option  value='HTI'> HAITI</option><option  value='HMD'> HEARD AND MCDONALD ISLANDS</option><option  value='VAT'> HOLY SEE (VATICAN CITY STATE)</option><option  value='HND'> HONDURAS</option><option  value='HKG'> HONG KONG</option><option  value='HUN'> HUNGURY</option><option  value='ISL'> ICELAND</option><option  value='IND'> INDIA</option><option  value='IDN'> INDONESIA</option><option  value='IRN'> IRAN</option><option  value='IRQ'> IRAQ</option><option  value='IRL'> IRELAND</option><option  value='IMN'> ISLE OF MAN</option><option  value='ISR'> ISRAEL</option><option  value='ITA'> ITALY</option><option  value='JAM'> JAMAICA</option><option  value='JPN'> JAPAN</option><option  value='JEY'> JERSEY</option><option  value='JOR'> JORDAN</option><option  value='KAZ'> KAZAKHSITAN</option><option  value='KEN'> KENYA</option><option  value='KIR'> KIRIBATI</option><option  value='PRK'> KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option><option  value='KOR'> KOREA, REPUBLIC OF</option><option  value='KWT'> KUWAIT</option><option  value='KGZ'> KYRGYZSTAN</option><option  value='LAO'> LAOS</option><option  value='LVA'> LATVIA</option><option  value='LBN'> LEBANON</option><option  value='LSO'> LESOTHO</option><option  value='LBR'> LIBERIA</option><option  value='LBY'> LIBYA</option><option  value='LIE'> LIECHTENSTEIN</option><option  value='LTU'> LITHUANIA</option><option  value='LUX'> LUXEMBOURG</option><option  value='MAC'> MACAU</option><option  value='MKD'> MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</option><option  value='MDG'> MADAGASCAR</option><option  value='MWI'> MALAWI</option><option  value='MYS'> MALAYSIA</option><option  value='MDV'> MALDIVES</option><option  value='MLI'> MALI</option><option  value='MLT'> MALTA</option><option  value='MHL'> MARSHALL ISLANDS</option><option  value='MTQ'> MARTINIQUE</option><option  value='MRT'> MAURITANIA</option><option  value='MUS'> MAURITIUS</option><option  value='MYT'> MAYOTTE</option><option  value='MEX'> MEXICO</option><option  value='FSM'> MICRONESIA, FEDERATED STATES OF</option><option  value='MDA'> MOLDOVA, REPUBLIC OF</option><option  value='MCO'> MONACO</option><option  value='MNG'> MONGOLIA</option><option  value='MNE'> MONTENEGRO</option><option  value='MSR'> MONTSERRAT</option><option  value='MAR'> MOROCCO</option><option  value='MOZ'> MOZAMBIQUE</option><option  value='MMR'> MYANMAR (BURMA)</option><option  value='NAM'> NAMIBIA</option><option  value='NRU'> NAURU</option><option  value='NPL'> NEPAL</option><option  value='NLD'> NETHERLANDS</option><option  value='ANT'> NETHERLANDS ANTILLES</option><option  value='NTZ'> NEUTRAL ZONE</option><option  value='NCL'> NEW CALEDONIA</option><option  value='NZL'> NEW ZEALAND</option><option  value='NIC'> NICARAGUA</option><option  value='NER'> NIGER</option><option  value='NGA'> NIGERIA</option><option  value='NIU'> NIUE</option><option  value='NFK'> NORFOLK ISLAND</option><option  value='MNP'> NORTHERN MARIANA ISLANDS</option><option  value='NOR'> NORWAY</option><option  value='OMN'> OMAN</option><option  value='OTH'> OTHERS</option><option  value='PAK'> PAKISTAN</option><option  value='PLW'> PALAU</option><option  value='PSE'> PALESTINE</option><option  value='PAN'> PANAMA</option><option  value='PNG'> PAPUA NEW GUINEA</option><option  value='PRY'> PARAGUAY</option><option  value='PER'> PERU</option><option  value='PHL'> PHILLIPPINES</option><option  value='PCN'> PITCAIRN</option><option  value='POL'> POLAND</option><option  value='PRT'> PORTUGAL</option><option  value='XXX'> PRESON OF UNSPECIFIED NATIONALITY</option><option  value='PRI'> PUERPO RICO</option><option  value='QAT'> QATAR</option><option  value='XXB'> REFUGEE</option><option  value='XXC'> REFUGEE (NON-CONVENTIONAL) OTHER THAN XXB</option><option  value='UNK'> RESIDENT OF KOSOVO (UNMIK)</option><option  value='REU'> REUNION ISLANDS</option><option  value='ROU'> ROMANIA</option><option  value='RUS'> RUSSIAN FEDERATION</option><option  value='RWA'> RWANDA</option><option  value='BLM'> SAINT BARTHELEMY</option><option  value='SHN'> SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA</option><option  value='KNA'> SAINT KITTS AND NEVIS</option><option  value='LCA'> SAINT LUCIA</option><option  value='MAF'> SAINT MARTIN (FRENCH PART)</option><option  value='SPM'> SAINT PIERRE AND MIQUELON</option><option  value='VCT'> SAINT VINCENT AND THE GRENADINES</option><option  value='WSM'> SAMOA</option><option  value='SMR'> SAN MARINO</option><option  value='STP'> SAO TOME AND PRINCIP</option><option  value='SAU'> SAUDI ARABIA</option><option  value='SEN'> SENEGAL</option><option  value='SRB'> SERBIA</option><option  value='SCG'> SERBIA AND MONTENEGRO</option><option  value='SYC'> SEYCHELLES</option><option  value='SLE'> SIERRA LEONE</option><option  value='SGP'> SINGAPORE</option><option  value='SXM'> SINT MAARTEN (DUTCH PART)</option><option  value='SVK'> SLOVAK REPUBLIC</option><option  value='SVN'> SLOVENIA</option><option  value='SLB'> SOLOMON ISLANDS</option><option  value='SOM'> SOMALIA</option><option  value='ZAF'> SOUTH AFRICA</option><option  value='SGS'> SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option><option  value='SSD'> SOUTH SUDAN</option><option  value='XOM'> SOVEREIGN MILITARY ORDER OF MALTA</option><option  value='ESP'> SPAIN</option><option  value='LKA'> SRI LANKA</option><option  value='XXA'> STATELESS PERSON</option><option  value='SDN'> SUDAN</option><option  value='SUR'> SURINAME</option><option  value='SJM'> SVALBARD AND JAN MAYEN ISLANDS</option><option  value='SWZ'> SWAZILAND</option><option  value='SWE'> SWEDEN</option><option  value='CHE'> SWITZERLAND</option><option  value='SYR'> SYRIA</option><option  value='TWN'> TAIWAN</option><option  value='TZA'> TANZANIA</option><option  value='TJK'> TAZIKISTAN</option><option  value='THA'> THAILAND</option><option  value='TBT'> TIBENTIAN ORIGIN</option><option  value='TGO'> TOGO</option><option  value='TKL'> TOKELAU</option><option  value='TON'> TONGA</option><option  value='TTO'> TRINIDAD AND TOBAGO </option><option  value='TUN'> TUNISIA</option><option  value='TUR'> TURKEY</option><option  value='TKM'> TURKMENISTAN</option><option  value='TCA'> TURKS AND CAICOS ISLANDS</option><option  value='TUV'> TUVALU</option><option  value='UGA'> UGANDA</option><option  value='GBD'> UK BRITISH DEPENDENT TERRITORIES CITIZEN</option><option  value='GBO'> UK BRITISH OVERSEAS CITIZEN</option><option  value='GBN'> UK BRITISH OVERSEAS NATIONAL </option><option  value='GBP'> UK BRITISH PROTECTED PERSON</option><option  value='GBS'> UK BRITISH SUBJECT</option><option  value='UKR'> UKRAINE</option><option  value='ARE'> UNITED ARAB EMIRATES</option><option  value='GBR'> UNITED KINGDOM</option><option  value='UNA'> UNITED NATIONS</option><option  value='UNO'> UNITED NATIONS ORGANIZATION</option><option  value='UMI'> UNITED STATES MINOR OUTLYING ISLANDS</option><option  value='USA'> UNITED STATES OF AMERICA</option><option  value='URY'> URAGUAY</option><option  value='UZB'> UZBEKISTAN</option><option  value='VUT'> VANUATU (NEW HEBRIDES)</option><option  value='VEN'> VENEZUELA</option><option  value='VNM'> VIETNAM</option><option  value='VGB'> VIRGIN ISLANDS (BRITISH)</option><option  value='VIR'> VIRGIN ISLANDS (US)</option><option  value='WLF'> WALLIS AND FUTUNA ISLANDS</option><option  value='ESH'> WESTERN SAHARA</option><option  value='YEM'> YEMEN</option><option  value='YUG'> YUGOSLAVIA</option><option  value='ZMB'> ZAMBIA</option><option  value='ZWE'> ZIMBABWE</option>
+						</select>
+					</font>		
+					</div>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; Identification Card Details and In case of Tibetan Refugee<br>&nbsp;&nbsp;provide SEP/Registration Details<br></td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;</td>				
+			
+			</tr>
+					
+						
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Date of issue<font color="red"> *&nbsp;</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"    name="applicant_passpdoissue"   id="applicant_passpdoissue" onBlur="chkDate(this)"  datepicker="true" datepicker_min="01/01/1900" datepicker_max="12/06/2012" maxlength="10" size="20" onKeyUp="chkDatecharsx(this);" value="">					
+					</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; DD/MM/YYYY  </td>
+			</tr>
+	 
+			<tr>
+				<td height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Valid till&nbsp; <font color="red">*&nbsp;</font> </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"    name="applicant_passpvalidtill" id="applicant_passpvalidtill" maxlength="10" size="20" onKeyUp="chkDatecharsx(this);" value=""  onBlur="chkDate(this)"  datepicker="true" datepicker_min="01/01/1900" datepicker_max="01/01/3000" > 
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; DD/MM/YYYY<br> </td>
+			</tr>
+			
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff">&nbsp;Visa Details </font></strong></td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff"></font></strong></td>
+			</tr>
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Visa No <font color="red">*</font>&nbsp; </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_visano" type="text" class="textBoxDashed" id="applicant_visano" onKeyUp="chkAlphaNum(this)" size="20" maxlength="20" value=""/>
+				</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; In case of PIO/OCI/CREW/TLP<br>&nbsp; provide PIO/OCI/CREW/TLP Details </td>					
+			</tr>
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Place of issue <font color="red">*&nbsp;</font> </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+				
+					<div class="text style16" >&nbsp;City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 	<input name="applicant_visaplcoissue" class="textBoxDashed" type="text"id="applicant_visaplcoissue" onKeyUp="chkAddress(this)" size="30" maxlength="50" value=""/></div>
+				
+		<div class="text style16" >&nbsp;Country<font size="1">
+						<select name="visa_issue_country" class="style16" id="visa_issue_country" style="">
+							<option value="">Select</option>
+							<option  value='AFG'> AFGHANISTAN</option><option  value='ALA'> ALAND ISLANDS</option><option  value='ALB'> ALBANIA</option><option  value='DZA'> ALGERIA</option><option  value='ASM'> AMERICAN SAMOA</option><option  value='AND'> ANDORRA</option><option  value='AGO'> ANGOLA</option><option  value='AIA'> ANGUILLA</option><option  value='ATA'> ANTARCTICA</option><option  value='ATG'> ANTIGUA AND BARBUDA</option><option  value='ARG'> ARGENTINA</option><option  value='ARM'> ARMENIA</option><option  value='ABW'> ARUBA</option><option  value='AUS'> AUSTRALIA</option><option  value='AUT'> AUSTRIA</option><option  value='AZE'> AZERBAIJAN</option><option  value='BHS'> BAHAMAS</option><option  value='BHR'> BAHRAIN</option><option  value='BGD'> BANGLADESH</option><option  value='BRB'> BARBADOS</option><option  value='BLR'> BELARUS</option><option  value='BEL'> BELGIUM</option><option  value='BLZ'> BELIZE</option><option  value='BEN'> BENIN (DAHOMEY)</option><option  value='BMU'> BERMUDA</option><option  value='BTN'> BHUTAN</option><option  value='BOL'> BOLIVIA</option><option  value='BES'> BONAIRE, SINT EUSTATIUS AND SABA</option><option  value='BIH'> BOSNIA AND HERZEGOVINA</option><option  value='BWA'> BOTSWANA</option><option  value='BVT'> BOUVET ISLAND</option><option  value='BRA'> BRAZIL</option><option  value='IOT'> BRITISH INDIAN OCEAN TERRITORY</option><option  value='BRN'> BRUNEI DARUSSALAM</option><option  value='BGR'> BULGARIA</option><option  value='BFA'> BURKINA FASO ( UPPER VOLTA)</option><option  value='BDI'> BURUNDI</option><option  value='KHM'> CAMBODIA (KAMPUCHEA)</option><option  value='CMR'> CAMEROON</option><option  value='CAN'> CANADA</option><option  value='CPV'> CAPE VERDE ISLANDS</option><option  value='CYM'> CAYMAN ISLANDS</option><option  value='CAF'> CENTRAL AFRICAN REPUBLIC</option><option  value='TCD'> CHAD</option><option  value='CHL'> CHILE</option><option  value='CHN'> CHINA</option><option  value='CXR'> CHRISTMAS ISLANDS</option><option  value='CCK'> COCOS (KEELING) ISLANDS</option><option  value='COL'> COLOMBIA</option><option  value='COM'> COMOROS</option><option  value='COG'> CONGO</option><option  value='COD'> CONGO, DEMOCRATIC REPUBLIC OF THE (ZAIRE)</option><option  value='COK'> COOK ISLANDS</option><option  value='CRI'> COSTA RICA</option><option  value='CIV'> COTE D'IVOIRE</option><option  value='HRV'> CROTIA -REPUBLIC OF CROTIA</option><option  value='CUB'> CUBA</option><option  value='CUW'> CURACAO</option><option  value='CYP'> CYPRUS</option><option  value='CZE'> CZECH REPUBLIC</option><option  value='DNK'> DENMARK</option><option  value='DJI'> DJIBOUTI</option><option  value='DMA'> DOMINICA</option><option  value='DOM'> DOMINICAN REPUBLIC</option><option  value='TLS'> EAST TIMOR, DEMOCRATIC REPUBLIC OF</option><option  value='ECU'> ECUADOR</option><option  value='EGY'> EGYPT</option><option  value='SLV'> EL SALVADOR</option><option  value='GNQ'> EQUITORIAL GUINEA</option><option  value='ERI'> ERITREA</option><option  value='EST'> ESTONIA</option><option  value='ETH'> ETHIOPIA</option><option  value='FLK'> FALKLAND ISLANDS (MALVINAS)</option><option  value='FRO'> FAROE ISLANDS</option><option  value='FIJ'> FIJI</option><option  value='FIN'> FINLAND</option><option  value='FRA'> FRANCE</option><option  value='FXX'> FRANCE METROPOLITAN</option><option  value='GUF'> FRENCH GUIANA</option><option  value='ATF'> FRENCH SOUTHERN TERRITORIES</option><option  value='GAB'> GABON</option><option  value='GMB'> GAMBIA</option><option  value='GEO'> GEORGIA</option><option  value='DEU'> GERMANY</option><option  value='GHA'> GHANA</option><option  value='GIB'> GIBRALTAR</option><option  value='GRC'> GREECE</option><option  value='GRL'> GREENLAND</option><option  value='GRD'> GRENADA</option><option  value='GLP'> GUADELOUPE</option><option  value='GUM'> GUAM</option><option  value='GTM'> GUATEMALA</option><option  value='GGY'> GUERNSEY</option><option  value='GIN'> GUINEA</option><option  value='GNB'> GUINEA BISSAU</option><option  value='GUY'> GUYANA</option><option  value='HTI'> HAITI</option><option  value='HMD'> HEARD AND MCDONALD ISLANDS</option><option  value='VAT'> HOLY SEE (VATICAN CITY STATE)</option><option  value='HND'> HONDURAS</option><option  value='HKG'> HONG KONG</option><option  value='HUN'> HUNGURY</option><option  value='ISL'> ICELAND</option><option  value='IND'> INDIA</option><option  value='IDN'> INDONESIA</option><option  value='IRN'> IRAN</option><option  value='IRQ'> IRAQ</option><option  value='IRL'> IRELAND</option><option  value='IMN'> ISLE OF MAN</option><option  value='ISR'> ISRAEL</option><option  value='ITA'> ITALY</option><option  value='JAM'> JAMAICA</option><option  value='JPN'> JAPAN</option><option  value='JEY'> JERSEY</option><option  value='JOR'> JORDAN</option><option  value='KAZ'> KAZAKHSITAN</option><option  value='KEN'> KENYA</option><option  value='KIR'> KIRIBATI</option><option  value='PRK'> KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option><option  value='KOR'> KOREA, REPUBLIC OF</option><option  value='KWT'> KUWAIT</option><option  value='KGZ'> KYRGYZSTAN</option><option  value='LAO'> LAOS</option><option  value='LVA'> LATVIA</option><option  value='LBN'> LEBANON</option><option  value='LSO'> LESOTHO</option><option  value='LBR'> LIBERIA</option><option  value='LBY'> LIBYA</option><option  value='LIE'> LIECHTENSTEIN</option><option  value='LTU'> LITHUANIA</option><option  value='LUX'> LUXEMBOURG</option><option  value='MAC'> MACAU</option><option  value='MKD'> MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</option><option  value='MDG'> MADAGASCAR</option><option  value='MWI'> MALAWI</option><option  value='MYS'> MALAYSIA</option><option  value='MDV'> MALDIVES</option><option  value='MLI'> MALI</option><option  value='MLT'> MALTA</option><option  value='MHL'> MARSHALL ISLANDS</option><option  value='MTQ'> MARTINIQUE</option><option  value='MRT'> MAURITANIA</option><option  value='MUS'> MAURITIUS</option><option  value='MYT'> MAYOTTE</option><option  value='MEX'> MEXICO</option><option  value='FSM'> MICRONESIA, FEDERATED STATES OF</option><option  value='MDA'> MOLDOVA, REPUBLIC OF</option><option  value='MCO'> MONACO</option><option  value='MNG'> MONGOLIA</option><option  value='MNE'> MONTENEGRO</option><option  value='MSR'> MONTSERRAT</option><option  value='MAR'> MOROCCO</option><option  value='MOZ'> MOZAMBIQUE</option><option  value='MMR'> MYANMAR (BURMA)</option><option  value='NAM'> NAMIBIA</option><option  value='NRU'> NAURU</option><option  value='NPL'> NEPAL</option><option  value='NLD'> NETHERLANDS</option><option  value='ANT'> NETHERLANDS ANTILLES</option><option  value='NTZ'> NEUTRAL ZONE</option><option  value='NCL'> NEW CALEDONIA</option><option  value='NZL'> NEW ZEALAND</option><option  value='NIC'> NICARAGUA</option><option  value='NER'> NIGER</option><option  value='NGA'> NIGERIA</option><option  value='NIU'> NIUE</option><option  value='NFK'> NORFOLK ISLAND</option><option  value='MNP'> NORTHERN MARIANA ISLANDS</option><option  value='NOR'> NORWAY</option><option  value='OMN'> OMAN</option><option  value='OTH'> OTHERS</option><option  value='PAK'> PAKISTAN</option><option  value='PLW'> PALAU</option><option  value='PSE'> PALESTINE</option><option  value='PAN'> PANAMA</option><option  value='PNG'> PAPUA NEW GUINEA</option><option  value='PRY'> PARAGUAY</option><option  value='PER'> PERU</option><option  value='PHL'> PHILLIPPINES</option><option  value='PCN'> PITCAIRN</option><option  value='POL'> POLAND</option><option  value='PRT'> PORTUGAL</option><option  value='XXX'> PRESON OF UNSPECIFIED NATIONALITY</option><option  value='PRI'> PUERPO RICO</option><option  value='QAT'> QATAR</option><option  value='XXB'> REFUGEE</option><option  value='XXC'> REFUGEE (NON-CONVENTIONAL) OTHER THAN XXB</option><option  value='UNK'> RESIDENT OF KOSOVO (UNMIK)</option><option  value='REU'> REUNION ISLANDS</option><option  value='ROU'> ROMANIA</option><option  value='RUS'> RUSSIAN FEDERATION</option><option  value='RWA'> RWANDA</option><option  value='BLM'> SAINT BARTHELEMY</option><option  value='SHN'> SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA</option><option  value='KNA'> SAINT KITTS AND NEVIS</option><option  value='LCA'> SAINT LUCIA</option><option  value='MAF'> SAINT MARTIN (FRENCH PART)</option><option  value='SPM'> SAINT PIERRE AND MIQUELON</option><option  value='VCT'> SAINT VINCENT AND THE GRENADINES</option><option  value='WSM'> SAMOA</option><option  value='SMR'> SAN MARINO</option><option  value='STP'> SAO TOME AND PRINCIP</option><option  value='SAU'> SAUDI ARABIA</option><option  value='SEN'> SENEGAL</option><option  value='SRB'> SERBIA</option><option  value='SCG'> SERBIA AND MONTENEGRO</option><option  value='SYC'> SEYCHELLES</option><option  value='SLE'> SIERRA LEONE</option><option  value='SGP'> SINGAPORE</option><option  value='SXM'> SINT MAARTEN (DUTCH PART)</option><option  value='SVK'> SLOVAK REPUBLIC</option><option  value='SVN'> SLOVENIA</option><option  value='SLB'> SOLOMON ISLANDS</option><option  value='SOM'> SOMALIA</option><option  value='ZAF'> SOUTH AFRICA</option><option  value='SGS'> SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option><option  value='SSD'> SOUTH SUDAN</option><option  value='XOM'> SOVEREIGN MILITARY ORDER OF MALTA</option><option  value='ESP'> SPAIN</option><option  value='LKA'> SRI LANKA</option><option  value='XXA'> STATELESS PERSON</option><option  value='SDN'> SUDAN</option><option  value='SUR'> SURINAME</option><option  value='SJM'> SVALBARD AND JAN MAYEN ISLANDS</option><option  value='SWZ'> SWAZILAND</option><option  value='SWE'> SWEDEN</option><option  value='CHE'> SWITZERLAND</option><option  value='SYR'> SYRIA</option><option  value='TWN'> TAIWAN</option><option  value='TZA'> TANZANIA</option><option  value='TJK'> TAZIKISTAN</option><option  value='THA'> THAILAND</option><option  value='TBT'> TIBENTIAN ORIGIN</option><option  value='TGO'> TOGO</option><option  value='TKL'> TOKELAU</option><option  value='TON'> TONGA</option><option  value='TTO'> TRINIDAD AND TOBAGO </option><option  value='TUN'> TUNISIA</option><option  value='TUR'> TURKEY</option><option  value='TKM'> TURKMENISTAN</option><option  value='TCA'> TURKS AND CAICOS ISLANDS</option><option  value='TUV'> TUVALU</option><option  value='UGA'> UGANDA</option><option  value='GBD'> UK BRITISH DEPENDENT TERRITORIES CITIZEN</option><option  value='GBO'> UK BRITISH OVERSEAS CITIZEN</option><option  value='GBN'> UK BRITISH OVERSEAS NATIONAL </option><option  value='GBP'> UK BRITISH PROTECTED PERSON</option><option  value='GBS'> UK BRITISH SUBJECT</option><option  value='UKR'> UKRAINE</option><option  value='ARE'> UNITED ARAB EMIRATES</option><option  value='GBR'> UNITED KINGDOM</option><option  value='UNA'> UNITED NATIONS</option><option  value='UNO'> UNITED NATIONS ORGANIZATION</option><option  value='UMI'> UNITED STATES MINOR OUTLYING ISLANDS</option><option  value='USA'> UNITED STATES OF AMERICA</option><option  value='URY'> URAGUAY</option><option  value='UZB'> UZBEKISTAN</option><option  value='VUT'> VANUATU (NEW HEBRIDES)</option><option  value='VEN'> VENEZUELA</option><option  value='VNM'> VIETNAM</option><option  value='VGB'> VIRGIN ISLANDS (BRITISH)</option><option  value='VIR'> VIRGIN ISLANDS (US)</option><option  value='WLF'> WALLIS AND FUTUNA ISLANDS</option><option  value='ESH'> WESTERN SAHARA</option><option  value='YEM'> YEMEN</option><option  value='YUG'> YUGOSLAVIA</option><option  value='ZMB'> ZAMBIA</option><option  value='ZWE'> ZIMBABWE</option>
+						</select>
+					</font>		
+					</div>
+					
+				</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; </td>
+			</tr>
+			
+			<tr>
+				<td height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Date of issue<font color="red">*</font>&nbsp;</div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"    name="applicant_visadoissue" id="applicant_visadoissue" maxlength="10" onKeyUp="chkDatecharsx(this);" size="20" value="" onBlur="chkDate(this)"  datepicker="true" datepicker_min="01/01/1900" datepicker_max="12/06/2012" > 
+				</td>
+				<td height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; DD/MM/YYYY  </td>
+			</tr>
+			
+			<tr>
+				<td height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Valid till <font color="red">*&nbsp;</font>  </div>
+				</td> 			
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"    name="applicant_visavalidtill" id="applicant_visavalidtill" maxlength="10" size="20" onKeyUp="chkDatecharsx(this);" value="" onBlur="chkDate(this)"  datepicker="true" datepicker_min="01/01/1900" datepicker_max="01/01/3000" > 
+				</td>
+				<td height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; DD/MM/YYYY  </td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Type of visa <font color="red">*</font>&nbsp; </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<font size="1">				
+						<select name="applicant_visatype" class="style16" id="applicant_visatype" style="">
+							<option value="">Select </option>
+							<option  value='MX'> ATTENDANT MEDICAL</option><option  value='B'> BUSINESS VISA</option><option  value='C'> CONFERENCE VISA</option><option  value='D'> DIPLOMATIC VISA</option><option  value='E'> EMPLOYMENT  VISA</option><option  value='XE'> ENTRY VISA</option><option  value='J'> JOURNALIST VISA</option><option  value='L'> LONG TERM VISA</option><option  value='ME'> MEDICAL VISA</option><option  value='SP'> MISC SP PERMISSION</option><option  value='M'> MISSIONARY VISA</option><option  value='OC'> OCI</option><option  value='O'> OFFICIAL VISA</option><option  value='PL'> PILGRIMES VISA</option><option  value='P'> PIO Card Holder</option><option  value='R'> RESEARCH OR TRAINING VISA</option><option  value='S'> STUDENT VISA</option><option  value='T'> TOURIST VISA</option><option  value='TR'> TRANSIT VISA</option><option  value='U'> UNITED NATION</option>
+						</select>
+					</font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp;<br> </td>
+			</tr>
+
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" >
+					<strong>
+						<font color="#ffffff">&nbsp;Arrival Information<br> </font>
+					</strong>
+				</td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff"></font></strong></td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Arrived from Country <font color="red">*&nbsp;</font> </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+						<font size="1">
+						<select name="applicant_arrivedfromcountry" id="applicant_arrivedfromcountry" class="style16" id="" style="" >
+							<option value="">Select</option>
+							<option  value='AFG'> AFGHANISTAN</option><option  value='ALA'> ALAND ISLANDS</option><option  value='ALB'> ALBANIA</option><option  value='DZA'> ALGERIA</option><option  value='ASM'> AMERICAN SAMOA</option><option  value='AND'> ANDORRA</option><option  value='AGO'> ANGOLA</option><option  value='AIA'> ANGUILLA</option><option  value='ATA'> ANTARCTICA</option><option  value='ATG'> ANTIGUA AND BARBUDA</option><option  value='ARG'> ARGENTINA</option><option  value='ARM'> ARMENIA</option><option  value='ABW'> ARUBA</option><option  value='AUS'> AUSTRALIA</option><option  value='AUT'> AUSTRIA</option><option  value='AZE'> AZERBAIJAN</option><option  value='BHS'> BAHAMAS</option><option  value='BHR'> BAHRAIN</option><option  value='BGD'> BANGLADESH</option><option  value='BRB'> BARBADOS</option><option  value='BLR'> BELARUS</option><option  value='BEL'> BELGIUM</option><option  value='BLZ'> BELIZE</option><option  value='BEN'> BENIN (DAHOMEY)</option><option  value='BMU'> BERMUDA</option><option  value='BTN'> BHUTAN</option><option  value='BOL'> BOLIVIA</option><option  value='BES'> BONAIRE, SINT EUSTATIUS AND SABA</option><option  value='BIH'> BOSNIA AND HERZEGOVINA</option><option  value='BWA'> BOTSWANA</option><option  value='BVT'> BOUVET ISLAND</option><option  value='BRA'> BRAZIL</option><option  value='IOT'> BRITISH INDIAN OCEAN TERRITORY</option><option  value='BRN'> BRUNEI DARUSSALAM</option><option  value='BGR'> BULGARIA</option><option  value='BFA'> BURKINA FASO ( UPPER VOLTA)</option><option  value='BDI'> BURUNDI</option><option  value='KHM'> CAMBODIA (KAMPUCHEA)</option><option  value='CMR'> CAMEROON</option><option  value='CAN'> CANADA</option><option  value='CPV'> CAPE VERDE ISLANDS</option><option  value='CYM'> CAYMAN ISLANDS</option><option  value='CAF'> CENTRAL AFRICAN REPUBLIC</option><option  value='TCD'> CHAD</option><option  value='CHL'> CHILE</option><option  value='CHN'> CHINA</option><option  value='CXR'> CHRISTMAS ISLANDS</option><option  value='CCK'> COCOS (KEELING) ISLANDS</option><option  value='COL'> COLOMBIA</option><option  value='COM'> COMOROS</option><option  value='COG'> CONGO</option><option  value='COD'> CONGO, DEMOCRATIC REPUBLIC OF THE (ZAIRE)</option><option  value='COK'> COOK ISLANDS</option><option  value='CRI'> COSTA RICA</option><option  value='CIV'> COTE D'IVOIRE</option><option  value='HRV'> CROTIA -REPUBLIC OF CROTIA</option><option  value='CUB'> CUBA</option><option  value='CUW'> CURACAO</option><option  value='CYP'> CYPRUS</option><option  value='CZE'> CZECH REPUBLIC</option><option  value='DNK'> DENMARK</option><option  value='DJI'> DJIBOUTI</option><option  value='DMA'> DOMINICA</option><option  value='DOM'> DOMINICAN REPUBLIC</option><option  value='TLS'> EAST TIMOR, DEMOCRATIC REPUBLIC OF</option><option  value='ECU'> ECUADOR</option><option  value='EGY'> EGYPT</option><option  value='SLV'> EL SALVADOR</option><option  value='GNQ'> EQUITORIAL GUINEA</option><option  value='ERI'> ERITREA</option><option  value='EST'> ESTONIA</option><option  value='ETH'> ETHIOPIA</option><option  value='FLK'> FALKLAND ISLANDS (MALVINAS)</option><option  value='FRO'> FAROE ISLANDS</option><option  value='FIJ'> FIJI</option><option  value='FIN'> FINLAND</option><option  value='FRA'> FRANCE</option><option  value='FXX'> FRANCE METROPOLITAN</option><option  value='GUF'> FRENCH GUIANA</option><option  value='ATF'> FRENCH SOUTHERN TERRITORIES</option><option  value='GAB'> GABON</option><option  value='GMB'> GAMBIA</option><option  value='GEO'> GEORGIA</option><option  value='DEU'> GERMANY</option><option  value='GHA'> GHANA</option><option  value='GIB'> GIBRALTAR</option><option  value='GRC'> GREECE</option><option  value='GRL'> GREENLAND</option><option  value='GRD'> GRENADA</option><option  value='GLP'> GUADELOUPE</option><option  value='GUM'> GUAM</option><option  value='GTM'> GUATEMALA</option><option  value='GGY'> GUERNSEY</option><option  value='GIN'> GUINEA</option><option  value='GNB'> GUINEA BISSAU</option><option  value='GUY'> GUYANA</option><option  value='HTI'> HAITI</option><option  value='HMD'> HEARD AND MCDONALD ISLANDS</option><option  value='VAT'> HOLY SEE (VATICAN CITY STATE)</option><option  value='HND'> HONDURAS</option><option  value='HKG'> HONG KONG</option><option  value='HUN'> HUNGURY</option><option  value='ISL'> ICELAND</option><option  value='IND'> INDIA</option><option  value='IDN'> INDONESIA</option><option  value='IRN'> IRAN</option><option  value='IRQ'> IRAQ</option><option  value='IRL'> IRELAND</option><option  value='IMN'> ISLE OF MAN</option><option  value='ISR'> ISRAEL</option><option  value='ITA'> ITALY</option><option  value='JAM'> JAMAICA</option><option  value='JPN'> JAPAN</option><option  value='JEY'> JERSEY</option><option  value='JOR'> JORDAN</option><option  value='KAZ'> KAZAKHSITAN</option><option  value='KEN'> KENYA</option><option  value='KIR'> KIRIBATI</option><option  value='PRK'> KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF</option><option  value='KOR'> KOREA, REPUBLIC OF</option><option  value='KWT'> KUWAIT</option><option  value='KGZ'> KYRGYZSTAN</option><option  value='LAO'> LAOS</option><option  value='LVA'> LATVIA</option><option  value='LBN'> LEBANON</option><option  value='LSO'> LESOTHO</option><option  value='LBR'> LIBERIA</option><option  value='LBY'> LIBYA</option><option  value='LIE'> LIECHTENSTEIN</option><option  value='LTU'> LITHUANIA</option><option  value='LUX'> LUXEMBOURG</option><option  value='MAC'> MACAU</option><option  value='MKD'> MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</option><option  value='MDG'> MADAGASCAR</option><option  value='MWI'> MALAWI</option><option  value='MYS'> MALAYSIA</option><option  value='MDV'> MALDIVES</option><option  value='MLI'> MALI</option><option  value='MLT'> MALTA</option><option  value='MHL'> MARSHALL ISLANDS</option><option  value='MTQ'> MARTINIQUE</option><option  value='MRT'> MAURITANIA</option><option  value='MUS'> MAURITIUS</option><option  value='MYT'> MAYOTTE</option><option  value='MEX'> MEXICO</option><option  value='FSM'> MICRONESIA, FEDERATED STATES OF</option><option  value='MDA'> MOLDOVA, REPUBLIC OF</option><option  value='MCO'> MONACO</option><option  value='MNG'> MONGOLIA</option><option  value='MNE'> MONTENEGRO</option><option  value='MSR'> MONTSERRAT</option><option  value='MAR'> MOROCCO</option><option  value='MOZ'> MOZAMBIQUE</option><option  value='MMR'> MYANMAR (BURMA)</option><option  value='NAM'> NAMIBIA</option><option  value='NRU'> NAURU</option><option  value='NPL'> NEPAL</option><option  value='NLD'> NETHERLANDS</option><option  value='ANT'> NETHERLANDS ANTILLES</option><option  value='NTZ'> NEUTRAL ZONE</option><option  value='NCL'> NEW CALEDONIA</option><option  value='NZL'> NEW ZEALAND</option><option  value='NIC'> NICARAGUA</option><option  value='NER'> NIGER</option><option  value='NGA'> NIGERIA</option><option  value='NIU'> NIUE</option><option  value='NFK'> NORFOLK ISLAND</option><option  value='MNP'> NORTHERN MARIANA ISLANDS</option><option  value='NOR'> NORWAY</option><option  value='OMN'> OMAN</option><option  value='OTH'> OTHERS</option><option  value='PAK'> PAKISTAN</option><option  value='PLW'> PALAU</option><option  value='PSE'> PALESTINE</option><option  value='PAN'> PANAMA</option><option  value='PNG'> PAPUA NEW GUINEA</option><option  value='PRY'> PARAGUAY</option><option  value='PER'> PERU</option><option  value='PHL'> PHILLIPPINES</option><option  value='PCN'> PITCAIRN</option><option  value='POL'> POLAND</option><option  value='PRT'> PORTUGAL</option><option  value='XXX'> PRESON OF UNSPECIFIED NATIONALITY</option><option  value='PRI'> PUERPO RICO</option><option  value='QAT'> QATAR</option><option  value='XXB'> REFUGEE</option><option  value='XXC'> REFUGEE (NON-CONVENTIONAL) OTHER THAN XXB</option><option  value='UNK'> RESIDENT OF KOSOVO (UNMIK)</option><option  value='REU'> REUNION ISLANDS</option><option  value='ROU'> ROMANIA</option><option  value='RUS'> RUSSIAN FEDERATION</option><option  value='RWA'> RWANDA</option><option  value='BLM'> SAINT BARTHELEMY</option><option  value='SHN'> SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA</option><option  value='KNA'> SAINT KITTS AND NEVIS</option><option  value='LCA'> SAINT LUCIA</option><option  value='MAF'> SAINT MARTIN (FRENCH PART)</option><option  value='SPM'> SAINT PIERRE AND MIQUELON</option><option  value='VCT'> SAINT VINCENT AND THE GRENADINES</option><option  value='WSM'> SAMOA</option><option  value='SMR'> SAN MARINO</option><option  value='STP'> SAO TOME AND PRINCIP</option><option  value='SAU'> SAUDI ARABIA</option><option  value='SEN'> SENEGAL</option><option  value='SRB'> SERBIA</option><option  value='SCG'> SERBIA AND MONTENEGRO</option><option  value='SYC'> SEYCHELLES</option><option  value='SLE'> SIERRA LEONE</option><option  value='SGP'> SINGAPORE</option><option  value='SXM'> SINT MAARTEN (DUTCH PART)</option><option  value='SVK'> SLOVAK REPUBLIC</option><option  value='SVN'> SLOVENIA</option><option  value='SLB'> SOLOMON ISLANDS</option><option  value='SOM'> SOMALIA</option><option  value='ZAF'> SOUTH AFRICA</option><option  value='SGS'> SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option><option  value='SSD'> SOUTH SUDAN</option><option  value='XOM'> SOVEREIGN MILITARY ORDER OF MALTA</option><option  value='ESP'> SPAIN</option><option  value='LKA'> SRI LANKA</option><option  value='XXA'> STATELESS PERSON</option><option  value='SDN'> SUDAN</option><option  value='SUR'> SURINAME</option><option  value='SJM'> SVALBARD AND JAN MAYEN ISLANDS</option><option  value='SWZ'> SWAZILAND</option><option  value='SWE'> SWEDEN</option><option  value='CHE'> SWITZERLAND</option><option  value='SYR'> SYRIA</option><option  value='TWN'> TAIWAN</option><option  value='TZA'> TANZANIA</option><option  value='TJK'> TAZIKISTAN</option><option  value='THA'> THAILAND</option><option  value='TBT'> TIBENTIAN ORIGIN</option><option  value='TGO'> TOGO</option><option  value='TKL'> TOKELAU</option><option  value='TON'> TONGA</option><option  value='TTO'> TRINIDAD AND TOBAGO </option><option  value='TUN'> TUNISIA</option><option  value='TUR'> TURKEY</option><option  value='TKM'> TURKMENISTAN</option><option  value='TCA'> TURKS AND CAICOS ISLANDS</option><option  value='TUV'> TUVALU</option><option  value='UGA'> UGANDA</option><option  value='GBD'> UK BRITISH DEPENDENT TERRITORIES CITIZEN</option><option  value='GBO'> UK BRITISH OVERSEAS CITIZEN</option><option  value='GBN'> UK BRITISH OVERSEAS NATIONAL </option><option  value='GBP'> UK BRITISH PROTECTED PERSON</option><option  value='GBS'> UK BRITISH SUBJECT</option><option  value='UKR'> UKRAINE</option><option  value='ARE'> UNITED ARAB EMIRATES</option><option  value='GBR'> UNITED KINGDOM</option><option  value='UNA'> UNITED NATIONS</option><option  value='UNO'> UNITED NATIONS ORGANIZATION</option><option  value='UMI'> UNITED STATES MINOR OUTLYING ISLANDS</option><option  value='USA'> UNITED STATES OF AMERICA</option><option  value='URY'> URAGUAY</option><option  value='UZB'> UZBEKISTAN</option><option  value='VUT'> VANUATU (NEW HEBRIDES)</option><option  value='VEN'> VENEZUELA</option><option  value='VNM'> VIETNAM</option><option  value='VGB'> VIRGIN ISLANDS (BRITISH)</option><option  value='VIR'> VIRGIN ISLANDS (US)</option><option  value='WLF'> WALLIS AND FUTUNA ISLANDS</option><option  value='ESH'> WESTERN SAHARA</option><option  value='YEM'> YEMEN</option><option  value='YUG'> YUGOSLAVIA</option><option  value='ZMB'> ZAMBIA</option><option  value='ZWE'> ZIMBABWE</option>						
+					</select>
+						</font>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br></td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Arrived from City <font color="red">*&nbsp;</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_arrivedfromcity" class="textBoxDashed" type="text" id="applicant_arrivedfromcity" size="20" onKeyUp="chkAddress(this);" maxlength="50" value="" />
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br></td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Arrived from Place <font color="red">*&nbsp;</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_arrivedfromplace" class="textBoxDashed" type="text" id="applicant_arrivedfromplace" size="20" onKeyUp="chkAddress(this);" maxlength="50"  value="" />
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br></td>
+			</tr>
+	 
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Date of Arrival in India <font color="red">*&nbsp;</font>  </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"    name="applicant_doarrivalindia" id="applicant_doarrivalindia" maxlength="10" size="20" onKeyUp="chkDatecharsx(this);" value=""  onBlur="chkDate(this)"  datepicker="true" datepicker_min="01/01/1900" datepicker_max="12/06/2012"  > 
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; DD/MM/YYYY<br> </td>
+			</tr>
+			
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Date of Arrival in Hotel <font color="red">*&nbsp;</font>  </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"    name="applicant_doarrivalhotel" id="applicant_doarrivalhotel" maxlength="10" size="20" onKeyUp="chkDatecharsx(this);" value=""  onBlur="chkDate(this)"  datepicker="true" datepicker_min="01/01/1900" datepicker_max="12/06/2012"  > 
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; DD/MM/YYYY<br> </td>
+			</tr>
+			
+			<tr>
+				<td  height="11" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16">
+					<div align="right">Time of Arrival in Hotel <font color="red">*&nbsp;</font>  </div>
+				</td>
+				<td height="11" valign="middle" bgcolor="#FFFFFF">
+					<input type="text" class="textBoxDashed"  class="textBoxDashed"   name="applicant_timeoarrivalhotel" id="applicant_timeoarrivalhotel" maxlength="5" size="20" onKeyUp="chktimechars(this);" onBlur="chktime(this)" value=""> 
+				</td>
+				<td  height="11" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; HH:MM<br></td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Intended duration of stay in hotel <font color="red">*&nbsp;</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_intnddurhotel" type="text"id="applicant_intnddurhotel" class="textBoxDashed" size="20" onKeyUp="chkInt(this);" maxlength="3" value=""/>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; No. of Days<br></td>
+			</tr>
+	 
+			
+			<tr bgcolor="#95CFFF" background="image/heading.gif">
+				<td height="15" colspan="2" nowrap background="image/heading.gif" class="style38" >
+					<strong><font color="#ffffff">&nbsp;Other Details<br> </font></strong>
+				</td>
+				<td height="15" colspan="1" nowrap background="image/heading.gif" class="style38" ><strong><font color="#ffffff"></font></strong></td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Whether employed in India <font color="red">*&nbsp;</font> </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input type='radio' name='employed'  value='Y'> Yes <input type='radio' name='employed' checked value='N' > No	
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; Choose Yes or No<br> </td>
+			</tr>
+			
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Purpose of Visit <font color="red">*&nbsp;</font>  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<select name="applicant_purpovisit" class="text style16" id="applicant_purpovisit">
+						<option value="">Select </option>
+						<option  value='18'> accompanying parents</option><option  value='9'> Accompanying Patient</option><option  value='10'> Accompanying Patient as Doctor</option><option  value='17'> accompanying Spouse</option><option  value='6'> Business</option><option  value='12'> Diplomatic</option><option  value='5'> Education</option><option  value='13'> Employment</option><option  value='19'> Internship</option><option  value='2'> Joining spouse</option><option  value='7'> Journalism</option><option  value='8'> Medical Treatement of self</option><option  value='1'> Meeting friends/relatives</option><option  value='3'> Minor child(either parent is indian)</option><option  value='11'> Offical</option><option  value='15'> Others</option><option  value='4'> Seminar/conference. in India</option><option  value='14'> Studies</option><option  value='16'> Tourism</option>
+					</select>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; Choose Appopriate options<br> </td>
+			</tr>
+	 
+			<tr>
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Next Destination<font color="red"> *&nbsp;</font>
+				</td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input type='radio' onClick='destinside()' name='applicant_next_dest_country_flag_r' checked  value='I'> Inside India <input type='radio' onClick='destoutside()'  name='applicant_next_dest_country_flag_r' value='O' >Outside India
+					
+					<input name="applicant_next_dest_country_flag" type="hidden" id="applicant_next_dest_country_flag" size="20" maxlength="15" value="I"/>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br> </td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td><div id="nextdest">
+					</div>
+				
+				</td>
+			</tr>
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Contact Phone No (In India )&nbsp;&nbsp;  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_contactnoinindia" type="text" onKeyUp="chkInt(this);" class="textBoxDashed" id="applicant_contactnoinindia" size="20" maxlength="15" value=""/>
+				</td>
+				<td  height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br> </td>
+			</tr>
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Mobile No (In India )&nbsp;&nbsp;  </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_mcontactnoinindia" type="text" onKeyUp="chkInt(this);" class="textBoxDashed" id="applicant_mcontactnoinindia" size="20" maxlength="15" value=""/>
+				</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br> </td>
+			</tr>
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Contact Phone No (Permanently residing Country ) &nbsp;  <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_contactnoperm" type="text" onKeyUp="chkInt(this);" class="textBoxDashed" id="applicant_contactnoperm" size="20" maxlength="15" value=""/>
+				</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br> </td>
+			</tr>
+			
+			
+			
+			<tr>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Mobile No (Permanently residing Country ) &nbsp;  <br></td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+					<input name="applicant_mcontactnoperm" type="text" onKeyUp="chkInt(this);" class="textBoxDashed" id="applicant_mcontactnoperm" size="20" maxlength="15" value=""/>
+				</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br> </td>
+			</tr>
+			
+			<!-- Added By Balmiki -->
+		          
+		     <tr>		
+				<td  height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" align="right">Remarks (If any) &nbsp;   </td>
+				<td height="3" width="500" valign="middle" bgcolor="#FFFFFF" >
+			<!--  		<font size="1">	<textarea name="applicant_remark" class="textBoxDashed" id="applicant_remark" cols="40"   onKeyUp="chkAddress(this);"  ></textarea></font> -->
+				
+				<input name="applicant_remark" type="text" id="applicant_remark"  onKeyUp="chkAddress(this);" class="textBoxDashed" size="50" maxlength="100"  value="" />
+				</td>
+				<td height="3" colspan="5" valign="top" nowrap bgcolor="#F3F3F3" class="text style38">&nbsp; <br> </td>
+			</tr>		          
+		          
+		          <!-- End By Balmiki --> 	
+		          
+		    <tr>
+				<td><input type="hidden" size="25" maxlength="25" name="t4g" value="CX8FY177D26284154EPMC154I70A74V6" readOnly /></td>
+			</tr>
+
+			<tr align=center>
+				<td height="3" valign="middle" nowrap bgcolor="#FFFFFF" class="text style16" colspan=3 align="center">
+					&nbsp;&nbsp; <input name="Submit1" type="button" value="Save and Exit" onClick="svnext()" title="This will temporarily save your data, further changes can be made later on">
+					&nbsp;&nbsp; <input name="Submit1" type="button" value="Save and Continue" onClick="ext()" title="This will save your data Permanently and No further changes can be Made">
+				</td>
+			</tr>
+			
+			<tr>
+				<td><input type="hidden" name="currentyear" id="currentyear" value="2012" />
+				<input type="hidden" name="currentmonth" id="currentmonth" value="06" />
+				<input type="hidden" name="currentdate" id="currentdate" value="12" />
+				<input type="hidden" name="currdate" id="currentdate" value="12/06/2012" />
+				<input type="hidden" name="applicant_dob2" id="applicant_dob2" />
+				</td>
+				<td><input type="hidden" name="dump" id="dump" value="" /></td>
+				<td><input type="hidden" name="applicant_employedinindia" id="applicant_employedinindia" value="" /></td>
+			</tr>	
+	</table>
+	</form>
+	</tr>
+		<tr align=right>
+		<td height="15" colspan="8" nowrap background="image/heading.gif" class="style38" ><font color="#ffffff">Designed and Developed by : National Informatics Centre&nbsp; <br></font></td>
+	</tr>
+</table>
+	
+
+</body>
+
+</html>
+ 

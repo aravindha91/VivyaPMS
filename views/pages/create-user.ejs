@@ -1,0 +1,551 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h2 class="heading-bold m-0">
+                        <% if(action==='edit' ){ %>
+                            Update user
+                            <% }else{ %>
+                                Create user
+                                <% } %>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-12 passport-scan-bg-white br-15 responsive-m-3 responsive-col-12 p-4">
+                    <form class="form-create-user" id="form-create-user" novalidate>
+                        <input type="hidden" id="id" value="<%- id -%>" />
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label>First name *</label>
+                                <input type="text" id="first-name" name="first-name" class="form-control no-ob">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Last name *</label>
+                                <input type="text" id="last-name" name="last-name" class="form-control no-ob">
+
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Phone *</label>
+                                <input type="tel" id="phone" name="phone" class="form-control no-ob">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label>Email *</label>
+                                <input type="email" id="email" name="email" class="form-control no-ob">
+
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Password *<span id="ps-st-q" data-container="body" data-toggle="popover" data-placement="right" data-content="Password must be 8 to 20 characters and it contain uppercase, lowercase, number, special characters"><i class="fa fa-question-circle-o"></i></span></label>
+                                <input type="password" id="password" name="password" autocomplete="new-password" class="form-control no-ob">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Select property *</label>
+                                <select data-placeholder="Choose the property" id="property" name="property"
+                                    class="chosen-select form-control no-ob"></select>
+                            </div>
+                        </div>
+
+                        <div class="form-check form-group mt-2">
+                            <input type="checkbox" class="form-check-input" id="is-active" name="is-active">
+                            <label class="form-check-label" for="is-active">Is active?</label>
+                        </div>
+                        <div class="form-group mt-3">
+                            <h6>Front office *</h6>
+                            <table class="table table-bordered" id="frontOffice">
+                                <thead>
+                                    <tr>
+                                        <th>Page name</th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox" class="front-check-all-view">
+                                                View</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox"
+                                                    class="front-check-all-create"> Create</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox" class="front-check-all-edit">
+                                                Edit</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox"
+                                                    class="front-check-all-delete"> Delete</label></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <h6>Back office</h6>
+                            <table class="table table-bordered" id="backOffice">
+                                <thead>
+                                    <tr>
+                                        <th>Page name</th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox" class="back-check-all-view">
+                                                View</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox"
+                                                    class="back-check-all-create"> Create</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox" class="back-check-all-edit">
+                                                Edit</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox"
+                                                    class="back-check-all-delete"> Delete</label></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <h6>Report</h6>
+                            <table class="table table-bordered" id="report">
+                                <thead>
+                                    <tr>
+                                        <th>Page name</th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox" class="report-check-all-view">
+                                                View</label></th>
+                                        <th align="center"><label class="cursor-pointer"><input type="checkbox"
+                                                    class="report-check-all-create"> Export</label></th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-6 mt-3">
+                                <button
+                                    class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">
+                                    <% if(action==='edit' ){ %>
+                                        Update
+                                        <% }else{ %>
+                                            Create
+                                            <% } %>
+                                </button>
+                            </div>
+                            <div class="form-group col-6 text-right mt-3">
+                                <a href="<%- baseUrl -%>user" class="link-green mt-2" type="button">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var pageNames = {
+                frontOffice: [
+                    {
+                        pageName: 'Dashboard',
+                        slug: 'dashboard'
+                    }, {
+                        pageName: 'Document',
+                        slug: 'document-details'
+                    }, {
+                        pageName: 'Profile',
+                        slug: 'profile'
+                    }, {
+                        pageName: 'Room change',
+                        slug: 'room-change'
+                    }, {
+                        pageName: 'Room checkout',
+                        slug: 'room-checkout'
+                    },{
+                        pageName: 'Quick checkin',
+                        slug: 'quick-checkin'
+                        
+                    }], backOffice: [
+                        {
+                            pageName: 'User management',
+                            slug: 'user'
+                        }, {
+                            pageName: 'Property',
+                            slug: 'property'
+                        }, {
+                            pageName: 'Property type',
+                            slug: 'property-type'
+                        }, {
+                            pageName: 'Room type',
+                            slug: 'room-type'
+                        }, {
+                            pageName: 'Visit purpose',
+                            slug: 'visit-purpose'
+                        }, 
+                        {
+                            pageName: 'Visa type',
+                            slug: 'visa-type'
+                        }, 
+                        {
+                            pageName: 'Document type',
+                            slug: 'document-type'
+                        }, {
+                            pageName: 'Country',
+                            slug: 'country'
+                        }, {
+                            pageName: 'Master room',
+                            slug: 'room'
+                        }
+                    ], report: [
+                        {
+                            pageName: 'Report check-in',
+                            slug: 'report-checkin'
+                        }, {
+                            pageName: 'Report check-out',
+                            slug: 'report-checkout'
+                        }, {
+                            pageName: 'Report In-house',
+                            slug: 'report-inhouse'
+                        }, {
+                            pageName: 'Report monthly',
+                            slug: 'report-monthly'
+                        }, {
+                            pageName: 'Report nationality',
+                            slug: 'report-nationality'
+                        }, {
+                            pageName: 'Report processed',
+                            slug: 'report-processed'
+                        }, {
+                            pageName: 'Report room change',
+                            slug: 'report-room-change'
+                        }
+                    ]
+            };
+
+            var oldEmail = '';
+            var oldPassword='';
+            $(document).ready(function () {
+                $("#phone").inputmask({
+                    mask: '(+99) 999-999-9999',
+                    placeholder: ' ',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+                $('#password').on('keyup',function(){
+                    if($('#id').val() && $('#password').val() !== oldPassword){
+                        $( "#password" ).rules( "add", {strong_password:true} );
+                    }else{
+                        $( "#password" ).rules( "remove", "strong_password" );
+                    }
+                });
+
+                $('[data-toggle="popover"]').popover();
+                
+                //view check all front
+                $('.front-check-all-view').change(function () {
+                    $(document).find('#frontOffice .view-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //create check all front
+                $('.front-check-all-create').change(function () {
+                    $(document).find('#frontOffice .create-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //edit check all front
+                $('.front-check-all-edit').change(function () {
+                    $(document).find('#frontOffice .edit-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //delete check all front
+                $('.front-check-all-delete').change(function () {
+                    $(document).find('#frontOffice .delete-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //view check all back
+                $('.back-check-all-view').change(function () {
+                    $(document).find('#backOffice .view-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //create check all back
+                $('.back-check-all-create').change(function () {
+                    $(document).find('#backOffice .create-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //edit check all back
+                $('.back-check-all-edit').change(function () {
+                    $(document).find('#backOffice .edit-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //delete check all back
+                $('.back-check-all-delete').change(function () {
+                    $(document).find('#backOffice .delete-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //view check all report
+                $('.report-check-all-view').change(function () {
+                    $(document).find('#report .view-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //create check all report
+                $('.report-check-all-create').change(function () {
+                    $(document).find('#report .create-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //edit check all report
+                $('.report-check-all-edit').change(function () {
+                    $(document).find('#report .edit-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                //delete check all report
+                $('.report-check-all-delete').change(function () {
+                    $(document).find('#report .delete-checkbox').prop('checked', $(this).is(':checked'));
+                });
+
+                // create page name with permission check-box front office
+                $.each(pageNames.frontOffice, function (ind, row) {
+                    $('#frontOffice tbody').append(`
+                    <tr data-slug="${row.slug}">
+                        <td>${row.pageName}</td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer view-checkbox"></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer create-checkbox ${row.slug === 'dashboard' ? 'd-none':''}" ></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer edit-checkbox ${row.slug === 'dashboard' || row.slug === 'room-change' || row.slug === 'room-checkout' ? 'd-none' : ''}"></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer delete-checkbox ${row.slug === 'dashboard' || row.slug === 'profile' || row.slug === 'room-change' || row.slug === 'room-checkout'  ? 'd-none' : ''}"></td>
+                    </tr>
+                    `);
+                });
+                // create page name with permission check-box back office
+                $.each(pageNames.backOffice, function (ind, row) {
+                    $('#backOffice tbody').append(`
+                    <tr data-slug="${row.slug}">
+                        <td>${row.pageName}</td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer view-checkbox ${row.slug === 'visa-type' || row.slug === 'property-type' || row.slug === 'country' ? 'd-none':''}"></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer create-checkbox ${row.slug === 'visa-type' || row.slug === 'property-type' || row.slug === 'country' ? 'd-none':''}"></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer edit-checkbox ${row.slug === 'visa-type' || row.slug === 'property-type' || row.slug === 'country' ? 'd-none':''}"></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer delete-checkbox ${row.slug === 'visa-type' || row.slug === 'property-type' || row.slug === 'country' ? 'd-none':''}"></td>
+                    </tr>
+                    `);
+                });
+                // create page name with permission check-box report
+                $.each(pageNames.report, function (ind, row) {
+                    $('#report tbody').append(`
+                    <tr data-slug="${row.slug}">
+                        <td>${row.pageName}</td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer view-checkbox"></td>
+                        <td align="center"><input type="checkbox" data-slug="${row.slug}" class="cursor-pointer create-checkbox">
+                            <input type="checkbox" data-slug="${row.slug}" class="cursor-pointer edit-checkbox d-none">
+                            <input type="checkbox" data-slug="${row.slug}" class="cursor-pointer delete-checkbox d-none">
+                        </td>
+                    </tr>
+                    `);
+                });
+                getGroupList();
+                $('#email').keyup(function () {
+                    if ($(this).val() !== '' && oldEmail !== $(this).val()) {
+                        $.ajax({
+                            url: `${apiUrl}validate/email`,
+                            method: 'POST',
+                            data: {
+                                email: $('#email').val()
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                validateEmail(res.status);
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Validate email",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                });
+                            }, complete: function () {
+
+                            }
+                        });
+                    } else {
+                        validateEmail(false);
+                    }
+                });
+                $('#form-create-user').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'first-name': {
+                            required: true
+                        }, 'last-name': {
+                            required: true
+                        }, 'email': {
+                            required: {
+                                depends: function () {
+                                    $(this).val($.trim($(this).val()));
+                                    return true;
+                                }
+                            },
+                            email: true
+                        }, 'password': {
+                            required: true,
+                            strong_password:true
+                        }, property: {
+                            required: true
+                        }, phone: { required: true, minlength:18 }
+                    },
+                    highlight: function (input) {
+                        $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'first-name': {
+                            required: "Provide the first name"
+                        }, 'last-name': {
+                            required: 'Provide the last name'
+                        }, 'email': {
+                            required: 'Provide the email',
+                            email: 'Provide valid email'
+                        }, 'password': {
+                            required: 'Provide the password'
+                        }, property: {
+                            required: 'Please choose the property'
+                        }, phone: { required: "Provide the phone number", minlength:"Please enter valid number" }
+                    },
+                    submitHandler: function () {
+                        var permissionList = [];
+                        $('#frontOffice tbody tr').each(function (inx, row) {
+                            permissionList.push({
+                                slug: $(this).data('slug'),
+                                view: $(this).find('.view-checkbox').is(':checked') ? 'Y' : 'N',
+                                create: $(this).find('.create-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                edit: $(this).find('.edit-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                delete: $(this).find('.delete-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N'
+                            });
+                        });
+                        $('#backOffice tbody tr').each(function (inx, row) {
+                            permissionList.push({
+                                slug: $(this).data('slug'),
+                                view: $(this).find('.view-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                create: $(this).find('.create-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                edit: $(this).find('.edit-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                delete: $(this).find('.delete-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N'
+                            });
+                        });
+                        $('#report tbody tr').each(function (inx, row) {
+                            permissionList.push({
+                                slug: $(this).data('slug'),
+                                view: $(this).find('.view-checkbox').is(':checked') ? 'Y' : 'N',
+                                create: $(this).find('.create-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                edit: $(this).find('.edit-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N',
+                                delete: $(this).find('.delete-checkbox:not(.d-none)').is(':checked') ? 'Y' : 'N'
+                            });
+                        });
+                        
+                        var data = {
+                            firstName: $('#first-name').val(),
+                            lastName: $('#last-name').val(),
+                            email: $('#email').val(),
+                            password: $('#password').val(),
+                            phone: ($('#phone').val()).replace(/[^0-9]/g, ""),
+                            isActive: $('#is-active').is(':checked') ? 'Y' : 'N',
+                            property: $('#property').val(),
+                            userPermission: permissionList
+                        };
+                       
+                        $.ajax({
+                            url: $('#id').val() > 0 ? `${apiUrl}user/${$('#id').val()}` : `${apiUrl}user`,
+                            method: $('#id').val() > 0 ? 'PUT' : 'POST',
+                            data: data,
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: res.status === true ? "success" : "error",
+                                    title: "User",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                }).then(() => {
+                                    res.status === true ? window.location.href = `${baseUrl}user` : null;
+                                });
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "User",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                });
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+                $("select").chosen().change(function () {
+                    $("#form-create-user").validate().element(this);
+                });
+            });
+            function validateEmail(status) {
+                if (status) {
+                    if ($(document).find('.error-email').length == 0) {
+                        $('<label class="error-email">Please email already exist</label>').insertAfter('#email');
+                    }
+                } else {
+                    $('#email').next('label.error-email').remove();
+                }
+                $('.form-submit-btn').attr('disabled', status);
+            }
+            function getGroupList() {
+                $.ajax({
+                    url: `${apiUrl}get-property-list`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status) {
+                            var options = '<option value="" disabled selected>Choose the property</option>';
+                            $.each(res.data, function (ind, row) {
+                                options += `<option value="${row.property_id}">${row.name}</option>`;
+                            });
+                            $('#property').empty().html(options).trigger("chosen:updated");
+                            if ($('#id').val() > 0) {
+                                getByIdDetails($('#id').val());
+                            }
+                        }
+                    }
+                });
+            }
+            function getByIdDetails(id) {
+                $.ajax({
+                    url: `${apiUrl}user/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            $( "#password" ).rules( "remove", "strong_password" );
+                            $('#first-name').val(res.data.first_name);
+                            $('#last-name').val(res.data.last_name);
+                            $('#email').val(res.data.email);
+                            $('#is-active').prop('checked', res.data.is_active === 'Y' ? true : false);
+                            $('#password').val(res.data.password);
+                            $('#phone').val(res.data.phone);
+                            $('#property').val(res.data.property_id).trigger("chosen:updated");
+                            oldEmail = res.data.email;
+                            oldPassword= res.data.password;
+
+                            // user permission
+                            var permission = res.data.userPermission;
+                            $.each(permission, function (inx, row) {
+                                $(document).find('.view-checkbox[data-slug="' + row.page_name + '"]').prop('checked', row.view === 'Y' ? 'checked' : '');
+                                $(document).find('.create-checkbox[data-slug="' + row.page_name + '"]').prop('checked', row.create === 'Y' ? 'checked' : '');
+                                $(document).find('.edit-checkbox[data-slug="' + row.page_name + '"]').prop('checked', row.edit === 'Y' ? 'checked' : '');
+                                $(document).find('.delete-checkbox[data-slug="' + row.page_name + '"]').prop('checked', row.delete === 'Y' ? 'checked' : '');
+                            });
+                        } else {
+
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Get details",
+                            message: msg,
+                            buttonText: "Ok"
+                        });
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+        <%- include ('../template/footer') -%>

@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vownix
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      BASE_URL: ${BASE_URL}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+      WINDOWS_UPLOAD_PATH: ${WINDOWS_UPLOAD_PATH}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

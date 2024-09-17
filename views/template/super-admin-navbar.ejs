@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg navbar-light top-bar passport-scan-bg-dark">
+  <a class="navbar-brand" href="javascript:;">
+    <img src="<%- baseUrl -%>assets/img/logo-new.png" class="img-fluid" />
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#top-menu-bar"
+    aria-controls="top-menu-bar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="top-menu-bar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link"
+          href="<%- baseUrl -%>license"><i class="fa fa-list-ul" aria-hidden="true"></i>License list</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:;" onclick="openSetting()"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<%- baseUrl -%>sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form id="setting-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingModalLabel">Settings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group">
+                <label>Destination URL</label>
+                <input type="text" id="destinationUrl" class="form-control" name="destinationUrl">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  function openSetting() {
+    $.ajax({
+      url: `${apiUrl}setting`,
+      method: 'get',
+      dataType: 'json',
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+      },
+      success: function (res) {
+        if (res.status === true) {
+          if ((res.data).length) {
+            $('#destinationUrl').val(res.data[0].meta_value);
+          }
+          $('#settingModal').modal('show');
+        } else {
+        
+          cuteAlert({
+            type: "error",
+            title: "Get setting",
+            message: res.msg,
+            buttonText: "Ok"
+          })
+        }
+      }, error: function (error, execution) {
+        var msg = getErrorMessage(error, execution);
+       
+        cuteAlert({
+          type: "error",
+          title: "Get setting",
+          message: res.msg,
+          buttonText: "Ok"
+        })
+      },
+      complete: function () { }
+    });
+
+  }
+  $(function () {
+    $('#setting-form').validate({
+      rules: {
+        destinationUrl: {
+          required: {
+            depends: function () {
+              $(this).val($.trim($(this).val()));
+              return true;
+            }
+          },
+          url: false
+        }
+      },
+      highlight: function (input) {
+        $(input).addClass('error-validation');
+      },
+      unhighlight: function (input) {
+        $(input).removeClass('error-validation');
+      },
+      errorPlacement: function (error, element) {
+        $(element).parents('.form-group').append(error);
+      },
+      messages: {
+        destinationUrl: {
+          required: 'Provide the the url',
+          url: 'Provide valid url'
+        }
+      },
+      submitHandler: function () {
+
+        var url = $('#destinationUrl').val();
+        $.ajax({
+          url: `${apiUrl}setting`,
+          method: 'put',
+          data: {
+            url: url
+          }, dataType: 'json',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+          },
+          success: function (res) {
+            if (res.status === true) {
+              $('#settingModal').modal('hide');
+            } else {
+            
+          cuteAlert({
+            type: "error",
+            title: "Update setting",
+            message: res.msg,
+            buttonText: "Ok"
+          })
+            }
+          }, error: function (error, execution) {
+            var msg = getErrorMessage(error, execution);
+            cuteAlert({
+              type: "error",
+              title: "Update setting",
+              message: msg,
+              buttonText: "Ok"
+            })
+          },
+          complete: function () { }
+        });
+      }
+    });
+  });
+</script>

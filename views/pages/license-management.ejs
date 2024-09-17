@@ -1,0 +1,202 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/super-admin-navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="heading-bold m-0">License list</h2>
+                </div>
+                <div class="col-6 text-right">
+                    <div class="form-group m-0">
+                        <a href="<%- baseUrl -%>license/create"
+                            class="btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white">Create</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 passport-scan-bg-white br-15 p-4 pb-5">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end mb-2">
+                    <div class="form-group">
+                        <input type="search" id="search" class="form-control no-ob" placeholder="Search">
+                    </div>
+                    <div class="form-group ml-3">
+                        <button type="button"
+                            class="btn scan-btn btn-search passport-scan-bg-green passport-scan-text-color-white">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="admin-table" data-classes="table">
+                            <thead>
+                                <tr>
+                                    <th data-field="id">#</th>
+                                    <th data-sortable="true" data-field="name">Contact name</th>
+                                    <th data-sortable="true" data-field="companyName">Company name</th>
+                                    <th data-sortable="true" data-field="email">Email</th>
+                                    <th data-sortable="true" data-field="phone">Phone number</th>
+                                    <th data-sortable="true" data-field="userLimit">User limit</th>
+                                    <th data-sortable="true" data-field="limitedOption">Limited option</th>
+                                    <th data-sortable="true" data-field="endDate">Limited end date</th>
+                                    <th data-sortable="false" data-field="status">Status</th>
+                                    <th data-field="action">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container-fluid container-fluid-width">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loadPagination row mt-4 mb-5"></div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                getList();
+                $('.btn-search').click(function () {
+                    getList();
+                });
+            });
+            function getList() {
+                var url = new URL(window.location.href);
+                var searchParams = new URLSearchParams(url.search);
+		var page = searchParams.get('page') ? searchParams.get('page') : 1;
+                //var page = searchParams.get('page');
+                var pageId = page ? `?page=${page}` : '?page=1';
+                var beforeQ = page ? '&' : '?';
+                var search = $('#search').val() !== "" ? (beforeQ + encodeURI(`search=${$('#search').val()}`)) : '';
+                $.ajax({
+                    url: `${apiUrl}admin${pageId}${search}`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+
+                        if (res.status === true) {
+                            var myData = [];
+                            $.each(res.data, function (ind, row) {
+                                let validOption = '';
+                                switch (row.valid_option) {
+                                    case 'quarterly':
+                                        validOption = 'Quarterly';
+                                        break;
+                                    case 'half-yearly':
+                                        validOption = 'Half Yearly';
+                                        break;
+                                    case 'yearly':
+                                        validOption = 'Yearly';
+                                        break;
+                                    case 'custom':
+                                        validOption = 'Custom';
+                                        break;
+                                }
+                                myData.push({
+                                    "id": ind + 1,
+                                    "companyName": row.first_name,
+                                    "name": row.last_name,
+                                    "email": row.email,
+                                    "phone": '+'+row.phone,
+                                    "userLimit": row.user_limit,
+                                    "limitedOption":validOption ,
+                                    "endDate": row.end_date.split("-").reverse().join("-"),
+                                    "status": row.is_active === 'Y' ? '<span class="badge badge-success text-small">Active</span>' : '<span class="badge badge-secondary text-small">Deactive</span>',
+                                    "action": `<div class="dropdown">
+                                    <a class="btndropdown-toggle" href="javascript:;" id="dropdownMenu_${ind}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="<%- baseUrl -%>assets/img/option.png" width="10" alt="Options" class="cursor-pointer" />
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu_${ind}">
+                                        <a class="dropdown-item" href="<%- baseUrl -%>license/edit/${row.user_id}">Edit</a>
+                                        <a class="dropdown-item" href="javascript:;" onclick="deleteAdmin(${row.user_id})">Delete</a>
+                                    </div>
+                                </div>`
+                                });
+                            });
+                            $('table').bootstrapTable('destroy');
+                            $('table').bootstrapTable({
+                                data: myData
+                            });
+                            bindPagination(page, res.totalPages);
+                        }
+                    }
+                });
+            }
+            function deleteAdmin(id) {
+              
+                  cuteAlert({
+                    type: "question",
+                    title: "Delete the admin",
+                    message: "Are you sure do you want to delete?",
+                    confirmText: "Yes",
+                    cancelText: "No"
+                  }).then((e)=>{
+                    if ( e == ("confirm")){
+                        $.ajax({
+                            url: `${apiUrl}admin/${id}`,
+                            type: 'delete',
+                            dataType: 'json',
+                            headers: {
+                                "Authorization": "Bearer <%- userDetails.token -%>"
+                            }, success: function (res) {
+                                res.status ? getList() : null;
+                                cuteAlert({
+                                    type: "success",
+                                    title: "Delete admin",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                  })
+                            }, complete: function () {
+
+                            }
+                        });
+                  }
+                  });
+              
+            }
+        </script>
+        <script>
+            function bindPagination(page, totalRow) {
+                var firstBtnState = page <= 1 ? 'disabled' : '';
+                var previousBtnState = page <= 1 ? 'javascript:;' : baseUrl + 'license?page=' + (parseInt(page) - 1);
+                var disabledFirstLi = page == 1 ? 'disabled' : '';
+                var pagination = `<div class="col-12">
+                                <ul class="pagination justify-content-end">
+                                    <li class="page-item ${disabledFirstLi}"><a href="${baseUrl}license?page=1" class="page-link">First</a></li>
+                                    <li class="${firstBtnState} page-item">
+                                        <a href="${previousBtnState}" class="page-link">Prev</a>
+                                    </li>`;
+
+                for (var i = 1; i <= totalRow; i++) {
+                    var navigateActive = '';
+                    if (page == i) {      
+		navigateActive = 'disabled';
+                    }
+
+                    pagination += `<li class='page-item ${navigateActive}'><a class='page-link ${navigateActive}' href='${baseUrl}license?page=${i}'>${i}</a></li>`;
+
+                }
+                var disabledLi = 1 >= totalRow ? 'disabled' : '';
+                var nextPageCount = page >= totalRow ? parseInt(page) : (parseInt(page) + 1);
+                var disabledLastLi = page == totalRow ? 'disabled' : '';
+
+                pagination += ` <li class="${disabledLi} page-item"><a class="page-link" href="${baseUrl}license?page=${nextPageCount}">Next</a></li>
+                                <li class="page-item ${disabledLastLi}"><a class="page-link" href="${baseUrl}license?page=${totalRow}">Last</a></li></ul>
+                        </div>`;
+                $('.loadPagination').empty().html(pagination);
+            }
+            function starsSorter(a, b) {
+                if (new Date(a) > new Date(b)) return 1;
+                if (new Date(a) < new Date(b)) return -1;
+                return 0;
+            }
+        </script>
+        <%- include ('../template/footer') -%>

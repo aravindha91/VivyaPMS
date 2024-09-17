@@ -1,0 +1,414 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 responsive-col-12">
+                    <h2 class="heading-bold m-0">
+                        <% if(action==='edit' ){ %>
+                            Update room
+                            <% }else if(action==='create-bulk' ){ %>
+                                Bulk import
+                                <% }else{ %>
+                                    Create room
+                                    <% } %>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 passport-scan-bg-white br-15 responsive-m-3 responsive-col-12 p-4">
+                    <% if(action !=='create-bulk' ){ %>
+                        <form class="form-create-room" id="form-create-room" novalidate>
+                            <input type="hidden" id="id" value="<%- id -%>" />
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <label>Select property</label>
+                                    <select data-placeholder="Choose the property" id="property" name="property"
+                                        class="chosen-select form-control no-ob"></select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Select room type</label>
+                                    <select data-placeholder="Choose room type" id="room_type" name="room_type"
+                                        class="chosen-select form-control no-ob"></select>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group field d-none">
+                                <label>Room number <span class="small">
+                                        <% if(action !=='edit' ){ %>(ex: 100-110,115,118,200-250)<% } %>
+                                    </span></label>
+                                <input type="text" id="name" name="name" class="form-control no-ob name">
+                                <label class="room-exist-error text-danger small d-none">Room already exist</label>
+                            </div>
+                            <div class="form-check form-group mt-2">
+                                <input type="checkbox" class="form-check-input" id="is-active" name="is-active">
+                                <label class="form-check-label" for="is-active">Is active?</label>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6 mt-3">
+                                    <button
+                                        class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                        type="submit">
+                                        <% if(action==='edit' ){ %>
+                                            Update
+                                            <% }else{ %>
+                                                Create
+                                                <% } %>
+                                    </button>
+                                </div>
+                                <div class="form-group col-6 text-right mt-3">
+                                    <a href="<%- baseUrl -%>room" class="link-green mt-2" type="button">Cancel</a>
+                                </div>
+                            </div>
+
+                        </form>
+                        <% }else{ %>
+                            <form id="bulk-import" class="bulk-import">
+                                <div class="form-group">
+                                    <label>Select property</label>
+                                    <select data-placeholder="Choose the property" id="property" name="property"
+                                        class="chosen-select form-control no-ob"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Select room type</label>
+                                    <select data-placeholder="Choose room type" id="room_type" name="room_type"
+                                        class="chosen-select form-control no-ob"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Select file to import</label>
+                                    <input type="file" id="import-file" name="import-file" class="form-control no-ob"
+                                        accept=".xls,.XLS,.XLSX,.xlsx">
+                                </div>
+                                <div class="form-check form-group mt-2">
+                                    <input type="checkbox" class="form-check-input" id="is-active" name="is-active">
+                                    <label class="form-check-label" for="is-active">Is active?</label>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-6 mt-3">
+                                        <button
+                                            class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                            type="submit">
+                                            Create
+                                        </button>
+                                    </div>
+                                    <div class="form-group col-6 text-right mt-3">
+                                        <a href="<%- baseUrl -%>room" class="link-green mt-2" type="button">Cancel</a>
+                                    </div>
+                                </div>
+                            </form>
+                            <% } %>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            var pagePermission = JSON.parse(`<%- JSON.stringify(permission[0]) -%>`);
+            $.validator.addMethod("validateRoomNumber", function (value, element) {
+                var flag = true;
+                $("[name='name[]']").each(function (i, j) {
+                    $(this).parents('.form-group').find('label.error').remove();
+                    $(this).parents('.form-group').find('label.error').remove();
+                    if ($.trim($(this).val()) === '') {
+                        flag = false;
+                        if ($(document).find('#product_option_ct_' + i + '-error').hasClass('error') === false) {
+                            $(this).parents('.form-group').append(`<label  id="product_option_ct_${i}-error" class="error">Please provide the room number</label>`);
+                        }
+                    }
+                });
+                return flag;
+            }, "");
+            $(document).ready(function () {
+                getPropertyList();
+                
+                $('select').chosen();
+                $(document).on('click', '.remove-input', function () {
+                    $(this).parents('.remove-section').remove();
+                });
+                $('#form-create-room').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'property': {
+                            required: true
+                        },
+                        'name': {
+                            required: true
+                        }, 'room_type': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        // $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        // $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'property': {
+                            required: 'Please choose the property'
+                        }, 'name': {
+                            required: 'Please provide room number'
+                        }, 'room_type': {
+                            required: 'Please select the room type'
+                        }
+                    },
+                    submitHandler: function () {
+                        if($('#id').val() > 0){
+                            if(pagePermission.edit === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not update permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }else{
+                            if(pagePermission.create === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not create permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }
+                        $.ajax({
+                            url: $('#id').val() > 0 ? `${apiUrl}room/${$('#id').val()}` : `${apiUrl}room`,
+                            method: $('#id').val() > 0 ? 'PUT' : 'POST',
+                            data: {
+                                rooms: $('#name').val(),
+                                property: $('#property option:selected').val(),
+                                room_type: $('#room_type option:selected').val(),
+                                is_active:$('#is-active').is(':checked')?'A':'D'
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: res.status === true ?"success":"error",
+                                    title: "Room",
+                                    message:res.msg,
+                                    buttonText: "Ok"
+                                  }).then(()=>{
+                                    res.status === true ? window.location.href = `${baseUrl}room` : null;
+                                  });
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Room",
+                                    message:msg,
+                                    buttonText: "Ok"
+                                  })
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+                $('#bulk-import').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'property': {
+                            required: true
+                        },
+                        'import-file': {
+                            required: true
+                        }, 'room_type': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        // $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        // $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'property': {
+                            required: 'Please choose the property'
+                        }, 'import-file': {
+                            required: 'Please upload the file'
+                        }, 'room_type': {
+                            required: 'Please select the room type'
+                        }
+                    },
+                    submitHandler: function () {
+                        if($('#id').val() > 0){
+                            if(pagePermission.edit === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not update permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }else{
+                            if(pagePermission.create === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not create permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }
+                        var formData = new FormData($('#bulk-import')[0]);
+                        formData.delete('is-active');
+                        formData.append('is_active',$('#is-active').is(':checked')?'A':'D');
+                        $.ajax({
+                            url: `${apiUrl}bulk-import`,
+                            method: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                 cuteAlert({
+                                    type: res.status === true ?"success":"error",
+                                    title: "Room",
+                                    message:res.msg,
+                                    buttonText: "Ok"
+                                  }).then(()=>{
+                                    res.status === true ? window.location.href = `${baseUrl}room` : null;
+                                  });
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Room",
+                                    message:msg,
+                                    buttonText: "Ok"
+                                  });
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+                $("select").chosen().change(function () {
+                    $("#form-create-room,#bulk-import").validate().element(this);
+                });
+                $('#property').change(function () {
+                    $('option:selected', this).val() > 0 ? $('.field').removeClass('d-none') : $('.field').addClass('d-none');
+                });
+                $(document).on('keyup', '#name', function () {
+                    if ($('#id').val() == '0') {
+                        return;
+                    }
+                    var _this = this;
+                    if ($(this).val() === '') {
+                        $(_this).parents('.form-group').find('.room-exist-error').addClass('d-none');
+                        return;
+                    }
+                    $.ajax({
+                        url: `${apiUrl}room/validate-room/${$('#property option:selected').val()}`,
+                        method: 'post',
+                        data: {
+                            room: $(this).val()
+                        },
+                        dataType: 'json',
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                        },
+                        success: function (res) {
+                            if (res.status === true) {
+                                $(_this).parents('.form-group').find('.room-exist-error').removeClass('d-none');
+                                $('.form-submit-btn').attr('disabled', true);
+                            } else {
+                                $('.form-submit-btn').attr('disabled', false);
+                                $(_this).parents('.form-group').find('.room-exist-error').addClass('d-none');
+                            }
+                        }
+                    });
+                });
+            });
+
+            function getPropertyList() {
+                $.ajax({
+                    url: `${apiUrl}get-property-list`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status) {
+                            var options = '<option value="" disabled selected>Choose the property</option>';
+                            $.each(res.data, function (ind, row) {
+                                options += `<option value="${row.property_id}">${row.name}</option>`;
+                            });
+                            $('#property').empty().html(options).trigger("chosen:updated");
+                           
+                            getRoomTypeList();
+                        }
+                    }
+                });
+            }
+            function getRoomTypeList() {
+                $.ajax({
+                    url: `${apiUrl}get-room-type-list`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status) {
+                            var options = '<option value="" disabled selected>Choose room type</option>';
+                            $.each(res.data, function (ind, row) {
+                                options += `<option value="${row.room_type_id}">${row.name}</option>`;
+                            });
+                            $('#room_type').empty().html(options).trigger("chosen:updated");
+                            if ($('#id').val() > 0) {
+                                getByIdDetails($('#id').val());
+                            }
+                        }
+                    }
+                });
+            }
+            function getByIdDetails(id) {
+                $.ajax({
+                    url: `${apiUrl}room/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            $('.field').removeClass('d-none');
+                            $('#property').val(res.data.property_id).trigger('chosen:updated');
+                            $('#name').val(res.data.name);
+                            $('#room_type').val(res.data.room_type_id).trigger("chosen:updated");
+                            $('#is-active').prop('checked',res.data.is_active ==='A'?true:false);
+                        } else {
+                            cuteAlert({
+                                type: "error",
+                                title: "Room",
+                                message:res.msg,
+                                buttonText: "Ok"
+                              });
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Room",
+                            message:msg,
+                            buttonText: "Ok"
+                          });
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+        <%- include ('../template/footer') -%>

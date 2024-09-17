@@ -1,0 +1,274 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 responsive-col-12">
+                    <h2 class="heading-bold m-0">Room change</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 passport-scan-bg-white br-15 responsive-m-3 responsive-col-12 p-4">
+                    <form class="form-create-room" id="form-create-room" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Room change date/time</label>
+                                <input type="text" placeholder="Select date & time" id="room-change-date-time"
+                                    name="room-change-date-time" class="chosen-select form-control no-ob">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>From room number</label>
+                                <select data-placeholder="Select room" id="from-room" name="from-room"
+                                    class="chosen-select form-control no-ob"></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Name</label>
+                                <input type="text" id="name" class="chosen-select form-control no-ob" disabled>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>To room number</label>
+                                <select data-placeholder="Select room" id="to-room" name="to-room"
+                                    class="chosen-select form-control no-ob"></select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Adults</label>
+                                <input type="text" id="adult" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Children</label>
+                                <input type="text" id="child" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label>Check in type</label>
+                                <select class="form-control" id="room_check_in_type">
+                                    <option value="Normal">Normal</option>
+                                    <option value="Early Checkin">Early Checkin</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="form-row d-none">
+                            <div class="col-md-6 form-group mt-3" id="show-image"></div>
+                        </div>
+                        <div class="form-row pt-3">
+                            <div class="form-group col-6 mb-0">
+                                <button
+                                    class="btn form-submit-btn scan-btn small-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">Submit
+                                </button>
+                            </div>
+                           
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var documentId = '';
+            $(document).ready(function () {
+                $('#room-change-date-time').datetimepicker({
+                    format: 'd-m-Y H:i',
+                    minDate: 0
+                });
+                $('#room-change-date-time').val(moment().format('DD-MM-YYYY HH:mm'));
+                getOccupiedRoomList();
+                getAvailableRoomList();
+                $('select').chosen();
+                $('#from-room').change(function () {
+                    documentId = $(this).find('option:selected').attr('data-docId');
+
+                    getDocumentDetailsById(documentId);
+
+                });
+
+                $('#form-create-room').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'from-room': {
+                            required: true
+                        }, 'to-room': {
+                            required: true
+                        }, 'room-change-date-time': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'from-room': {
+                            required: "Please choose the option"
+                        }, 'to-room': {
+                            required: "Please choose the option"
+                        }, 'room-change-date-time': {
+                            required: "Please select the date"
+                        }
+                    },
+                    submitHandler: function () {
+                        $.ajax({
+                            url: `${apiUrl}room/change-room`,
+                            method: 'POST',
+                            data: {
+                                from_room_id: document.getElementById('from-room').value,
+                                to_room_id: document.getElementById('to-room').value,
+                                room_change_date: document.getElementById('room-change-date-time').value,
+                                document_id: documentId,
+                                room_check_in_type: $('#room_check_in_type option:selected').val()
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                               
+                                cuteAlert({
+                                    type: res.status?"success":"error",
+                                    title: "Room change",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                  }).then(() => {
+                                    res.status === true ? window.location.reload() : null;
+                                  })
+
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type:"error",
+                                    title: "Room change",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                  })
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+               
+
+            });
+
+
+            function getOccupiedRoomList() {
+                $.ajax({
+                    url: `${apiUrl}room/get-occupied-room-list`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status) {
+                            var options = '<option value="" >Select room</option>';
+                            $.each(res.data, function (ind, row) {
+
+                                options += `<option data-docId="${row.document_id}" value="${row.room_id}">${row.name}</option>`;
+                            });
+                            $('#from-room').empty().html(options).trigger("chosen:updated");
+
+                        }
+
+                    }
+                });
+            }
+
+            function getAvailableRoomList() {
+                $.ajax({
+                    url: `${apiUrl}room/get-available-room-list`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        const arr = res.data;
+
+const ids = arr.map(o => o.name);
+const filtered = arr.filter(({name}, index) => !ids.includes(name, index + 1));
+                        if (res.status) {
+                            var options = '<option value="" >Select room</option>';
+                            $.each(filtered, function (ind, row) {
+                                options += `<option value="${row.room_id}">${row.name}</option>`;
+                            });
+                            $('#to-room').empty().html(options).trigger("chosen:updated");
+
+                        }
+
+                    }
+                });
+            }
+            function getDocumentDetailsById(id) {
+                $.ajax({
+                    url: `${apiUrl}room/getDocumentDetailsById/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        $('#show-image').empty()
+                        if (res.status === true) {
+                            var image = res.data.photo;
+                        //     $('#show-image').html(`
+                        //    <div>
+                        //    <img src="<%- baseUrl -%>uploads/${image}"  alt="image" style="width: 100px;height: 100px;background-color: white; border-radius: 10px;" width="60px" />
+                        //    </div>
+                        //     `);
+                            $('#name').val(res.data.given_name);
+                            $('#adult').val(res.data.adult);
+                            $('#child').val(res.data.child);
+                        } else {
+                            $('#show-image').empty()
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                       
+                        cuteAlert({
+                            type: "error",
+                            title: "Get room details",
+                            message: msg,
+                            buttonText: "Ok"
+                          })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+            function getRoomDetailsById(id) {
+                $.ajax({
+                    url: `${apiUrl}get-room-details-by-id/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+
+                        } else {
+
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Get room details",
+                            message: msg,
+                            buttonText: "Ok"
+                          })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+        <%- include ('../template/footer') -%>

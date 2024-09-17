@@ -1,0 +1,168 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="heading-bold m-0">
+                        <% if(action==='edit' ){ %>
+                            Update room type
+                            <% }else{ %>
+                                Create room type
+                                <% } %>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 passport-scan-bg-white br-15 responsive-col-12 p-4 pb-32">
+                    <form class="form-create-room-type" id="form-create-room-type">
+                        <input type="hidden" id="id" value="<%- id -%>" />
+                        <div class="form-row">
+                            <div class="col-md-12 form-group">
+                                <label>Room type</label>
+                                <input type="text" id="name" name="name" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-check form-group mt-2">
+                                <input type="checkbox" class="form-check-input" id="is-active" name="is-active">
+                                <label class="form-check-label" for="is-active">Is active?</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group mt-3">
+                                <button
+                                    class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">
+                                    <% if(action==='edit' ){ %>
+                                        Update
+                                        <% }else{ %>
+                                            Create
+                                            <% } %>
+                                </button>
+                            </div>
+                            <div class="form-group col-md-6 text-right mt-3">
+                                <a href="<%- baseUrl -%>room-type" class="link-green mt-2" type="button">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var pagePermission = JSON.parse(`<%- JSON.stringify(permission[0]) -%>`);
+            $(document).ready(function () {
+                if ($('#id').val() > 0) {
+                    getByIdDetails($('#id').val());
+                }
+                $('#form-create-room-type').validate({
+                    rules: {
+                        'name': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'name': {
+                            required: "Please provide the name"
+                        }
+                    },
+                    submitHandler: function () {
+                        if($('#id').val() > 0){
+                            if(pagePermission.edit === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not update permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }else{
+                            if(pagePermission.create === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not create permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }
+                        $.ajax({
+                            url: $('#id').val() > 0 ? `${apiUrl}room-type/${$('#id').val()}` : `${apiUrl}room-type`,
+                            method: $('#id').val() > 0 ? 'PUT' : 'POST',
+                            data: {
+                                name: $('#name').val(),
+                                is_active:$('#is-active').is(':checked')?'A':'D'
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: res.status?"success":"error",
+                                    title: "Room type",
+                                    message:res.msg,
+                                    buttonText: "Ok"
+                                  }).then(() => {
+                                    res.status === true ? window.location.href = `${baseUrl}room-type` : null;
+                                  })
+
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Room type",
+                                    message: msg,
+                                    buttonText: "Okay"
+                                  })
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+            });
+            function getByIdDetails(id) {
+                $.ajax({
+                    url: `${apiUrl}room-type/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            $('#name').val(res.data.name);
+                            $('#is-active').prop('checked',res.data.is_active ==='A'?true:false);
+                        } else {
+                            cuteAlert({
+                                type: "error",
+                                title: "Room Type",
+                                message: res.msg,
+                                buttonText: "Ok"
+                              })
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Room type",
+                            message: msg,
+                            buttonText: "Ok"
+                          })
+                        
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+
+        <%- include ('../template/footer') -%>

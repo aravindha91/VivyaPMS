@@ -1,0 +1,372 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h2 class="heading-bold m-0">
+                        <% if(action==='edit' ){ %>
+                            Update property
+                            <% }else{ %>
+                                Create property
+                                <% } %>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8 passport-scan-bg-white br-15 responsive-col-12 p-4 pb-32">
+                    <form class="form-create-property" id="form-create-property">
+                        <input type="hidden" id="id" value="<%- id -%>" />
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label>Property *</label>
+                                <select class="form-control" name="property-type" id="property-type">
+                                    <option value="">Click to choose...</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Name *</label>
+                                <input type="text" id="name" name="name" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Contact number *</label>
+                                <input type="tel" id="contact-number" name="contact-number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label>Website *</label>
+                                <input type="text" id="website" name="website" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Manager name *</label>
+                                <input type="text" id="manager-name" name="manager-name" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Mobile number *</label>
+                                <input type="tel" id="mobile-number" name="mobile-number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label>Registration Id *</label>
+                                <input type="text" id="registration-id" name="registration-id" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>P.O.Box *</label>
+                                <input type="text" id="po-box" name="po-box" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Email Id *</label>
+                                <input type="email" id="email-id" name="email-id" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 form-group">
+                                <label>Address *</label>
+                                <input type="text" id="address" name="address" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>City *</label>
+                                <input type="text" id="city" name="city" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>State *</label>
+                                <input type="text" id="state" name="state" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-row mt-3">
+                            <div class="col-md-4 form-group">
+                                <label>Pin *</label>
+                                <input type="text" id="pin" name="pin" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label>Logo</label>
+                                <input type="file" accept=".jpeg,.JPEG,.jpg,.JPG,.png,.PNG" id="property_logo"
+                                    name="property_logo" class="form-control">
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <img src="<%- baseUrl -%>/assets/img/property-logo.png" id="property-image"
+                                    class="img-fluid img-thumbnail">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-check form-group mt-2">
+                                <input type="checkbox" class="form-check-input" id="is-active" name="is-active">
+                                <label class="form-check-label" for="is-active">Is active?</label>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-6 form-group mt-3">
+                                <button
+                                    class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">
+                                    <% if(action==='edit' ){ %>
+                                        Update
+                                        <% }else{ %>
+                                            Create
+                                            <% } %>
+                                </button>
+                            </div>
+                            <div class="form-group col-6 text-right mt-3">
+                                <a href="<%- baseUrl -%>property" class="link-green mt-2" type="button">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var pagePermission = JSON.parse(`<%- JSON.stringify(permission[0]) -%>`);
+            $(document).ready(function () {
+                $("#contact-number,#mobile-number").inputmask({
+                    mask: '(+99) 999-999-9999',
+                    placeholder: ' ',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+                $('select').chosen();
+                getPropertyType();
+                $('#form-create-property').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'property-type': {
+                            required: true
+                        }, 'name': {
+                            required: true
+                        }, 'contact-number': {
+                            required: true,
+                           minlength:18
+                        }, 'website': {
+                            required: true
+                        }, 'manager-name': {
+                            required: true
+                        }, 'mobile-number': {
+                            required: true,
+                            minlength:18
+                        }, 'registration-id': {
+                            required: true
+                        }, 'po-box': {
+                            required: true
+                        }, 'email-id': {
+                            required: true,
+                            email: true
+                        }, 'address': {
+                            required: true
+                        }, 'city': {
+                            required: true
+                        }, 'state': {
+                            required: true
+                        }, 'pin': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'property-type': {
+                            required: 'Please select the property type'
+                        }, 'name': {
+                            required: "Please provide the name"
+                        }, 'contact-number': {
+                            required: "Please provide the contact number",
+                            minlength:"Please enter valid number"
+                        }, 'website': {
+                            required: 'Please provide the website'
+                        }, 'manager-name': {
+                            required: 'Please provide the manager name'
+                        }, 'mobile-number': {
+                            required: 'Please provide the mobile number',
+                            minlength:"Please enter valid number"
+                        }, 'registration-id': {
+                            required: "please provide the registration ID"
+                        }, 'po-box': {
+                            required: "Please provide the p.o.box"
+                        }, 'email-id': {
+                            required: "Please provide the email",
+                            email: 'Please provide the valid email'
+                        }, 'address': {
+                            required: "Please provide the address"
+                        }, 'city': {
+                            required: "Please provide the city"
+                        }, 'state': {
+                            required: 'Please provide the state'
+                        }, 'pin': {
+                            required: 'Please provide the pin'
+                        }
+                    },
+                    submitHandler: function () {
+
+                      if($('#id').val() > 0){
+                            if(pagePermission.edit === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not update permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }else{
+                            if(pagePermission.create === 'N'){
+                                cuteToast({
+                                    type: "warning", 
+                                    message: "You have not create permission",
+                                    timer: 5000
+                                  })
+                                return;
+                            }
+                        }
+                        
+                        var formData = new FormData();
+                        formData.append('propertyType', $('#property-type option:selected').val());
+                        formData.append('name', $('#name').val());
+                        formData.append('contactNumber', ($('#contact-number').val()).replace(/[^0-9]/g, ""));
+                        formData.append('website', $('#website').val());
+                        formData.append('managerName', $('#manager-name').val());
+                        formData.append('mobileNumber', ($('#mobile-number').val()).replace(/[^0-9]/g, ""));
+                        formData.append('registrationId', $('#registration-id').val());
+                        formData.append('poBox', $('#po-box').val());
+                        formData.append('email', $('#email-id').val());
+                        formData.append('address', $('#address').val());
+                        formData.append('city', $('#city').val());
+                        formData.append('state', $('#state').val());
+                        formData.append('pin', $('#pin').val());
+                        formData.append('is_active', $('#is-active').is(':checked')?'A':'D');
+                        
+                        formData.append('logo', typeof $('#property_logo')[0].files[0] === 'undefined' ? "" : $('#property_logo')[0].files[0]);
+                        $.ajax({
+                            url: $('#id').val() > 0 ? `${apiUrl}property/${$('#id').val()}` : `${apiUrl}property`,
+                            method: $('#id').val() > 0 ? 'PUT' : 'POST',
+                            contentType: false,
+                            processData: false,
+                            data: formData, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                             
+                                cuteAlert({
+                                    type: res.status?"success":"error",
+                                    title: "Property",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                  }).then(() => {
+                                    res.status === true ? window.location.href = `${baseUrl}property` : null;
+                                  })
+
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Property",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                  });
+                            }, complete: function () {
+
+                            }
+                        }); 
+                    }
+                });
+                $("select").chosen().change(function () {
+                    $("#form-create-property").validate().element(this);
+                });
+                $('#property_logo').change(function () {
+                    var input = this;
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#property-image').attr('src', e.target.result);
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                });
+            });
+            function getByIdDetails(id) {
+                $.ajax({
+                    url: `${apiUrl}property/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            $('#property-type').val(res.data.property_type_id).trigger('chosen:updated');
+                            $('#name').val(res.data.name);
+                            $('#contact-number').val(res.data.contact_number);
+                            $('#website').val(res.data.website);
+                            $('#manager-name').val(res.data.manager_name);
+                            $('#mobile-number').val(res.data.mobile_number);
+                            $('#registration-id').val(res.data.registration_id);
+                            $('#po-box').val(res.data.po_box);
+                            $('#email-id').val(res.data.email);
+                            $('#address').val(res.data.address);
+                            $('#city').val(res.data.city);
+                            $('#state').val(res.data.state);
+                            $('#pin').val(res.data.pin);
+                            $('#is-active').prop('checked',res.data.is_active ==='A'?true:false);
+                            $('#property-image').attr('src',`<%- baseUrl -%>uploads/${res.data.logo}`);
+                        } else {
+                          
+                            cuteAlert({
+                                type: "error",
+                                title: "Property",
+                                message: res.msg,
+                                buttonText: "Ok"
+                              })
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Property",
+                            message: msg,
+                            buttonText: "Ok"
+                          })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+            function getPropertyType() {
+                $.ajax({
+                    url: `${apiUrl}get-property-type-list`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            var _opt = '<option value="">Click to choose...</option>'
+                            $.each(res.data, function (inx, row) {
+                                _opt += `<option value="${row.property_type_id}">${row.name}</option>`;
+                            });
+                            $('#property-type').html(_opt).trigger('chosen:updated');
+                        }
+                        if ($('#id').val() > 0) {
+                            getByIdDetails($('#id').val());
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                      
+                        cuteAlert({
+                            type: "error",
+                            title: "Property ype",
+                            message: msg,
+                            buttonText: "Ok"
+                          })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+
+        <%- include ('../template/footer') -%>

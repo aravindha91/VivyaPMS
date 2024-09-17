@@ -1,0 +1,367 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid mt-3 container-fluid-width">
+            <div class="row justify-content-center">
+                <div class="col-md-8 responsive-col-12">
+                    <h2 class="heading-bold m-0">Room checkout</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid mt-3 container-fluid-width">
+            <div class="row justify-content-center">
+                <div class="col-md-8 responsive-m-3 responsive-col-12 br-15 passport-scan-bg-white p-4">
+
+                    <form class="form-create-room" id="form-create-room" novalidate>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Room checkout date/time</label>
+                                <input type="text" placeholder="Select date & time" id="room-change-date-time"
+                                    name="room-change-date-time" class="form-control">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>From room number</label>
+                                <select data-placeholder="Select room" id="from-room" name="from-room"
+                                    class="form-control"></select>
+                            </div>
+                            <div class="col-md-6 form-group mb-2">
+                                <label>Adults</label>
+                                <input type="text" id="adult" class="form-control" readonly>
+                            </div>
+                            <div class="col-md-6 form-group mb-2">
+                                <label>Children</label>
+                                <input type="text" id="child" class="form-control" readonly>
+                            </div>
+
+                            <div class="col-md-6 form-group checkout-type d-none">
+                                <p class="m-0">
+                                    <label>Checkout option</label>
+                                </p>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="checkoutOptionFull" name="checkoutOption"
+                                        class="form-check-input" value="full" checked>
+                                    <label class="form-check-label" for="checkoutOptionFull">Full checkout</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" id="checkoutOptionPartial" name="checkoutOption"
+                                        class="form-check-input" value="partial">
+                                    <label class="form-check-label" for="checkoutOptionPartial">Partial
+                                        checkout</label>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-6 form-group">
+                                <p class="m-0">
+                                    <label>Checkout type</label>
+                                </p>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="checkoutType" id="normal"
+                                        value="Normal" checked>
+                                    <label class="form-check-label" for="normal">Normal</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="checkoutType" id="cancelled"
+                                        value="Cancelled">
+                                    <label class="form-check-label" for="cancelled">Cancelled</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="checkoutType" id="letcheckout"
+                                        value="Let check out">
+                                    <label class="form-check-label" for="letcheckout">Let check out</label>
+                                </div>
+
+                            </div>-->
+                            <div class="col-md-6 form-group show-primary d-none">
+                                <label>Select checkout user</label>
+                                <select data-placeholder="Select checkout user" name="check-out-user"
+                                    id="check-out-user" class="form-control no-ob" multiple></select>
+                            </div>
+                            <div class="col-md-6 form-group show-primary d-none">
+                                <label>Select next primary user</label>
+                                <select data-placeholder="Select primary user" id="primary-user" name="primary-user"
+                                    class="form-control no-ob"></select>
+                                <div class=" mt-2 d-none">
+                                    <img src="<%- baseUrl -%>assets/img/dummy-img-1.jpg"
+                                        class="secondary-user-photo br-10" width="100px" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="form-row">
+                            <div class="form-group col-6 mb-0 responsive-mt-15 mt-3">
+                                <button
+                                    class="btn form-submit-btn scan-btn small-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">Submit
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var documentId = '';
+            var secondaryUsers = [];
+            var secPrimeValid = true;
+            var totalAdult = 0, totalChild = 0;
+            /* $.validator.addMethod("validateSecondary", function (value, element) {
+                 return !secPrimeValid;
+             }, ""); */
+
+            $(document).ready(function () {
+
+                $('#check-out-user').change(function () {
+                    var _opt = $(this).val();
+                    var adultCount = 0, childCount = 0;
+                    if (_opt.length > 0) {
+                        $('#primary-user option').attr('disabled', false);
+                        $('#primary-user option[value=""]').attr('selected', 'selected');
+                        $.each(_opt, function (j, k) {
+                            $('#primary-user option[value="' + k + '"]').attr('disabled', true);
+                            var age = $('#primary-user option[value="' + k + '"]').data('adult');
+                            if (age === true) {
+                                adultCount += 1;
+                            } else {
+                                childCount += 1;
+                            }
+                        });
+
+                    } else {
+                        $('#primary-user option').attr('disabled', false);
+                    }
+                    $('#adult').val(totalAdult - adultCount);
+                    $('#child').val(totalChild - childCount);
+                    $('#primary-user').trigger('chosen:updated');
+                });
+
+                $('#primary-user').change(function () {
+                    $('.secondary-user-photo').attr('src', '<%- baseUrl -%>uploads/' + $('option:selected', this).data('profile'));
+                });
+                $('input[name="checkoutOption"]').change(function () {
+                    var _opt = $('input[name="checkoutOption"]:checked').val();
+                    if (_opt === 'partial') {
+                        $('#check-out-user').rules('add', {
+                            required: true,
+                            messages: {
+                                required: "Please select checkout user"
+                            }
+                        });
+                        $('#primary-user').rules('add', {
+                            required: true,
+                            messages: {
+                                required: "Please select primary user"
+                            }
+                        });
+                        secPrimeValid = true;
+                        $('.show-primary').removeClass('d-none');
+                    } else {
+                        $('#check-out-user').rules('remove');
+                        $('#primary-user').rules('remove');
+                        secPrimeValid = false;
+                        $('#primary-user').empty().trigger('chosen:updated');
+                        $('.show-primary').addClass('d-none');
+                        
+                    }
+                });
+                $('#room-change-date-time').datetimepicker({
+                    format: 'd-m-Y H:i',
+                    minDate: 0
+                });
+                $('#room-change-date-time').val(moment().format('DD-MM-YYYY HH:mm'));
+                getOccupiedRoomList();
+                $('select').chosen();
+
+                $('#from-room').change(function () {
+                    documentId = $(this).find('option:selected').attr('data-docId');
+                    getDocumentDetailsById(documentId);
+                });
+
+            
+                $('#form-create-room').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'from-room': {
+                            required: true
+                        }, 'room-change-date-time': {
+                            required: true
+                        }, 'primary-user': {
+                            required: true
+                        }, checkoutType: {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'from-room': {
+                            required: "Please choose the option"
+                        }, 'room-change-date-time': {
+                            required: "Please select the date"
+                        }, 'primary-user': {
+                            required: 'Please select the primary user'
+                        }, checkoutType: {
+                            required: "Please choose the checkout type"
+                        }
+                    },
+                    submitHandler: function () {
+                        
+                        var checkoutUsers = [];
+                        if ($('input[name="checkoutOption"]:checked').val() === 'partial') {
+                            var _opt = $('#check-out-user').val();
+                            $.each(_opt, function (j, k) {
+                                /* var _is = $('#check-out-user option[value="' + k + '"]').data('is');
+                                 var _mrd = $('#check-out-user option[value="' + k + '"]').data('mrd');*/
+                                checkoutUsers.push(parseInt(k));
+                            });
+
+                            // primary user
+                            var primaryUserId = $('#primary-user option:selected').val();
+                            checkoutUsers.push(parseInt(primaryUserId));
+                        }
+                    
+
+                        var _remainingUser = secondaryUsers.filter(item => !checkoutUsers.includes(item));
+                    
+                            
+                        $.ajax({
+                            url: `${apiUrl}room/update-checkout`,
+                            method: 'POST',
+                            data: {
+                                from_room_id: $('#from-room option:selected').val(),
+                                room_checkout_date: $('#room-change-date-time').val(),
+                                document_id: documentId,
+                                mrdId: $('#from-room option:selected').data('mrd'),
+                                checkoutOption: $('input[name="checkoutOption"]:checked').val(),
+                                primaryUser: $('#primary-user option:selected').val(),
+                                secondaryUsers: _remainingUser,
+                                checkoutType: $('input[name="checkoutType"]:checked').val(),
+                                adult:$('#adult').val(),
+                                child:$('#child').val()
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: res.status ? "success" : "error",
+                                    title: "Room checkout",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                }).then(() => {
+                                    res.status === true ? window.location.reload() : null;
+                                })
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Room checkout",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                })
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+                $("select").chosen().change(function () {
+                    $("#form-create-room").validate().element(this);
+                });
+            });
+
+            function getOccupiedRoomList() {
+                $.ajax({
+                    url: `${apiUrl}room/get-occupied-room-list`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status) {
+                            var options = '<option value="" >Select room</option>';
+                            $.each(res.data, function (ind, row) {
+                                options += `<option data-mrd="${row.mrd_id}" data-docId="${row.document_id}" value="${row.room_id}">${row.name}</option>`;
+                            });
+                            $('#from-room').empty().html(options).trigger("chosen:updated");
+                            secPrimeValid = false;
+                        }
+
+                    }
+                });
+            }
+
+            function getDocumentDetailsById(id) {
+                $.ajax({
+                    url: `${apiUrl}room/getDocumentDetailsByRoomId/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        $('#check-out-user').empty();
+                        if (res.status === true) {
+                            var _option = '';
+                            res.data.secondary_document_id !== "" ? $('.checkout-type').removeClass('d-none') : $('.checkout-type').addClass('d-none');
+                            res.data.secondary_document_id !== "" ? $('input[name="checkoutOption"][value="full"]').attr('checked', false) : null;
+                            $('#adult').val(res.data[0].adult);
+                            $('#child').val(res.data[0].child);
+                            totalAdult = res.data[0].adult ? res.data[0].adult : 0;
+                            totalChild = res.data[0].child ? res.data[0].child : 0;
+                            $.each(res.data, function (inx, row) {
+                                secondaryUsers.push(row.id);
+                                _option += `<option value="${row.id}" data-is="${row.is}"  data-mrd="${row.mrd ? row.mrd : null}" data-adult="${row.age >= 18 ? true : false}">${row.name}</option>`;
+                            });
+                            $('#check-out-user').html(_option).trigger('chosen:updated');
+                            $('#primary-user').html(`<option value="">Select primary user</option>${_option}`).trigger('chosen:updated');
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Get room details",
+                            message: msg,
+                            buttonText: "Ok"
+                        })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+
+            function getRoomDetailsById(id) {
+                $.ajax({
+                    url: `${apiUrl}get-room-details-by-id/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+
+                        } else {
+
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Get room details",
+                            message: msg,
+                            buttonText: "Ok"
+                        })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+        <%- include ('../template/footer') -%>

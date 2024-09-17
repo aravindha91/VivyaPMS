@@ -1,0 +1,1756 @@
+<%- include ('../template/header') -%>
+    <%- include ('../component/webcam') -%>
+        <%- include ('../component/imageCrop') -%>
+            <%- include ('../template/navbar') -%>
+                <form class="form-scan-details" id="form-scan-details" autocomplete='off'>
+                    <input type="hidden" id="action" value="<%- action -%>" />
+                    <input type="hidden" id="id" value="<%- id -%>" />
+                    <div class="container-fluid mt-3 container-fluid-width">
+                        <div class="row">
+                            <div class="col-md-6 responsive-col-12">
+                                <h2 class="heading-bold m-0">Quick checkin <span class="add-guest-title"></span></h2>
+                            </div>
+                            <div class="col-md-6 responsive-mt-15 responsive-col-12">
+                                <div class="form-group m-0 text-right">
+                                    <button
+                                        class="btn small-btn d-none mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                        type="button"><i class="fa fa-camera-retro"></i> Scan</button>
+                                    <button
+                                        class="btn small-btn d-none mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                        type="button"><i class="fa fa-file-text-o"></i> Add Page</button>
+
+                                            <button
+                                            class="btn small-btn add-guest-btn mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white <% if(action==='edit'){ %> d-none <% }%>"
+                                            type="button"><i class="fa fa-user-plus"></i> Add Escort</button>
+                                            <button class="btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white process" id="toggle-document" type="button" disabled>
+                                                Process Documents
+                                                <span id="loader" style="display: none; margin-left: 10px;">
+                                                    <i class="fa fa-spinner fa-spin"></i>
+                                                </span>
+                                            </button>   
+                                      
+                                    <button
+                                        class="btn small-btn save scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                        type="submit"><i class="fa fa-check-circle"></i>
+                                        <% if(action==='edit' ){ %> Save <% } else { %>Check-In <% } %>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid mt-3 mb-3 container-fluid-width">
+                        <div class="row br-15 passport-scan-bg-white p-4 responsive-p-8">
+                            <div class="col-md-4">
+                                <div class="tab-checkin">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-primary-tab" data-toggle="tab"
+                                                href="#nav-primary" role="tab" aria-controls="nav-primary"
+                                                aria-selected="true">Document (Front)</a>
+                                            <a class="nav-item nav-link" id="nav-back-tab" data-toggle="tab"
+                                                href="#nav-back" role="tab" aria-controls="nav-back"
+                                                aria-selected="true">Document (Back)</a>
+                                            <a class="nav-item nav-link" id="nav-additional-tab" data-toggle="tab"
+                                                href="#nav-additional" role="tab" aria-controls="nav-additional"
+                                                aria-selected="false">Additional <span
+                                                    class="additional-count badge bg-success passport-scan-text-color-white">0</span></a>
+                                            <a class="nav-item nav-link" id="nav-face-tab" data-toggle="tab"
+                                                href="#nav-face" role="tab" aria-controls="nav-face"
+                                                aria-selected="false">Face</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-primary" role="tabpanel"
+                                        aria-labelledby="nav-primary-tab">
+                                        <div class="primary-box">
+                                            <div class="primary-upload-preview-img">
+                                                <a data-fancybox
+                                                    href="<%- baseUrl -%>assets/img/primary-passport.jpeg"><img
+                                                        src="<%- baseUrl -%>assets/img/primary-passport.jpeg" /></a>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar primary-doc-progress" role="progressbar"
+                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+
+                                            <div class="form-group text-center mt-1 mb-1 w-100">
+                                                <!-- File input (hidden from view) -->
+                                                <input type="file" id="uploadFile" name="uploadFile" class="upload-btn d-none" accept=".jpeg,.JPEG,.jpg,.JPG,.png,.PNG">
+                                           
+                                                <!-- Upload button -->
+                                                <label for="uploadFile" class="btn small-btn cursor-pointer scan-btn passport-scan-bg-green passport-scan-text-color-white mr-3">
+                                                    <i class="fa fa-image"></i> Upload
+                                                </label>
+                                           
+                                                <!-- Capture button -->
+                                                <button class="capture-image-primary btn small-btn mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white" type="button">
+                                                    <i class="fa fa-camera"></i> Capture
+                                                </button>
+                                           
+                                                <!-- Any other buttons or elements -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="nav-back" role="tabpanel"
+                                    aria-labelledby="nav-back-tab">
+                                    <div class="primary-box">
+                                        <div class="back-upload-preview-img">
+                                            <a data-fancybox
+                                                href="<%- baseUrl -%>assets/img/primary-passport.jpeg"><img
+                                                    src="<%- baseUrl -%>assets/img/primary-passport.jpeg" /></a>
+                                        </div>
+                                        <div class="progress">
+                                            <div class="progress-bar back-doc-progress" role="progressbar"
+                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                   
+
+                                        <div class="form-group text-center mt-1 mb-1 w-100">
+                                            <!-- File input (hidden from view) -->
+                                            <input type="file" id="uploadBackFile" name="uploadBackFile" class="upload-btn d-none" accept=".jpeg,.JPEG,.jpg,.JPG,.png,.PNG">
+                                       
+                                            <!-- Upload button -->
+                                            <label for="uploadBackFile" class="btn small-btn cursor-pointer scan-btn passport-scan-bg-green passport-scan-text-color-white mr-3">
+                                                <i class="fa fa-image"></i> Upload
+                                            </label>
+                                       
+                                            <!-- Capture button -->
+                                            <button class="capture-image-back btn small-btn mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white" type="button">
+                                                <i class="fa fa-camera"></i> Capture
+                                            </button>
+                                       
+                                            <!-- Any other buttons or elements -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        <!-- <div class="tab-pane fade" id="nav-additional" role="tabpanel"
+                                            aria-labelledby="nav-additional-tab">
+                                            <div class="additional-box">
+                                                <div class="secondary-upload-preview-img"></div>
+                                                <div class="form-group text-center mt-1 mb-1 w-100">
+                                                    <label for="uploadFileAdditional"
+                                                        class="d-none btn small-btn cursor-pointer scan-btn passport-scan-bg-green passport-scan-text-color-white mr-3"><i
+                                                            class="fa fa-image"></i>
+                                                        <input type="file" id="uploadFileAdditional"
+                                                            name="uploadFileAdditional" class="upload-btn"
+                                                            onclick="this.value = null"
+                                                            accept=".jpg,.JPG">Upload
+                                                    </label>
+                                                    <button
+                                                        class="capture-image-secondary btn small-btn  mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                                        type="button"><i class="fa fa-camera"></i> Capture</button>
+
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="tab-pane fade" id="nav-additional" role="tabpanel" aria-labelledby="nav-additional-tab">
+                                            <div class="additional-box">
+                                                <div class="secondary-upload-preview-img"></div>
+                                                <div class="form-group text-center mt-1 mb-1 w-100">
+                                                    <!-- Upload Button -->
+                                                    <label for="uploadFileAdditional" class="btn small-btn cursor-pointer scan-btn passport-scan-bg-green passport-scan-text-color-white mr-3">
+                                                        <i class="fa fa-image"></i> Upload
+                                                        <input type="file" id="uploadFileAdditional" name="uploadFileAdditional" class="upload-btn" onclick="this.value = null" accept=".jpg,.JPG" style="display: none;">
+                                                    </label>
+                                                    <!-- Capture Button -->
+                                                    <button class="capture-image-secondary btn small-btn mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white" type="button">
+                                                        <i class="fa fa-camera"></i> Capture
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <!-- <script>
+                                            function captureImageSecondary() {
+                                                // Trigger click event on the file input element
+                                                document.getElementById("uploadFileAdditional").click();
+                                            }
+                                        </script> -->
+                                        
+                                        <div class="tab-pane fade" id="nav-face" role="tabpanel"
+                                            aria-labelledby="nav-face-tab">
+                                            <div class="face-box text-center">
+                                                <img src="<%- baseUrl -%>assets/img/dummy-img-1.jpg" alt="image" />
+                                                <div class="form-group text-center mt-1 mb-1 w-100">
+                                                    <label for="photo"
+                                                        class="btn small-btn cursor-pointer scan-btn passport-scan-bg-green passport-scan-text-color-white mr-3"><i
+                                                            class="fa fa-image"></i>
+                                                        <input type="file" id="photo" name="photo" class="upload-btn"
+                                                            onclick="this.value = null" accept=".JPG">Upload
+                                                    </label>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="arriverd-info mt-2">
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="duration_of_stay" class="col-form-label">Duration
+                                                of stay
+                                                <span class="must-feild">*</span></label>
+                                            <div class="place-error">
+                                                <input type="number" min="1" name="duration_of_stay" id="duration_of_stay"
+                                                    class="form-control no-ob" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+                                            </div>
+                                            <p class="help-font-size mb-0 d-none">No. of Days</p>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="duration_stay_india" class="col-form-label">Days of
+                                                stay(India)</label>
+                                            <div class="place-error">
+                                                <input type="number" name="duration_stay_india" id="duration_stay_india"
+                                                    class="form-control no-ob" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="date_of_arrival_in_india" class="col-form-label">Date
+                                                of Arrival in India <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="date_of_arrival_in_india"
+                                                    id="date_of_arrival_in_india" class="form-control no-ob">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="arriving_from" class="col-form-label">Arriving From
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <select class="form-control bind-country-list" id="arriving_from"
+                                                    name="arriving_from"></select>
+                                            </div>
+                                            <p class="help-font-size mb-0 d-none">DD/MM/YYYY</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="next_destination" class="col-form-label">Next destination
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <select class="form-control bind-country-list" id="next_destination"
+                                                    name="next_destination"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="native_country_address" class="col-form-label">Native country
+                                                address
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="native_country_address"
+                                                    id="native_country_address" class="form-control no-ob">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="arrived_from_port" class="col-form-label">Arrived from
+                                                port
+                                                
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <!-- <select class="form-control no-ob bind-country-list"
+                                                    id="arrived_from_port" name="arrived_from_port"></select> -->
+                                                <input type="text" class="form-control no-ob" id="arrived_from_port"
+                                                    name="arrived_from_port"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <label for="arrived_at_port" class="col-form-label">Arrived
+                                                at port <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="arrived_at_port" id="arrived_at_port"
+                                                    class="form-control no-ob">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12 form-group">
+                                            <label for="address_in_india" class="col-form-label">Property Address
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="address_in_india" id="address_in_india"
+                                                    class="form-control no-ob">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 form-group">
+                                            <label for="register_no" class="col-form-label">Register no
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="register_no" id="register_no"
+                                                    class="form-control no-ob">
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-6 form-group">
+                                            <label for="rfid_room_key" class="col-form-label">RFID room key
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="rfid_room_key" id="rfid_room_key"
+                                                    class="form-control no-ob">
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-6 form-group">
+                                            <label for="c_form_no" class="col-form-label">CForm no
+                                                <span class="must-feild d-none">*</span></label>
+                                            <div class="place-error">
+                                                <input type="text" name="c_form_no" id="c_form_no"
+                                                    class="form-control no-ob">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="room_id" class="col-form-label">Select the
+                                            room</label>
+                                        <div class="place-error">
+                                            <select data-placeholder="Choose the room"
+                                                class="form-control no-ob chosen-select" id="room_id" name="room_id">
+                                                <option value="">Select room</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="adult">Adults<span class="must-feild d-none">*</span></label>
+                                        <input type="text" id="adult" name="adult" placeholder="Adults"
+                                            class="form-control">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label class="child">Child<span class="must-feild d-none">*</span></label>
+                                        <input type="text" id="child" name="child" placeholder="Child"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="check_in_date_time" class="col-form-label">Check in Date / Time
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="check_in_date_time" id="check_in_date_time"
+                                                class="form-control no-ob" value="">
+                                        </div>
+                                        <p class="help-font-size mb-0 d-none">DD/MM/YYYY</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="given_name" class="col-form-label">Given Name
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="given_name" id="given_name"
+                                                class="form-control no-ob">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="family_name" class="col-form-label">Family Name
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="family_name" id="family_name"
+                                                class="form-control no-ob">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="gender" class="col-form-label">Gender <span
+                                                class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob" id="gender" name="gender">
+                                                <option value="">Select</option>
+                                                <option value="M"> Male</option>
+                                                <option value="F"> Female</option>
+                                                <option value="T"> Transgender</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="nationality" class="col-form-label">Nationality<span
+                                                class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob bind-country-list" id="nationality"
+                                                name="nationality"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="dob" class="col-form-label">Date of Birth
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="dob" id="dob" class="form-control no-ob">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="visit_purpose" class="col-form-label">Visit purpose <span
+                                                class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob bind-visit-purpose-list"
+                                                id="visit_purpose" name="visit_purpose"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="nationality_by_birth" class="col-form-label">Nationality by birth
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob bind-country-list"
+                                                id="nationality_by_birth" name="nationality_by_birth"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="parentage" class="col-form-label">Parentage <span
+                                                class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob bind-country-list" id="parentage"
+                                                name="parentage"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="document_type" class="col-form-label">Document type <span
+                                                class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob bind-document-type-list"
+                                                id="document_type" name="document_type"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="email" class="col-form-label">Email</label>
+                                        <div class="place-error">
+                                            <input type="email" name="email" id="email" class="form-control no-ob">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="phone" class="col-form-label">Phone
+                                            No</label>
+                                        <div class="place-error">
+                                            <input type="tel" name="phone" id="phone" class="form-control no-ob">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="passport_number" class="col-form-label">Document
+                                            No
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="passport_number" id="passport_number"
+                                                class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none">In case of Nepali and Bhutani provide</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="passport_date_of_issue" class="col-form-label">Date
+                                            of issue
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="passport_date_of_issue" id="passport_date_of_issue"
+                                                class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none">DD/MM/YYYY</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="passport_valid_till" class="col-form-label">Valid
+                                            till <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="passport_valid_till" id="passport_valid_till"
+                                                class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none">DD/MM/YYYY</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="passport_place_of_issue" class="col-form-label">Place
+                                            of issue city <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="passport_place_of_issue"
+                                                id="passport_place_of_issue" class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none"> Identification Card Details and In case of
+                                            Tibetan Refugee
+                                            provide SEP/Registration Details</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="passport_place_of_issue_country" class="col-form-label">Place of
+                                            issue country <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob  bind-country-list"
+                                                id="passport_place_of_issue_country"
+                                                name="passport_place_of_issue_country">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="address" class="col-form-label">Address
+                                            <span class="must-feild">*</span>
+                                        </label>
+                                        <!-- <div class="place-error">
+                                            <textarea name="address" id="address" class="form-control no-ob custom-textarea"></textarea>
+                                        </div> -->
+                                        <div class="place-error">
+                                            <input type="text" name="address" id="address"
+                                                class="form-control no-ob">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 form-group">
+                                        <label for="visa_number" class="col-form-label">Visa No
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="visa_number" id="visa_number"
+                                                class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none">In case of PIO/OCI/CREW/TLP
+                                            provide PIO/OCI/CREW/TLP Details</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="visa_date_of_issue" class="col-form-label">Date
+                                            of
+                                            issue
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="visa_date_of_issue" id="visa_date_of_issue"
+                                                class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none">DD/MM/YYYY</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="visa_valid_till" class="col-form-label">Valid
+                                            till
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="visa_valid_till" id="visa_valid_till"
+                                                class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none">DD/MM/YYYY</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="visa_place_of_issue_city" class="col-form-label">Place
+                                            of issue city <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="visa_place_of_issue_city"
+                                                id="visa_place_of_issue_city" class="form-control no-ob">
+                                        </div>
+                                        <p class="help-font-size d-none"> Identification Card Details and In case of
+                                            Tibetan Refugee
+                                            provide SEP/Registration Details</p>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="visa_place_of_issue_country" class="col-form-label">Place of issue
+                                            country <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob  bind-country-list"
+                                                name="visa_place_of_issue_country" id="visa_place_of_issue_country">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="type_of_visa" class="col-form-label">Type of
+                                            visa
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <select class="form-control no-ob bind-visa-type-list" id="type_of_visa"
+                                                name="type_of_visa">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-12 form-group">
+                                        <label for="visa_no_of_entry" class="col-form-label">Visa no of visa-no-of-entry
+                                            <span class="must-feild d-none">*</span></label>
+                                        <div class="place-error">
+                                            <input type="text" name="visa_no_of_entry" id="visa_no_of_entry"
+                                                class="form-control no-ob">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script src="<%- baseUrl -%>assets/js/compressor.min.js"></script>
+                <script>
+                    // profile photo raw details store
+                    var profilePhoto = '';
+
+                    // get document action
+                    var documentAction = '';
+
+                    //store the attachment details
+                    var attachments = {
+                        primary: {},
+                        back:{},
+                        secondary: []
+                    }
+
+                    var deletedAttachments = [];
+ 
+                    var backDocUpdate = false;
+
+                    //primary doc updated
+                    var primaryDocUpdate = false;
+
+                    // passport detected
+                    var passport = false;
+
+                    // set room id
+                    var roomId = 0;
+
+                    // form action
+                    var action = $('#action').val();
+
+                    // document ready action
+                    $(document).ready(function () {
+                        $('.save').click(function(){
+                            $('#nav-primary-tab').trigger('click');
+                        });
+                        $("#phone").inputmask({
+                            mask: '(+99) 999-999-9999',
+                            placeholder: ' ',
+                            showMaskOnHover: false,
+                            showMaskOnFocus: false
+                        });
+
+                        action === 'add-guest' ? $('.add-guest-title').text('( Add Guest )') : '';
+                        // add guest
+                        $('.add-guest-btn').click(function () {
+                            var docId = localStorage.getItem('docId');
+                            window.location.href = `${baseUrl}quick-checkin/add-guest/${docId}`;
+                        });
+
+                        // set default date time
+                        $('#check_in_date_time').val(moment().format('DD/MM/YYYY HH:mm'));
+
+                        // check form action
+                        switch (action) {
+                            case 'create':
+                                $('#date_of_arrival_in_india,#arrival-in-hotel-date').val(moment().format('DD/MM/YYYY'));
+                                $('#arrival-in-hotel-time').val(moment().format('HH:mm'));
+                                break;
+                        }
+
+                        // upload photo change
+                        $('#photo').change(function (e) {
+                            previewPhoto(e);
+                        });
+
+                        // on change the duration update days input value
+                        $('#duration_of_stay').keyup(function () {
+                            $('#duration_stay_india').val($(this).val());
+                        });
+                        // on change the duration update days input value
+                        $('#duration_of_stay').change(function () {
+                            $('#duration_stay_india').val($(this).val());
+                        });
+
+                        // init date picker
+                        $('#dob,#passport_date_of_issue,#visa_date_of_issue,#date_of_arrival_in_india,#arrival-in-hotel-date').datetimepicker({
+                            format: 'd/m/Y',
+                            timepicker: false,
+                            scrollInput: false
+                        });
+
+                        // init passport expire date
+                        $('#passport_valid_till').datetimepicker({
+                            format: 'd/m/Y',
+                            timepicker: false,
+                            scrollInput: false,
+                            onChangeDateTime: function (dp, $input) {
+                                var validate = validateDateExpired(moment($input.val(), "DD/MM/YYYY").format("DD-MM-YYYY"));
+                                validateDate(validate, 'passport');
+                            }
+                            
+                        });
+
+                        // init visa expire date
+                        $('#visa_valid_till').datetimepicker({
+                            format: 'd/m/Y',
+                            timepicker: false,
+                            scrollInput: false,
+                            onChangeDateTime: function (dp, $input) {
+                                var validate = validateDateExpired(moment($input.val(), "DD/MM/YYYY").format("DD-MM-YYYY"));
+                                validateDate(validate, 'visa');
+                            }
+                        });
+
+
+                        // init date/time picker
+                        $('#check_in_date_time').datetimepicker({
+                            format: 'd/m/Y H:i',
+                            scrollInput: false
+                        });
+
+                        // init time picker
+                        $('#arrival-in-hotel-time').datetimepicker({
+                            format: 'H:i',
+                            datepicker: false,
+                            scrollInput: false
+                        });
+
+                        // get room list
+                        getRoomList();
+
+                        // init the form validate
+                        $('#form-scan-details').validate({
+                            ignore: ":hidden:not(select)",
+                            rules: {
+                                room_id: {
+                                    required: true
+                                },
+                                duration_of_stay: {
+                                    required: true
+                                }, nationality: {
+                                    required: true
+                                },
+                                document_type: {
+                                    required: true
+                                }
+                            }, highlight: function (input) {
+                                if ($(input).prop('tagName') === 'SELECT') {
+                                    $(input).next('.chosen-container').find('.chosen-single').addClass('error-validation');
+                                } else {
+                                    $(input).addClass('error-validation');
+                                }
+                            },
+                            unhighlight: function (input) {
+                                if ($(input).prop('tagName') === 'SELECT') {
+                                    $(input).next('.chosen-container').find('.chosen-single').removeClass('error-validation');
+                                } else {
+                                    $(input).removeClass('error-validation');
+                                }
+                            },
+                            errorPlacement: function (error, element) {
+                                $(element).parents('.place-error').append(error);
+                            },
+                            messages: {
+                                room_id: {
+                                    required: "Please select the room"
+                                },
+                                duration_of_stay: {
+                                    required: 'Please enter the duration of stay'
+                                }, nationality: {
+                                    required: 'Please select the nationality'
+                                },document_type:{
+                                    required: 'Please select the document type'
+                                }
+
+                            },
+                            submitHandler: function () {
+                                var _attachedFile = '';
+                                var _deletedAttachments = '';
+                                if (action === 'edit') {
+                                    var _newAttachement = [];
+                                    $.each(attachments.secondary, function (j, k) {
+                                        if (typeof k.isEdit === 'undefined') {
+                                            _newAttachement.push(k);
+                                        }
+                                    });
+                                    _attachedFile = _newAttachement.length > 0 ? JSON.stringify(_newAttachement) : '';
+                                    console.log("############ATTACH DELETE", deletedAttachments)
+ 
+                                    console.log("############LENGTH", deletedAttachments.length)
+                                    _deletedAttachments = deletedAttachments.length > 0 ? JSON.stringify(deletedAttachments) : '';
+                                } else if (action === 'create') {
+                                    _attachedFile = (attachments.secondary).length > 0 ? JSON.stringify(attachments.secondary) : '';
+                                }
+                                
+                                // check primary image upload status
+                                if (Object.keys(attachments.primary).length === 0) {
+                                    cuteAlert({
+                                        type: "error",
+                                        title: "Primary document",
+                                        message: "Please upload primary document",
+                                        buttonText: "Ok"
+                                    });
+                                    return;
+                                }
+
+                                // room select option
+                                var _ocs = $('#room_id option:selected').data('ocs');
+
+                                // get form data
+                                var formData = new FormData($('#form-scan-details')[0]);
+                                formData.delete('phone');
+                                formData.append('profile-photo', profilePhoto);
+                                formData.append('attachments-secondary', _attachedFile);
+                                formData.append('attachments-primary', primaryDocUpdate ? JSON.stringify(attachments.primary) : '');
+                                formData.append('deleted-attachments-secondary', _deletedAttachments);
+                                formData.append('attachments-back', backDocUpdate ? JSON.stringify(attachments.back) : '');
+                                formData.append('gid', $('#gid').val());
+                                formData.append('action', action);
+                                formData.append('phone', ($('#phone').val()).replace(/[^0-9]/g, ""));
+
+                                // delete profile, primary and secondary upload input
+                                formData.delete('photo');
+                                formData.delete('uploadFile');
+                                formData.delete('uploadFileAdditional');
+
+                                // select room number by form action
+                                if (action === 'edit' && roomId == $('#room_id option:selected').val()) {
+                                    formData.append('room-occupied-status', 'D');
+                                    _ocs = 'D';
+                                } else if (action === 'add-guest') {
+                                    formData.append('room-occupied-status', 'D');
+                                    _ocs = 'D';
+                                } else {
+                                    formData.append('room-occupied-status', _ocs);
+                                }
+
+                                // create new primary user room occupeid check
+                                if (_ocs === "A") {
+                                    cuteAlert({
+                                        type: "question",
+                                        title: `Room ${$('#room_id option:selected').text()} already checked in`,
+                                        message: "Are you sure do you want to continue?",
+                                        confirmText: "Yes",
+                                        cancelText: "No"
+                                    }).then((e) => {
+                                        if (e == 'confirm') {
+                                            documentSubmitForm(formData);
+                                        }
+                                    });
+                                } else {
+                                    documentSubmitForm(formData);
+                                }
+
+                            }
+                        });
+
+                        // chosen js bind the select tag
+                        $("select").chosen().change(function () {
+                            $("#form-scan-details").validate().element(this);
+                        });
+
+                        // get drop down option list
+                        getSelectOptionsList();
+
+
+                          // primary upload change file
+                          $('#uploadFile').change(function () {
+                            primaryDocUpdate = true;
+                            var input = this;
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    //setUploadType(e.target.result, 'primary');
+                                    var ImageURL = e.target.result;
+                                    // Split the base64 string in data and contentType
+                                    var block = ImageURL.split(";");
+                                    // Get the content type
+                                    var contentType = block[0].split(":")[1];// In this case "image/gif"
+                                    console.log("##############CONTENT TYPR0",contentType)
+                                    // get the real base64 content of the file
+                                    var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+ 
+                                    // Convert to blob
+                                    var blob = b64toBlob(realData, contentType);
+                                    uploadPrimaryDoc(blob);
+ 
+                                };
+                                reader.readAsDataURL(input.files[0]);
+ 
+                            }
+                            // previewUploadPassport(this,'no');
+                        });
+ 
+ 
+                                             // primary upload change file
+                                             $('#uploadBackFile').change(function () {
+                            backDocUpdate = true;
+                            var input = this;
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    //setUploadType(e.target.result, 'primary');
+                                    var ImageURL = e.target.result;
+                                    // Split the base64 string in data and contentType
+                                    var block = ImageURL.split(";");
+                                    // Get the content type
+                                    var contentType = block[0].split(":")[1];// In this case "image/gif"
+                                    console.log("##############CONTENT TYPR0",contentType)
+                                    // get the real base64 content of the file
+                                    var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+ 
+                                    // Convert to blob
+                                    var blob = b64toBlob(realData, contentType);
+                                    uploadBackDoc(blob);
+ 
+                                };
+                                reader.readAsDataURL(input.files[0]);
+ 
+                            }
+                            // previewUploadPassport(this,'no');
+                        });
+ 
+ 
+ 
+                        // secondary upload change file
+                        $('#uploadFileAdditional').change(function () {
+                            var input = this;
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    setUploadType(e.target.result, 'secondary');
+                                };
+                                reader.readAsDataURL(input.files[0]);
+                            }
+                            // previewAdditional(this);
+                        });
+
+                      $('.capture-image-primary').click(function () {
+                            $('#takePhoto').addClass('primary-webcam').removeClass('secondary-webcal');
+                            showWebCam();
+                        });
+                        $('.capture-image-back').click(function () {
+                            $('#takePhoto').addClass('back-webcam').removeClass('primary-webcam');
+                            showWebCam();
+                        });
+                        // take a picutre secondary
+                        $('.capture-image-secondary').click(function () {
+                            $('#takePhoto').addClass('secondary-webcam').removeClass('primary-webcam')
+                            showWebCam();
+                        });
+
+       // take photo from web cam primary
+       $(document).on("click", ".back-webcam", function () {
+                            // webcam image capture and upload
+                            Webcam.snap(function (data_uri, canvas, context) {
+                                // $('.captured-preview-place').html(`<img src="${data_uri}" class="img-fluid" />`);
+                                canvas.toBlob(function (blob) {
+                                    // captured data upload to server
+                                    //setUploadType(data_uri, 'primary');
+                                    // previewUploadPassport(blob,'yes');
+                                    closeWebCam();
+                                    uploadBackDoc(blob);
+                                });
+                                Webcam.reset();
+                                $("#webCam").modal("hide");
+                            });
+                        });
+                        $(document).on("click", ".primary-webcam", function () {
+                            // webcam image capture and upload
+                            Webcam.snap(function (data_uri, canvas, context) {
+                                // $('.captured-preview-place').html(`<img src="${data_uri}" class="img-fluid" />`);
+                                canvas.toBlob(function (blob) {
+                                    // captured data upload to server
+                                    //setUploadType(data_uri, 'primary');
+                                    // previewUploadPassport(blob,'yes');
+                                    closeWebCam();
+                                    uploadPrimaryDoc(blob);
+                                });
+                                Webcam.reset();
+                                $("#webCam").modal("hide");
+                            });
+                        });
+                        // take photo from web cam primary
+                        $(document).on("click", "#webCamera video", function () {
+                            // webcam image capture and upload
+                            Webcam.snap(function (data_uri, canvas, context) {
+                                // $('.captured-preview-place').html(`<img src="${data_uri}" class="img-fluid" />`);
+                                canvas.toBlob(function (blob) {
+                                    // captured data upload to server
+                                    // setUploadType(data_uri, 'primary');
+                                    // previewUploadPassport(blob,'yes');
+                                    const isPrimary = $("#takePhoto").hasClass("primary-webcam");
+                                    const isBack = $("#takePhoto").hasClass("back-webcam");
+ 
+                                    console.log("#################BLOB",isPrimary)
+                                    closeWebCam();
+                       if (isPrimary) {
+            // Call uploadPrimaryDoc with the appropriate blob
+                           uploadPrimaryDoc(blob);
+                        }
+                        else if(back-webcam){
+                            uploadBackDoc(blob);
+                        }
+                        else {
+            // Call uploadSecondaryDoc with the appropriate blob
+                            uploadSecondaryDoc(blob);
+                        }
+                                 //   uploadPrimaryDoc(blob);
+                                });
+                                Webcam.reset();
+                                $("#webCam").modal("hide");
+                            });
+                        });
+                        // take photo from web cam secondary
+                        $(document).on("click", ".secondary-webcam", function () {
+                            // webcam image capture and upload
+                            Webcam.snap(function (data_uri, canvas, context) {
+                                canvas.toBlob(function (blob) {
+                                    // captured data upload to server
+                                    closeWebCam();
+                                    uploadSecondaryDoc(blob);
+                                });
+                                Webcam.reset();
+                                $("#webCam").modal("hide");
+                            });
+                        });
+                    });
+
+                    function showDetails(_this) {
+
+                        $(_this).hasClass('fa-chevron-up') ? $(_this).addClass('fa-chevron-down').removeClass('fa-chevron-up') : $(_this).addClass('fa-chevron-up').removeClass('fa-chevron-down');
+                        $(_this).hasClass('fa-chevron-down') ? $('.sd-body').css({ 'height': '200px' }) : $('.sd-body').css({ 'height': '0px' });
+                    }
+                    function getSelectOptionsList() {
+                        $.ajax({
+                            url: `${apiUrl}get-drop-down-list`,
+                            method: 'GET',
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                cuteToast({
+                                    type: "warning", // or 'info', 'error', 'warning'
+                                    message: "Please wait getting information...",
+                                    timer: 5000
+                                });
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+
+                                if (res.status === true) {
+                                    console.log("################doc",res.data.documentType)
+
+                                    //set empty option
+                                    $('.bind-country-list,.bind-visa-type-list,.bind-document-type-list,.bind-visit-purpose-list').empty().html('<option value="">Select</option>');
+
+                                    //bind nationality, country
+                                    $.each(res.data.country, function (ind, row) {
+                                        $('.bind-country-list').append(`<option value="${row.id}" data-shortname="${row.short_name}">${row.name}</option>`);
+                                    });
+
+                                    //bind visa type
+                                    $.each(res.data.visaType, function (ind, row) {
+                                        $('.bind-visa-type-list').append(`<option value="${row.id}">${row.name}</option>`);
+                                    });
+
+                                    //bind document type
+                                    $.each(res.data.documentType, function (ind, row) {
+                                        $('.bind-document-type-list').append(`<option value="${row.id}">${row.name}</option>`);
+                                    });
+
+
+                                    //bind document type
+                                    $.each(res.data.purposeToVisit, function (ind, row) {
+                                        $('.bind-visit-purpose-list').append(`<option value="${row.id}">${row.name}</option>`);
+                                    });
+
+                                    $('.bind-country-list,.bind-visa-type-list,.bind-document-type-list,.bind-visit-purpose-list').trigger('chosen:updated');
+                                }
+
+                            }
+                        });
+                    }
+                    // get document details by id
+                    function getByIdDetails(id) {
+                        $.ajax({
+                            url: `${apiUrl}document-details/${id}`,
+                            method: 'GET',
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                if (res.status === true) {
+                                    if (action === 'edit' || action === 're-process') {
+                                        var secondaryAttachCount = 0;
+                                        $.each(res.attachments, function (ind, row) {
+                                            console.log("#######ROW",row)
+                                            if (row.attachment_type === 'primary') {
+                                                // set primary attachment details
+                                                attachments.primary = { fileName: row.file_name, thumbnail: row.thumbnail, ext: row.file_ext, ocrData: res.ocr, isPrimary: true }
+
+                                                // set primary image
+                                                $('.primary-upload-preview-img img').attr('src', baseUrl + 'uploads/' + row.file_name);
+                                                $('.primary-upload-preview-img a').attr('href', baseUrl + 'uploads/' + row.file_name);
+                                            } else {
+                                                attachments['secondary'].push({ fileName: row.file_name, thumbnail: row.thumbnail, ext: row.file_ext, ocrData: res.ocr, isEdit: true, isPrimary: false });
+                                                // <%- baseUrl -%>uploads/${row.thumbnail}
+
+                                                // preview additional attachment
+                                                var secondaryCount = $(document).find('.secondary-count').length;
+                                                //set placeholder
+                                                $('.secondary-upload-preview-img').append(`<div class="bg-success seconday-details-${secondaryCount} secondary-count m-2 p-1"><a href="${baseUrl + 'uploads/' + row.file_name}" class="passport-scan-text-color-white" data-fancybox>${row.documentType ? row.documentType : 'Document'}</a> 
+                                                    <span class="float-right passport-scan-text-color-white cursor-pointer">
+                                                        <a class="text-danger" onclick="deleteSecondaryUploadedDoc(${ind})"><i class="fa fa-trash"></i></a></span></div>`);
+                                                secondaryAttachCount++;
+                                            }
+                                        });
+                                        // additional count
+                                        $('.additional-count').text(secondaryAttachCount);
+                                    }
+                                    // bind details
+                                    roomId = res.data.room_id;
+                             
+                                    if (action === 'edit' || action === 're-process') {
+                                        // $('#duration_of_stay').val(res.data.duration_of_stay);
+                                        //$('#duration_stay_india').val(res.data.duration_stay_india);
+                                        //  $('#date_of_arrival_in_india').val(res.data.date_of_arrival_in_india);
+                                        $('#arriving_from').val(res.data.arriving_from);
+                                        $('#next_destination').val(res.data.next_destination);
+                                        $('#native_country_address').val(res.data.native_country_address);
+                                        $('#arrived_from_port').val(res.data.arrived_from_port);
+                                        $('#arrived_at_port').val(res.data.arrived_at_port);
+                                        $('#address_in_india').val(res.data.address_in_india);
+                                        $('#register_no').val(res.data.register_no);
+                                        $('#rfid_room_key').val(res.data.rfid_room_key);
+                                        $('#c_form_no').val(res.data.c_form_no);
+                                        $('#room_id').val(res.data.room_id);
+                                        $('#adult').val(res.data.adult);
+                                        $('#child').val(res.data.child);
+                                        //$('#check_in_date_time').val(res.data.check_in_date_time);
+                                        $('#given_name').val(res.data.given_name);
+                                        $('#family_name').val(res.data.family_name);
+                                        $('#gender').val(res.data.gender);
+                                        $('#nationality').val(res.data.nationality);
+                                        $('#dob').val(res.data.dob);
+                                        $('#visit_purpose').val(res.data.visit_purpose);
+                                        $('#nationality_by_birth').val(res.data.nationality_by_birth);
+                                        $('#parentage').val(res.data.parentage);
+                                        $('#document_type').val(res.data.document_type);
+                                        $('#email').val(res.data.email);
+                                        $('#phone').val(res.data.phone);
+                                        $('#passport_number').val(res.data.passport_number);
+                                        $('#passport_date_of_issue').val(res.data.passport_date_of_issue);
+                                        $('#passport_valid_till').val(res.data.passport_valid_till);
+                                        $('#passport_place_of_issue').val(res.data.passport_place_of_issue);
+                                        $('#passport_place_of_issue_country').val(res.data.passport_place_of_issue_country);
+                                        $('#address').val(res.data.address);
+                                        $('#visa_number').val(res.data.visa_number);
+                                        $('#visa_date_of_issue').val(res.data.visa_date_of_issue);
+                                        $('#visa_valid_till').val(res.data.visa_valid_till);
+                                        $('#visa_place_of_issue_city').val(res.data.visa_place_of_issue_city);
+                                        $('#visa_place_of_issue_country').val(res.data.visa_place_of_issue_country);
+                                        $('#type_of_visa').val(res.data.type_of_visa);
+                                        $('#visa_no_of_entry').val(res.data.visa_no_of_entry);
+
+                                    }
+
+                                    if (action === 'edit') {
+                                        $('#duration_of_stay').val(res.data.duration_of_stay);
+                                        $('#duration_stay_india').val(res.data.duration_stay_india);
+                                        $('#room_id').val(res.data.room_id).attr('disabled', true);
+                                        $('#date_of_arrival_in_india').val(res.data.date_of_arrival_in_india);
+                                      {res.data.room_id === null ? $('#adult').val(res.data.adult).attr('disabled', true) : $('#adult').val(res.data.adult)};
+                                      {res.data.room_id === null ? $('#child').val(res.data.child).attr('disabled', true) : $('#child').val(res.data.child)};
+                                        //$('#child').val(res.data.child);
+                                        $('#check_in_date_time').val(res.data.check_in_date_time);
+                                        
+                                    }
+                                    if (action === 'add-guest') {
+                                        $('#room_id').val(res.data.room_id).attr('disabled', true);
+                                        $('#adult').val(res.data.adult).attr('disabled', true);
+                                        $('#child').val(res.data.child).attr('disabled', true);
+                                    }
+                                    $('.face-box img').attr('src', `${baseUrl}uploads/${res.data.photo}`);
+
+                                    $('.bind-country-list,.bind-visa-type-list,#room_id,#gender,#visit_purpose,#document_type,#adult,#child').trigger('chosen:updated');
+
+                                }
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Get details",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                })
+                            }, complete: function () {
+                            }
+                        });
+                    }
+
+
+
+                    //validate date passport/visa
+                    function validateDate(expiredDate, type) {
+                        switch (type) {
+                            case 'passport':
+                                if (expiredDate) {
+                                    console.log("#########CUR",expiredDate)
+                                    $('.save').attr('disabled', true);
+                                    $('#passport_valid_till').css({ 'border': '1px solid #ff0000' });
+                                    if ($(document).find('form label').hasClass('passport-expired') === false) {
+                                        $(`<label class="small text-danger passport-expired">Passport expired</label>`).insertAfter('#passport_valid_till');
+                                    }
+                                    cuteAlert({
+                                        type: "warning",
+                                        title: "Passport",
+                                        message: "Passport expired",
+                                        buttonText: "Ok"
+                                    })
+                                } else {
+                                    $('.save').attr('disabled', false);
+                                    $(document).find('form label.passport-expired').remove();
+                                    $('#passport_valid_till').css({ 'border': '1px solid #ced4da' });
+                                }
+                                break;
+                            case 'visa':
+                                if (expiredDate) {
+                                    $('.save').attr('disabled', true);
+                                    $('#visa_valid_till').css({ 'border': '1px solid #ff0000' });
+                                    if ($(document).find('form label').hasClass('visa-expired') === false) {
+                                        $(`<label class="small text-danger visa-expired">Visa expired</label>`).insertAfter('#visa_valid_till');
+                                    }
+                                     cuteAlert({
+                                        type: "warning",
+                                        title: "Visa",
+                                        message: "Visa expired",
+                                        buttonText: "Ok"
+                                    })
+                                } else {
+                                    $('.save').attr('disabled', false);
+                                    $(document).find('form label.visa-expired').remove();
+                                    $('#visa_valid_till').css({ 'border': '1px solid #ced4da' });
+                                }
+                                break;
+                        }
+                    }
+                    function validateEmptyValues(resVal, type) {
+                        switch (type) {
+                            case 'P':
+                                    if (resVal.first_name =="" || resVal.gender == "" || resVal.nationality=="" || resVal.passport_place_of_issue_country=="" || resVal.dob =="" || resVal.passport_number=="" || resVal.passport_place_of_issue=="" || resVal.passport_date_of_issue=="" || resVal.passport_expiry=="") {
+                                    $('.save').attr('disabled', true);
+                                    $('#gender').css({ 'border': '1px solid #ff0000' });
+                                    if ($(document).find('form label').hasClass('gender') === '') {
+                                        $(`<label class="small text-danger gender">Gender not be empty</label>`).insertAfter('#gender');
+                                    }
+                                    cuteAlert({
+                                        type: "warning",
+                                        title: "Please Recapture",
+                                       message: "Image may be not clear",
+                                        buttonText: "Ok"
+                                    })
+                                } else {
+                                    $('.save').attr('disabled', false);
+                                    $(document).find('form label.gender').remove();
+                                    $('#gender').css({ 'border': '1px solid #ced4da' });
+                                }
+                                break;
+                            case 'DL':
+                            case 'VI':
+                            case 'AD':
+                                    if (resVal.first_name =="" || resVal.nationality=="" || resVal.dob =="" || resVal.passport_number=="") {
+                                    $('.save').attr('disabled', true);
+                                    $('#gender').css({ 'border': '1px solid #ff0000' });
+                                    if ($(document).find('form label').hasClass('gender') === '') {
+                                        $(`<label class="small text-danger gender">Gender not be empty</label>`).insertAfter('#gender');
+                                    }
+                                    cuteAlert({
+                                        type: "warning",
+                                        title: "Please Recapture",
+                                       message: "Image may be not clear",
+                                        buttonText: "Ok"
+                                    })
+                                } else {
+                                    $('.save').attr('disabled', false);
+                                    $(document).find('form label.gender').remove();
+                                    $('#gender').css({ 'border': '1px solid #ced4da' });
+                                }
+                                break;
+                            case 'visa':
+                                if (expiredDate) {
+                                    $('.save').attr('disabled', true);
+                                    $('#visa_valid_till').css({ 'border': '1px solid #ff0000' });
+                                    if ($(document).find('form label').hasClass('visa-expired') === false) {
+                                        $(`<label class="small text-danger visa-expired">Visa expired</label>`).insertAfter('#visa_valid_till');
+                                    }
+
+                                } else {
+                                    $('.save').attr('disabled', false);
+                                    $(document).find('form label.visa-expired').remove();
+                                    $('#visa_valid_till').css({ 'border': '1px solid #ced4da' });
+                                }
+                                break;
+                        }
+
+                    }
+
+                    function getRoomList() {
+                        $.ajax({
+                            url: `${apiUrl}room/check-in/all-list`,
+                            method: 'GET',
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                                // $('.progress-width').removeClass('d-none');
+                                // $('.upload-document').attr('disabled', true);
+                            }, success: function (res) {
+
+                                if (res.status === true) {
+                                    $('#room_id').html('<option value="">Select room</option>');
+                                    var _option = '';
+                                    $.each(res.data, function (ind, row) {
+                                        _option += `<option value="${row.room_id}" data-ocs="${row.room_status}" class="${row.room_status === 'A' ? 'text-danger' : ''}">${row.name}</option>`;
+                                    });
+                                    $('#room_id').append(_option).trigger("chosen:updated");
+                                    getPropertyDetails();
+                                } else {
+                                    cuteAlert({
+                                        type: "error",
+                                        title: "Get room list",
+                                        message: res.msg,
+                                        buttonText: "Ok"
+                                    })
+
+                                }
+
+                            }, error: function (error, execution) {
+                                // $('.progress-width').addClass('d-none');
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Get room list",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                })
+
+                            }, complete: function () {
+                            }
+                        });
+                    }
+                    function getPropertyDetails() {
+                        $.ajax({
+                            url: `${apiUrl}get-user-property`,
+                            method: 'GET',
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                if (res.status === true) {
+                                    if ($('#id').val() > 0) {
+                                        getByIdDetails($('#id').val());
+                                        if (action === 'add-guest') {
+                                            var address = `${res.data.po_box}, ${res.data.address}, ${res.data.city}, ${res.data.pin}`;
+                                            $('#address_in_india').val(address);
+                                            $('#register_no').val(res.data.registration_id);
+                                            $('#email').val(res.data.email);
+                                            $('#phone').val(res.data.mobile_number);
+                                        }
+                                    } else {
+                                        var address = `${res.data.po_box}, ${res.data.address}, ${res.data.city}, ${res.data.pin}`;
+                                        $('#address_in_india').val(address);
+                                        $('#register_no').val(res.data.registration_id);
+                                        $('#email').val(res.data.email);
+                                        $('#phone').val(res.data.mobile_number);
+                                    }
+                                } else {
+                                    cuteAlert({
+                                        type: "error",
+                                        title: "Get property details",
+                                        message: res.msg,
+                                        buttonText: "Ok"
+                                    })
+                                }
+
+                            }, error: function (error, execution) {
+                                // $('.progress-width').addClass('d-none');
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Get property details",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                })
+                            }, complete: function () {
+                            }
+                        });
+                    }
+
+                    function documentSubmitForm(formData) {
+                        //var docId = localStorage.getItem('docId');
+                           // console.log("################DOC ID",docId)
+                        var _url = '';
+                        var _method = 'post';
+                        switch (action) {
+                            case 'create':
+                                _url = `${apiUrl}document-details`;
+                                break;
+                            case 'edit':
+                                _url = `${apiUrl}document-details/${$('#id').val()}`;
+                                _method = 'put';
+                                break;
+                            case 're-process':
+                                _url = `${apiUrl}document-details/reprocess/${$('#id').val()}`;
+                                _method = 'put';
+                                break;
+                            case 'add-guest':
+                                _url = `${apiUrl}document-details/add-guest/${$('#id').val()}`;
+                                break;
+                        }
+                        $.ajax({
+                            url: _url,
+                            method: _method,
+                            data: formData,
+                            contentType: false,
+                            processData: false, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: res.status ? "success" : "error",
+                                    title: "Document",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                }).then(() => {
+                                    if (res.status === true) {
+                                        if (action !== 'add-guest') {
+                                            localStorage.setItem('docId', res.docId);
+                                        }
+                                        if (action === 're-process') {
+                                            window.location.href = `${baseUrl}quick-checkin/create`;
+                                        } else {
+                                            window.location.reload();
+                                        }
+                                    }
+                                });
+
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Document",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                })
+                            }, complete: function () {
+                            }
+                        });
+                    }
+
+                    function validateDateExpired(exDate) {
+                        var cardDate = moment(exDate, 'DD-MM-YYYY').format('YYYY-MM-DD');
+                        var nowDate = moment().format('YYYY-MM-DD');
+                        return moment(cardDate).isAfter(nowDate) ? false : true;
+                    }
+                    function previewPhoto(_this) {
+                        const file = _this.target.files[0];
+
+                        if (!file) {
+                            return;
+                        }
+                        new Compressor(file, {
+                            quality: 0.1,
+                            success(result) {
+                                var iSize = (result.size / 1024);
+                                iSize = (Math.round(iSize * 100) / 100)
+                                if (iSize >= 50) {
+                                    cuteToast({
+                                        type: "error", // or 'info', 'error', 'warning'
+                                        message: "Compress 50kb image failed, please upload minimum 900kb image",
+                                        timer: 5000
+                                    });
+                                    return;
+                                }
+                                var reader = new FileReader();
+                                reader.onload = function () {
+                                    var ImageURL = reader.result;
+                                    console.log("##################IMG URL",ImageURL)
+                                    $('.face-box img').attr('src', `${ImageURL}`)
+                                    // Split the base64 string in data and contentType
+                                    var block = ImageURL.split(";");
+                                    // Get the content type
+                                    var contentType = block[0].split(":")[1];// In this case "image/gif"
+                                    console.log("#############IMMMMM TYPRE",contentType)
+                                    // get the real base64 content of the file
+                                    var realData = block[1].split(",")[1];// In this case "iVBORw0KGg...."
+                                    // Convert to blob
+                                    console.log("################BYYRE",realData)
+                                    profilePhoto = b64toBlob(realData, contentType);
+
+                                };
+                                reader.readAsDataURL(result);
+
+                            }
+                        });
+
+
+                    }
+
+                    
+                    function deleteSecondaryDocs(id){
+                        console.log('###############DELETE',id);
+                    }
+                    // delete the secondary document
+                    // function deleteSecondaryUploadedDoc(filename) {
+                    //     console.log("##########DELETE UPLOADED", ind)
+                    //     $.each(attachments.secondary, function (inx, row) {
+                    //         if (parseInt(row.ind) === inx) {
+                    //             row.deleted = true;
+                    //             $(document).find('.seconday-details-' + ind).remove();
+                    //         }
+                    //         // additional count
+                    //         $('span.additional-count').text($('.secondary-count').length);
+                    //     });
+                    // }
+
+                            // delete the secondary document
+                            function deleteSecondaryUploadedDoc(filename) {
+                                console.log("##############FILENMAME", filename)
+                               
+                                //attachments['secondary'].length = 0;
+                                var newData = [...attachments['secondary']];
+                               console.log("##########NEW DATA",newData)
+                               delItem = filename - 1;
+                               console.log("##########DEL ITEM",delItem)
+                               let removed = newData.splice(delItem , 1);
+                               $(document).find('.seconday-details-' + delItem).remove();
+                               console.log("##########REMOVED",removed)
+                                //attachments['secondary'].length = 0;
+                                attachments['secondary'] = removed;
+                             console.log("########ATTACH", attachments['secondary'])
+                    
+                      
+                    }
+                   // delete seconday uploaded document
+                    function deleteSecondaryDoc(id) {
+                        attachments['secondary'].length = 0;
+                        $(document).find('.seconday-details-' + id).remove();
+                       var newData = [...attachments['secondary']];
+                        var newId = (id).toString();
+                        newData.forEach(function(a){
+                         if(a.ind !== newId) {
+                         attachments['secondary'].push(a);
+                            }
+                             });
+                    }
+
+
+
+                    function deleteSecondaryUploadedDoc(fileName) {
+    // let deletedAttachments = [];
+ 
+    console.log(attachments.secondary)
+    console.log(fileName)
+ 
+    // Find the index of the attachment with the given fileName
+    const index = attachments.secondary.findIndex(attachment => attachment.fileName === fileName);
+    console.log(index)
+ 
+    // If found, remove the attachment from the list
+    if (index !== -1) {
+        console.log("inside if")
+        // Mark as edit and add to deletedAttachments
+        let deletedAttachment = attachments.secondary[index];
+        // if (deletedAttachment.isEdit) {
+            deletedAttachments.push(deletedAttachment);
+        // }
+        attachments.secondary.splice(index, 1);
+    }
+ 
+    console.log("####DeletedeA",deletedAttachments)
+ 
+    // Update the UI to reflect the removal
+    updateSecondaryAttachmentsUI();
+}
+ 
+function updateSecondaryAttachmentsUI() {
+    // Clear existing UI elements
+    $('.secondary-upload-preview-img').empty();
+ 
+    // Loop through each attachment and add it to the UI
+    attachments.secondary.forEach(function(attachment, index) {
+        $('.secondary-upload-preview-img').append(`
+            <div class="seconday-details-${index} secondary-count m-2 p-1 bg-success">
+                <a href="${baseUrl + 'uploads/' + attachment.fileName}" class="passport-scan-text-color-white" data-fancybox>Document</a>
+                <span class="float-right passport-scan-text-color-white cursor-pointer">
+                    <a onclick="deleteSecondaryUploadedDoc('${attachment.fileName}')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </span>
+            </div>
+        `);
+    });
+ 
+    // Update additional count
+    $('.additional-count').text($('.secondary-count').length);
+ 
+    if ($('.secondary-count').length < 5) {
+        $('.capture-image-secondary').show();
+    } else {
+        $('.capture-image-secondary').hide();
+    }
+}
+
+
+ 
+document.getElementById("toggle-document").addEventListener("click", function() {
+    try {
+ 
+        console.log("#########AAAAAAAAAA",attachments)
+        var formData = new FormData();
+        formData.append('attachments', JSON.stringify(attachments)); // Add your attachments as a JSON string
+console.log("FORMDATA",formData)
+document.getElementById("loader").style.display = "inline-block";
+ 
+        $.ajax({
+            url: `${apiUrl}document-details/get-document-info`,
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+            },
+            success: function(res) {
+                console.log("API Response:", res);
+ 
+                if (res.status && res.result.status) {
+        var row = res.result;
+        $('.save').attr('disabled', false);
+        console.log(row.ocrData);
+        console.log("################DOC", row.documentType);
+ 
+        switch (row.documentType) {
+            case 'P':
+            case 'V':
+            case 'DL':
+            case 'VI':
+            case 'O':
+            case 'AC':  
+            case 'PC':
+                passport = true;
+                $('#given_name').val(row.ocrData.first_name);
+                $('#family_name').val(row.ocrData.family_name);
+                $('#gender').val(row.ocrData.gender).trigger('chosen:updated');
+                $('#nationality').val($('#passport_place_of_issue_country option[data-shortname="' + row.ocrData.country_code + '"]').val()).trigger('chosen:updated');
+                $('#passport_place_of_issue_country').val($('#passport_place_of_issue_country option[data-shortname="' + row.ocrData.country_code + '"]').val()).trigger('chosen:updated');
+                $('#dob').val(row.ocrData.dob ? moment(row.ocrData.dob, "DD/MM/YYYY").format('DD/MM/YYYY') : '');
+                $('#passport_number').val(row.ocrData.passport_number);
+                $('#passport_place_of_issue').val(row.ocrData.passport_place_of_issue);
+                $('#passport_date_of_issue').val(row.ocrData.passport_issue_date);
+                $('#address').val(row.ocrData.address);
+                $('#address_one').val(row.ocrData.address_line1);
+                $('#address_two').val(row.ocrData.address_line2);
+                $('#city').val(row.ocrData.city);
+                $('#pincode').val(row.ocrData.pincode);
+ 
+ 
+ 
+ 
+                var documentTypeName;
+                switch (row.documentType) {
+                    case 'P': documentTypeName = 'Passport'; break;
+                    case 'AC': documentTypeName = 'Aadhar'; break;
+                    case 'DL': documentTypeName = 'Driving license'; break;
+                    case 'VI': documentTypeName = 'Voter ID'; break;
+                    case 'V': documentTypeName = 'Visa'; break;
+                    case 'O': documentTypeName = 'Others'; break;
+                    case 'PC': documentTypeName = 'Pan Card'; break;
+                    default: documentTypeName = ''; break;
+                }
+ 
+                $('#document_type option').each(function() {
+                    if ($(this).text() === documentTypeName) {
+                        var optionId = $(this).val();
+                        console.log("########optionId", optionId);
+                        $('#document_type').val(optionId).trigger('chosen:updated');
+                        return false;
+                    }
+                });
+ 
+                var resVal = row.ocrData;
+                validateEmptyValues(resVal, row.documentType);
+ 
+                var passportExpiry = row.ocrData.passport_expiry ? moment(row.ocrData.passport_expiry, "DD/MM/YYYY").format('DD/MM/YYYY') : '';
+                $('#passport_valid_till').val(passportExpiry);
+ 
+                if (passportExpiry && resVal.first_name !== "" && resVal.gender !== "" && resVal.nationality !== "" && resVal.passport_place_of_issue_country !== "" && resVal.dob !== "" && resVal.passport_number !== "" && resVal.passport_place_of_issue !== "" && resVal.passport_date_of_issue !== "" && resVal.passport_expiry !== "") {
+                    var passportExpired = validateDateExpired(passportExpiry);
+                    validateDate(passportExpired, 'passport');
+                }
+ 
+                var img = row.ocrData.img ? row.ocrData.img : '';
+                console.log("################IMG RESP", img);
+ 
+                if (img !== "" && img !== 'Non') {
+                    profilePhoto = b64toBlob(img, 'data:image/jpeg');
+                    img ? $('.face-box img').attr('src', `data:image/jpeg;base64,${img}`) : null;
+ 
+                    const dataUrl = `data:image/jpeg;base64,${img}`;
+                    const dataUrlWithUpperCaseExtension = dataUrl.replace(/\.jpg/g, '.JPG');
+                    $('.face-box img').attr('src', dataUrlWithUpperCaseExtension);
+                } else {
+                    $('#nav-face-tab').trigger('click');
+                }
+                break;
+ 
+            case 'visa':
+                $('#visa_no').val(row.ocrData.visa_no);
+                break;
+ 
+            default:
+                break;
+        }
+    } else {
+        // ocr error
+    }
+            },
+            error: function(error) {
+                console.error("Error fetching OCR data:", error);
+            },
+            complete: function() {
+                document.getElementById("loader").style.display = "none";
+                console.log("Request complete");
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching OCR data:", error);
+    }
+});
+                </script>
+                <%- include ('../template/footer') -%>

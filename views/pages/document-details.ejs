@@ -1,0 +1,227 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="heading-bold m-0">Document details</h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 passport-scan-bg-white br-15 p-4 pb-3">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="filterAll" name="filterOption" class="custom-control-input" value="all">
+                        <label class="custom-control-label" for="filterAll">In Tray</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="filterForeign" name="filterOption" class="custom-control-input"
+                            value="foreign">
+                        <label class="custom-control-label" for="filterForeign">Foreign</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="filterProcessed" name="filterOption" class="custom-control-input"
+                            value="processed">
+                        <label class="custom-control-label" for="filterProcessed">Processed</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="filterShowExisting" name="filterOption" class="custom-control-input"
+                            value="exist-document">
+                        <label class="custom-control-label" for="filterShowExisting">File</label>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end mb-2">
+                    <div class="form-group mr-2">
+                        <select id="show-record" class="form-control no-ob">
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="search" id="search" class="form-control no-ob" placeholder="Search">
+                    </div>
+                    <div class="form-group ml-3">
+                        <button type="button"
+                            class="btn scan-btn small-btn btn-search passport-scan-bg-green passport-scan-text-color-white">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="document-table">
+                            <thead>
+                                <tr>
+                                    <th data-field="given_name" data-sortable="true">Given name</th>
+                                    <th data-field="family_name" data-sortable="true">Family name</th>
+                                    <th data-field="document_type" data-sortable="true">Document type</th>
+                                    <th data-field="document_number" data-sortable="true">Document number</th>
+                                    <th data-field="c_form_no" data-sortable="true">C-form number</th>
+                                    <th data-field="nationality" data-sortable="true">Nationality</th>
+                                    <th data-field="issue_date" data-sortable="true">Issue date</th>
+                                    <th data-field="expiry_date" data-sortable="true">Expiry date</th>
+                                    <th data-field="document" data-sortable="false">Document</th>
+                                    <th data-field="action" data-sortable="false">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="container-fluid container-fluid-width">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loadPagination mt-4 mb-5"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var pagePermission = JSON.parse(`<%- JSON.stringify(permission[0]) -%>`);
+            var url = new URL(window.location.href);
+            var searchParams = new URLSearchParams(url.search);
+            $(document).ready(function () {
+                searchParams.get('per-page') ? $('#show-record').val(searchParams.get('per-page')) : '';
+                if(searchParams.get('reporcess')){
+                    $('input[name="filterOption"][value="exist-document"]').prop('checked', true);
+                    getList();
+                }
+                else if(url.search === '?processing'){
+                    $('input[name="filterOption"][value="foreign"]').prop('checked', true);
+                    getList();
+                }
+                else{
+                    $('input[name="filterOption"][value="all"]').prop('checked', true);
+
+                    getList();
+                } 
+                $('.btn-search').click(function () {
+                    getList();
+                });
+                $('input[name="filterOption"]').change(function () {
+                    getList();
+                });
+                $('#show-record').change(function () {
+                    window.location.href = `${baseUrl}document-details?per-page=${$('option:selected', this).val()}`;
+                    getList();
+                });
+            });
+            function getList() {
+                var page = searchParams.get('page');
+                var pageId = page ? `&page=${page}` : '';
+                var beforeQ = page ? '&' : '&';
+                var search = $('#search').val() !== "" ? (beforeQ + encodeURI(`search=${$('#search').val()}`)) : '';
+                var _u= `<%- userDetails.user_type==='user' -%>`;
+               
+                $.ajax({
+                    url: `${apiUrl}document-details?total-page=${$('#show-record option:selected').val()}&fileter-option=${$('input[name="filterOption"]:checked').val()}&total-page=${$('#show-record option:selected').val()}${pageId}${search}`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status === true) {
+                            var _filterOption = $('input[name="filterOption"]:checked').val();
+                            var myData = [];
+                            $.each(res.data, function (ind, row) {
+
+                                var _editBtn = pagePermission.edit === 'Y' & (_filterOption === 'all' || _filterOption === 'foreign') ?  `<a class="btn btn-sm mr-1 btn-primary mb-1 res-table-btn" href="<%- baseUrl -%>quick-checkin/edit/${row.document_details_id ? row.document_details_id : ''}">Edit</a>` : '' ;
+
+                                var _deleteBtn = pagePermission.edit === 'Y' ? `` : '';
+
+                                var _editButton = _editBtn;
+
+                                var _addGuestButton = (row.primary_document_id ? (_filterOption === 'foreign' || _filterOption === 'all') && (String(_u) ==='true') ? `<a class="btn btn-sm mr-1 btn-primary mb-1 res-table-btn" href="<%- baseUrl -%>quick-checkin/add-guest/${row.document_details_id ? row.document_details_id : ''}" style="width:100px">Add guest</a>` : '':'')
+
+                                var _reProcessButton = (_filterOption === 'exist-document' || _filterOption === 'processed') && (String(_u) ==='true') ? `<a class="btn btn-sm mr-1 btn-primary mb-1 res-table-btn" href="<%- baseUrl -%>quick-checkin/re-process/${row.document_details_id ? row.document_details_id : ''}" style="width:100px">Re-process</a>` : '';
+
+                                var _indianSaveButton = row.nationality_short_name === 'IND' && _filterOption==='all' ? `<a class="btn btn-sm mr-1 btn-primary mb-1 res-table-btn" href="javascript:;" onclick="moveToFile(${row.document_details_id})">Save</a>` : '';
+                                
+                                var _filterPrimaryImg = (row.attachments).length > 0 ? _.filter(row.attachments,{'attachment_type':'primary'}).slice(-1)[0].file_name:'';
+                                myData.push({
+                                    "given_name": row.given_name ? row.given_name : '',
+                                    "family_name": row.family_name ? row.family_name : '',
+                                    "document_type": row.document_type_name ? row.document_type_name : '',
+                                    "document_number": row.passport_number ? row.passport_number : '',
+                                    "c_form_no": row.c_form_no ? row.c_form_no : '',
+                                    "nationality": row.document_nationality ? row.document_nationality : '',
+                                    "issue_date": row.passport_date_of_issue ? row.passport_date_of_issue : '',
+                                    "expiry_date": row.passport_valid_till ? row.passport_valid_till : '',
+                                    "document": `<a data-fancybox href="<%- baseUrl -%>uploads/${_filterPrimaryImg}">View document</a>`,
+                                    "action": `${_editButton} ${_addGuestButton} ${_reProcessButton} ${_indianSaveButton}`
+                                });
+                            });
+                            $('table').bootstrapTable('destroy');
+                            $('table').bootstrapTable({
+                                data: myData
+                            });
+
+                            bindPagination(page, res.totalPages, 'document-details');
+
+                        }
+                    }
+                });
+            }
+            function moveToFile(id) {
+                $.ajax({
+                    url: `${apiUrl}document-details/move-to-file/${id}`,
+                    type: 'get',
+                    dataType: 'json',
+                    headers: {
+                        "Authorization": "Bearer <%- userDetails.token -%>"
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            window.location.reload();
+                        } else {
+                            cuteAlert({
+                                type: "error",
+                                title: "Move document to file",
+                                message: res.msg,
+                                buttonText: "Ok"
+                            });
+                        }
+                    }, complete: function () {
+
+                    }
+                })
+            }
+
+            function deleteDocument(id) {
+                cuteAlert({
+                    type: "info",
+                    title: "Delete the document",
+                    message: 'Are you sure do you want to delete?',
+                    confirmText: "Yes",
+                    cancelText: "No"
+                }).then((e) => {
+                    if (e === 'confirm') {
+                        $.ajax({
+                            url: `${apiUrl}document-details/${id}`,
+                            type: 'delete',
+                            dataType: 'json',
+                            headers: {
+                                "Authorization": "Bearer <%- userDetails.token -%>"
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: res.status ? "success" : "error",
+                                    title: "Delete document",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                }).then(() => {
+                                    res.status ? window.location.href = `${baseUrl}document-details` : null;
+                                })
+
+                            }, complete: function () {
+
+                            }
+                        })
+                    }
+                });
+            }
+        </script>
+
+        <%- include ('../template/footer') -%>

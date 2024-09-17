@@ -1,0 +1,277 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="heading-bold m-0"><span class="color-grey">Report</span><span
+                            class="ml-3 mr-3 color-grey">/</span>Processed report</h2>
+                </div>
+                <div class="col-md-6 responsive-mt-15">
+                    <div class="form-group m-0 text-right">
+                        <button
+                            class="btn small-btn  mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                            type="button" onclick="exportExcel();"><i class="fa fa-file-excel-o"></i> Export
+                            excel</button>
+                        <button
+                            class="btn small-btn  mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                            type="button" onclick="exportPdf();"><i class="fa fa-file-pdf-o"></i> Export pdf</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+            <div class="row">
+                <div class="col-md-12 passport-scan-bg-white br-15 responsive-m-3 responsive-col-12 p-4 pb-32">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form id="report-check-in">
+                                <div class="form-row">
+                                    <div class="col-md-4 form-group">
+                                        <label>Property</label>
+                                        <select class="form-control" name="property" id="property"></select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>From date</label>
+                                        <input type="text" placeholder="DD/MM/YYYY" id="from-date" name="from-date"
+                                            class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>To date</label>
+                                        <input type="text" placeholder="DD/MM/YYYY" id="to-date" name="to-date"
+                                            class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 form-group mt-3">
+                                        <button
+                                            class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                            type="submit">View report</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <div id="loadPropertyDetails"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-12 passport-scan-bg-white br-15 responsive-m-3 responsive-col-12 p-4">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-10">
+                                <p class="font-s-13 font-bold color-green">Report date : <span class="from-date">DD/MM/YYYY</span>
+                                    To <span class="to-date">DD/MM/YYYY</span>
+                                </p>
+                            </div>
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <select id="show-record" class="form-control no-ob">
+                                        <option value="10">10</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th data-field="family_name" data-sortable="true">Family name</th>
+                                    <th data-field="given_name" data-sortable="true">Given name</th>
+                                    <th data-field="document_number" data-sortable="true">Document number</th>
+                                    <th data-field="document_type" data-sortable="true">Document type</th>
+                                    <th data-field="issue_date" data-sortable="true">Issue date</th>
+                                    <th data-field="expiry_date" data-sortable="true">Expiry date</th>
+                                    <th data-field="check_in_date" data-sortable="true">Check-in date</th>
+                                    <th data-field="check_out_date" data-sortable="true">Checkout date</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loadPagination mt-4 mb-5"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var pagePermission = JSON.parse(`<%- JSON.stringify(permission[0]) -%>`);
+            var url = new URL(window.location.href);
+            var searchParams = new URLSearchParams(url.search);
+            $(document).ready(function () {
+                searchParams.get('per-page') ? $('#show-record').val(searchParams.get('per-page')) : '';
+                searchParams.get('from-date') ? $('#from-date').val(searchParams.get('from-date')) : '';
+                searchParams.get('to-date') ? $('#to-date').val(searchParams.get('to-date')) : '';  
+                $('#from-date,#to-date').datetimepicker({
+                    format: 'd/m/Y',
+                    timepicker: false
+                });
+
+                $('#show-record').change(function () {
+                    window.location.href = `${baseUrl}report-processed?per-page=${$('option:selected', this).val()}&property-id=${$('#property option:selected').val()}&from-date=${$('#from-date').val()}&to-date=${$('#to-date').val()}`;
+                });
+
+                $('#report-check-in').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'property': {
+                            required: true
+                        },
+                        'from-date': {
+                            required: true
+                        }, 'to-date': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        // $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        // $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'property': {
+                            required: 'Please choose the property'
+                        }, 'from-date': {
+                            required: 'Please provide the from date'
+                        }, 'to-date': {
+                            required: 'Please provide the to date'
+                        }
+                    },
+                    submitHandler: function () {
+                       var page = searchParams.get('page');
+                        var pageId = page ? `&page=${page}` : '';
+                        var beforeQ = page ? '&' : '&';
+                        var search = '';
+
+                        $.ajax({
+                            url: `${apiUrl}report/processed-record?total-page=${$('#show-record option:selected').val()}${pageId}${search}`,
+                            method: 'POST',
+                            data: {
+                                property: $('#property option:selected').val(),
+                                fromDate: $('#from-date').val(),
+                                endDate: $('#to-date').val()
+                            },
+                            dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            },
+                            success: function (res) {
+                                $('.from-date').text($('#from-date').val());
+                                $('.to-date').text($('#to-date').val());
+                                if (res.status === true) {
+                                    var myData = [];
+                                    $.each(res.data, function (ind, row) {
+                                        myData.push({
+                                            "family_name": row.family_name,
+                                            "given_name": row.given_name,
+                                            "document_number": row.c_form_no,
+                                            "document_type": row.document_type,
+                                            "issue_date": row.issue_date,
+                                            "expiry_date": row.valid_date,
+                                            "check_in_date": row.document_check_in_date,
+                                            "check_out_date": row.document_check_out_date
+                                        });
+                                    });
+                                    $('table').bootstrapTable('destroy');
+                                    $('table').bootstrapTable({
+                                        data: myData
+                                    });
+                                    var query = `property-id=${$('#property option:selected').val()}&from-date=${$('#from-date').val()}&to-date=${$('#to-date').val()}&`;
+                                    bindPaginationWithQuery(res.page, res.totalPages,'report-processed',query);
+                                } else {
+                                    $('table tbody').html('<tr colspan="7">No record found</tr>');
+                                }
+                            }
+                        });
+
+                    }
+                });
+                $("select#property").chosen().change(function () {
+                    $("#report-check-in").validate().element(this);
+                });
+
+                //get property details
+                getPropertyDetails();
+
+                // property change then update the info
+                $('#property').change(function () {
+                    var _opt = $('option:selected', this);
+                    var data = JSON.parse(atob(_opt.data('details')));
+                    
+                    $('#loadPropertyDetails').html(`<p class="m-0 font-s-13">${data.name}</p>
+                            <p class="m-0 font-s-13">${data.po_box} ${data.address}</p>
+                            <p class="m-0 font-s-13">${data.city}</p>
+                            <p class="m-0 font-s-13">Pin : ${data.pin}</p>
+                            <p class="m-0 font-s-13">Phone : +${data.contact_number}</p>`);
+                });
+            });
+            function getPropertyDetails() {
+                $.ajax({
+                    url: `${apiUrl}property/get-property-details`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            var _opt = '<option disabled selected>Choose the propery</option>';
+                            $.each(res.data, function (j, k) {
+                                var _selected = '';
+                                if( searchParams.get('property-id')){
+                                    _selected = 'selected';
+                                }
+                                _opt += `<option data-details="${btoa(JSON.stringify(k))}" value="${k.property_id}" ${_selected}>${k.name}</option>`;
+                            });
+                            $('#property').html(_opt).trigger('chosen:updated');
+                            if(searchParams.get('per-page')){
+                                $('#property').trigger('change');
+                             setTimeout(function(){
+                                $('.form-submit-btn').trigger('click');
+                            },1000);
+                            }
+                        } else {
+                            cuteAlert({
+                                type: "error",
+                                title: "Property details",
+                                message: res.msg,
+                                buttonText: "Ok"
+                              })
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                        cuteAlert({
+                            type: "error",
+                            title: "Property details",
+                            message: msg,
+                            buttonText: "Ok"
+                          })
+                    }, complete: function () {
+
+                    }
+                });
+            }
+            function exportExcel() {
+                if ($('#property option:selected').val() > 0 && $('#from-date').val() !== "" && $('#to-date').val() !== "") {
+                    window.location.href = `${apiUrl}export/excel/processed-record?property=${$('#property option:selected').val()}&fromDate=${$('#from-date').val()}&endDate=${$('#to-date').val()}`;
+                }
+            }
+            function exportPdf() {
+                if ($('#property option:selected').val() > 0 && $('#from-date').val() !== "" && $('#to-date').val() !== "") {
+                    window.location.href = `${apiUrl}export/pdf/processed-record?property=${$('#property option:selected').val()}&fromDate=${$('#from-date').val()}&endDate=${$('#to-date').val()}`;
+                }
+            }
+        </script>
+        <%- include ('../template/footer') -%>

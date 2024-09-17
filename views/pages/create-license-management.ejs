@@ -1,0 +1,321 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/super-admin-navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div class="col-md-6 responsive-col-12">
+                    <h2 class="heading-bold m-0">
+                        <% if(action==='edit' ){ %>
+                            Update license
+                            <% }else{ %>
+                                Create license
+                                <% } %>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row justify-content-center">
+                <div
+                    class="col-md-6 passport-scan-bg-white br-15  responsive-m-3 responsive-create-padding responsive-col-12 p-4">
+                    <form class="form-create-admin" id="form-create-admin" novalidate>
+                        <input type="hidden" id="id" value="<%- id -%>" />
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Company name *</label>
+                                <input type="text" id="first-name" name="first-name" class="form-control no-ob">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Contact name *</label>
+                                <input type="text" id="last-name" name="last-name" class="form-control no-ob">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Email *</label>
+                                <input type="email" id="email" name="email" class="form-control no-ob">
+                            </div>
+                           
+                            <div class="col-md-6 form-group">
+                                <label>Password *<span id="ps-st-q" data-container="body" data-toggle="popover" data-placement="right" data-content="Password must be 8 to 20 characters and it contain uppercase, lowercase, number, special characters"><i class="fa fa-question-circle-o"></i></span></label>
+                                <input type="password" id="password" name="password" autocomplete="new-password" class="form-control no-ob">
+                            </div>
+                        </div>
+                       <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Phone *</label>
+                                <input type="tel" id="phone" name="phone" class="form-control no-ob">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>User limit *</label>
+                                <input type="number" min="0" id="user-limit" name="user-limit" class="form-control no-ob" onkeydown="javascript: return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space'">
+                            </div>
+                       </div>
+                        <div class="form-row">
+                            <div class="col-md-12 form-group">
+                                <label>Select limited option *</label>
+                                <select data-placeholder="Choose the limited option" id="option" name="option"
+                                    class="chosen-select form-control no-ob">
+                                    <option value="">Choose the option</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="half-yearly">Half yearly</option>
+                                    <option value="yearly">Yearly</option>
+                                    <option value="custom">Custom date</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group show-date-option d-none">
+                            <label>Select end date</label>
+
+                            <input type="text" placeholder="Choose the end date" class="form-control no-ob"
+                                id="end-date" name="end-date">
+
+                        </div>
+                        <div class="form-check form-group mb-3">
+                            <input type="checkbox" class="form-check-input" id="is-active" name="is-active">
+                            <label class="form-check-label" for="is-active">Is active?</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <button
+                                    class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white"
+                                    type="submit">
+                                    <% if(action==='edit' ){ %>
+                                        Update
+                                        <% }else{ %>
+                                            Create
+                                            <% } %>
+                                </button>
+                            </div>
+                            <div class="form-group col-6 text-right">
+                                <a href="<%- baseUrl -%>license" class="link-green mt-2" type="button">Cancel</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var oldEmail = '';
+            var oldPassword='';
+            $(document).ready(function () {
+
+                $('#password').on('keyup',function(){
+                    if($('#id').val() && $('#password').val() !== oldPassword){
+                        $( "#password" ).rules( "add", {strong_password:true} );
+                    }else{
+                        $( "#password" ).rules( "remove", "strong_password" );
+                    }
+                });
+                
+                $("#phone").inputmask({
+                    mask: '(+99) 999-999-9999',
+                    placeholder: ' ',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false
+                });
+                $('[data-toggle="popover"]').popover();
+                $('select').chosen();
+                $('#option').change(function () {
+                    if ($('option:selected', this).val() === 'custom') {
+                        $('.show-date-option').removeClass('d-none');
+                    } else {
+                        $('.show-date-option').addClass('d-none');
+                    }
+                });
+                $('#end-date').datepicker({
+                    clearBtn: true,
+                    autoclose: true,
+                    format: "dd-mm-yyyy",
+                    startDate: new Date(),
+                    todayHighlight: true,
+                });
+                $('#email').keyup(function () {
+                    if ($(this).val() !== '' && oldEmail !== $(this).val()) {
+                        $.ajax({
+                            url: `${apiUrl}validate/email`,
+                            method: 'POST',
+                            data: {
+                                email: $('#email').val()
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                validateEmail(res.status);
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                               
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Validate email",
+                                    message: msg,
+                                    buttonText: "Ok"
+                                  })
+                            }, complete: function () {
+
+                            }
+                        });
+                    } else {
+                        validateEmail(false);
+                    }
+                });
+                if ($('#id').val() > 0) {
+                    getByIdDetails($('#id').val());
+                }
+                $("select").chosen().change(function () {
+                    $("#form-create-admin").validate().element(this);
+                });
+                $('#form-create-admin').validate({
+                    ignore: ":hidden:not(select)",
+                    rules: {
+                        'first-name': {
+                            required: true
+                        }, 'last-name': {
+                            required: true
+                        }, 'email': {
+                            required: {
+                                depends: function () {
+                                    $(this).val($.trim($(this).val()));
+                                    return true;
+                                }
+                            },
+                            email: true
+                        }, 'password': {
+                            required: true,
+                            strong_password:true
+                        }, 'user-limit': {
+                            required: true,
+                            number: true
+                        }, phone: { required: true, minlength:18 },
+                        'option': {
+                            required: true
+                        }, 'end-date': {
+                            required: true
+                        }
+                    },
+                    highlight: function (input) {
+                        $(input).addClass('error-validation');
+                    },
+                    unhighlight: function (input) {
+                        $(input).removeClass('error-validation');
+                    },
+                    errorPlacement: function (error, element) {
+                        $(element).parents('.form-group').append(error);
+                    },
+                    messages: {
+                        'first-name': {
+                            required: "Provide the first name"
+                        }, 'last-name': {
+                            required: 'Provide the contact name'
+                        }, 'email': {
+                            required: 'Provide the email',
+                            email: 'Provide valid email'
+                        }, 'password': {
+                            required: 'Provide the password'
+                        }, 'user-limit': {
+                            required: 'Provide the user limit',
+                            number: 'Provide only number'
+                        }, phone: { required: "Provide the phone number", minlength:"Please enter valid number" },
+                        'option': {
+                            required: "Please choose the option"
+                        }, 'end-date': {
+                            required: "Please select the date"
+                        }
+                    },
+                    submitHandler: function () {
+                        $.ajax({
+                            url: $('#id').val() > 0 ? `${apiUrl}admin/${$('#id').val()}` : `${apiUrl}admin`,
+                            method: $('#id').val() > 0 ? 'PUT' : 'POST',
+                            data: {
+                                firstName: $('#first-name').val(),
+                                lastName: $('#last-name').val(),
+                                email: $('#email').val(),
+                                password: $('#password').val(),
+                                phone: ($('#phone').val()).replace(/[^0-9]/g, ""),
+                                userLimit: $('#user-limit').val(),
+                                isActive: $('#is-active').is(':checked') ? 'Y' : 'N',
+                                validOption: $('#option option:selected').val(),
+                                endDate: $('#end-date').val(),
+                            }, dataType: 'json',
+                            beforeSend: function (xhr) {
+                                xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                            }, success: function (res) {
+                                cuteAlert({
+                                    type: "success",
+                                    title: "Create admin",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                  }).then(() => {
+                                    res.status === true ? window.location.href = `${baseUrl}license` : null;
+                                  })
+                            }, error: function (error, execution) {
+                                var msg = getErrorMessage(error, execution);
+                               
+                                cuteAlert({
+                                    type: "error",
+                                    title: "Create admin",
+                                    message: msg,
+                                    buttonText: "Okay"
+                                  })
+                            }, complete: function () {
+
+                            }
+                        });
+                    }
+                });
+            });
+            function validateEmail(status) {
+                if (status) {
+                    if ($(document).find('.error-email').length == 0) {
+                        $('<label class="error-email">Please email already exist</label>').insertAfter('#email');
+                    }
+                } else {
+                    $('#email').next('label.error-email').remove();
+                }
+                $('.form-submit-btn').attr('disabled', status);
+            }
+            function getByIdDetails(id) {
+                $.ajax({
+                    url: `${apiUrl}admin/${id}`,
+                    method: 'GET',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    }, success: function (res) {
+                        if (res.status === true) {
+                            $( "#password" ).rules( "remove", "strong_password" );
+                            $('#first-name').val(res.data.first_name);
+                            $('#last-name').val(res.data.last_name);
+                            $('#email').val(res.data.email);
+                            $('#user-limit').val(res.data.user_limit);
+                            $('#password').val(res.data.password);
+                            $('#phone').val(res.data.phone);
+                            $('#is-active').prop('checked', res.data.is_active === 'Y' ? true : false);
+                            $('#option').val(res.data.valid_option).trigger("chosen:updated");
+                            $('#end-date').val(res.data.end_date);
+                            if (res.data.valid_option === 'custom') {
+                                $('.show-date-option').removeClass('d-none');
+                            } else {
+                                $('.show-date-option').addClass('d-none');
+                            }
+                            oldEmail = res.data.email;
+                            oldPassword= res.data.password;
+                        } else {
+
+                        }
+                    }, error: function (error, execution) {
+                        var msg = getErrorMessage(error, execution);
+                       
+                        cuteAlert({
+                            type: "success",
+                            title: "Get details",
+                            message: msg,
+                            buttonText: "Ok"
+                          });
+                    }, complete: function () {
+
+                    }
+                });
+            }
+        </script>
+        <%- include ('../template/footer') -%>

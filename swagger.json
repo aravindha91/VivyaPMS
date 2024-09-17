@@ -1,0 +1,5323 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Scan Doc",
+    "description": "<strong>Technical documentation for passport scan API and client</strong>",
+    "version": "0.1"
+  },
+  "servers": [
+    {
+      "url": "https://www.vayyhospitality.com"
+    }
+  ],
+  "paths": {
+    "/v1/api/login": {
+      "post": {
+        "tags": [
+          "Login API"
+        ],
+        "description": "Super admin, admin and user login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "password": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n    \"username\":\"admin@rayi.in\",\n    \"password\":\"Jay@12345\"\n}"
+                },
+                "failer": {
+                  "value": "{\n    \"username\":\"dummeytest@rayi.in\",\n    \"password\":\"123\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "Login client": {
+      "post": {
+        "tags": [
+          "Login client"
+        ],
+        "description": "<p>Super admin, admin and user login.</p><p>When user click on the submit button validate the form </p><p>If the form is valid then username and password send to the 'Login' API</p><p><img src='http://localhost:3000/assets/tech-img/login.png' width='100%'></p>"
+      }
+    },
+    "/v1/api/admin": {
+      "get": {
+        "tags": [
+          "License API"
+        ],
+        "description": "Get the all license details",
+        "responses": {
+          "200": {
+            "description": "Display the license details",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "License API"
+        ],
+        "description": "<p>Create new license</p><p>validateOption => quarterly | half-yearly | yearly | custom</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "userLimit": {
+                    "type": "int"
+                  },
+                  "isActive": {
+                    "type": "string"
+                  },
+                  "validOption": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n    \"firstName\":\"Rayi company\",\n    \"lastName\":\"Shiva\"\n,\n    \"email\":\"info@rayi.in\"\n,\n    \"password\":\"123\"\n,\n    \"phone\":\"12345678\"\n,\n    \"userLimit\":\"5\"\n,\n    \"isActive\":\"Y\"\n,\n  \"validateOption\":\"custom\"\n,\n   \"endDate\":\"22-12-2025\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": {
+                    "value": "Redirect to the license management page"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": {
+                    "value": "Show the error message in popup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/admin/{id}": {
+      "get": {
+        "tags": [
+          "License API"
+        ],
+        "description": "Get specific license details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the specific license details",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "License API"
+        ],
+        "description": "Update specific license",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "userLimit": {
+                    "type": "int"
+                  },
+                  "isActive": {
+                    "type": "string"
+                  },
+                  "validOption": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n    \"firstName\":\"Rayi company\",\n    \"lastName\":\"Shiva\"\n,\n    \"email\":\"newadmin@rayi.in\"\n,\n    \"password\":\"123\"\n,\n    \"phone\":\"12345678\"\n,\n    \"userLimit\":\"5\"\n,\n    \"isActive\":\"Y\"\n,\n  \"validateOption\":\"custom\"\n,\n   \"endDate\":\"22-12-2025\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": {
+                    "value": "Redirect to the license management list"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": "Show the error message in popup"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "License API"
+        ],
+        "description": "Delete specific license",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the successfully deleted confimation",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": {
+                    "value": "Show the error message in popup"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/validate/email": {
+      "post": {
+        "tags": [
+          "License API"
+        ],
+        "description": "Validate the given email already exist",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"email\":\"admin@rayi.in\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": {
+                    "value": "Get the message given email is valid or not"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "success": "Show the error message in popup"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Show license details client": {
+      "get": {
+        "tags": [
+          "License client"
+        ],
+        "description": "Get all details with defined limited. \n\nIn this page show the license details\n\nSearch the specific values\n\nSorthing the table columns\n\n<p><img src='http://localhost:3000/assets/tech-img/license-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update license details client": {
+      "get": {
+        "tags": [
+          "License client"
+        ],
+        "description": "Create and update the license\n\nWhen user click on the create/update button validate the form \n\nIf the form is valid then to allow form submition.\n\nWhen user keypress then validate the email is already exist <p><img src='http://localhost:3000/assets/tech-img/license-create-update.png' width='100%' /></p>"
+      }
+    },
+    "Settings": {
+      "get": {
+        "tags": [
+          "License client"
+        ],
+        "description": "<p>Provide the document details submit location URL</p><p><img src='http://localhost:3000/assets/tech-img/settings.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/dashboard/get-property-list": {
+      "get": {
+        "tags": [
+          "Admin dashboard API"
+        ],
+        "description": "<p>Get the the list of property details</p>",
+        "responses": {
+          "200": {
+            "description": "<p>Get the the list of property details</p>",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/dashboard/get-counts?property_id={propertyId}": {
+      "get": {
+        "tags": [
+          "Admin dashboard API"
+        ],
+        "description": "Get the specific property counts for rooms available, rooms occupied,in tray and processing tray",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get the specific property counts for rooms available, rooms occupied,in tray and processing tray",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/dashboard/get-inhouse-data?property_id={propertyId}": {
+      "post": {
+        "tags": [
+          "Admin dashboard API"
+        ],
+        "description": "Get in-house data with specific date to date",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n    \"fromDate\":\"01-06-2021\",\n    \"endDate\":\"01-10-2021\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Get in-house data with specific date to date",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/dashboard/get-weekly-data?property_id={propertyId}": {
+      "post": {
+        "tags": [
+          "Admin dashboard API"
+        ],
+        "description": "Get last weekly check-in data",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n    \"fromDate\":\"01-06-2021\",\n    \"endDate\":\"01-10-2021\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Get last weekly check-in data",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "Admin dashboard Client": {
+      "get": {
+        "tags": [
+          "Admin dashboard client"
+        ],
+        "description": "<p>Admin can able to view specific room available, room occupied, in-tray, and processing tray</p><p>View the selected property in-house details in chart and export the details as excel and pdf</p><p>We can view the in-house by nationality between days details</p><p>View the selected property last weekly check-in details in chart and export the details as excel and pdf</p><p><img src='http://localhost:3000/assets/tech-img/admin-dashboard.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/property-type?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Property type API"
+        ],
+        "description": "Get the property type list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the property type list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/property-type/{propertyTypeId}": {
+      "get": {
+        "tags": [
+          "Property type API"
+        ],
+        "description": "Get the specific property type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific property type details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Property type API"
+        ],
+        "description": "Delete the specific property type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted propery type in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted property type success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Property type API"
+        ],
+        "description": "<p>Update the specific property type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Hotel\",\n    \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/property-type": {
+      "post": {
+        "tags": [
+          "Property type API"
+        ],
+        "description": "<p>Create a property type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Hotel\",\n    \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View property type": {
+      "get": {
+        "tags": [
+          "Property type client"
+        ],
+        "description": "<p>View the list of property type</p><p>Here, user can able to delete the sepcific property type</p><p>Deleted after property type will removed from the table</p><p>Search the property type and sort the property type, status</p><p><img src='http://localhost:3000/assets/tech-img/property-type-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update property type": {
+      "get": {
+        "tags": [
+          "Property type client"
+        ],
+        "description": "<p>Create/update the property type</p><p><img src='http://localhost:3000/assets/tech-img/property-type-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/property?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Property API"
+        ],
+        "description": "Get the property list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the property list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/property/{propertyId}": {
+      "get": {
+        "tags": [
+          "Property API"
+        ],
+        "description": "Get the specific property details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific property type details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Property API"
+        ],
+        "description": "Delete the specific property details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted propery in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted property type success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Property API"
+        ],
+        "description": "<p>Update the specific property details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "propertyId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "propertyType": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "contactNumber": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "managerName": {
+                    "type": "string"
+                  },
+                  "mobileNumber": {
+                    "type": "string"
+                  },
+                  "registrationId": {
+                    "type": "string"
+                  },
+                  "poBox": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "pin": {
+                    "type": "integer"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Hotel\",\n    \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/property": {
+      "post": {
+        "tags": [
+          "Property API"
+        ],
+        "description": "<p>Create a property details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "propertyType": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "contactNumber": {
+                    "type": "string"
+                  },
+                  "website": {
+                    "type": "string"
+                  },
+                  "managerName": {
+                    "type": "string"
+                  },
+                  "mobileNumber": {
+                    "type": "string"
+                  },
+                  "registrationId": {
+                    "type": "string"
+                  },
+                  "poBox": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "pin": {
+                    "type": "integer"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Hotel\",\n    \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/get-property-type-list": {
+      "get": {
+        "tags": [
+          "Property API"
+        ],
+        "description": "Get the property type list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the property list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "show the property type in property dropdown list",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View property": {
+      "get": {
+        "tags": [
+          "Property client"
+        ],
+        "description": "<p>View the list of property</p><p>Here, user can able to delete the sepcific property</p><p>Deleted after property will removed from the table</p><p>Search the property and sort the property, status</p><p><img src='http://localhost:3000/assets/tech-img/property-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/Update the property": {
+      "get": {
+        "tags": [
+          "Property client"
+        ],
+        "description": "<p>Create/update the property</p><p><img src='http://localhost:3000/assets/tech-img/property-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/room-type?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Room type API"
+        ],
+        "description": "Get the room type list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the room type list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/room-type/{roomTypeId}": {
+      "get": {
+        "tags": [
+          "Room type API"
+        ],
+        "description": "Get the specific room type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roomTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific room type details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Room type API"
+        ],
+        "description": "Delete the specific room type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roomTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted room type in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted room type success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Room type API"
+        ],
+        "description": "<p>Update the specific room type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roomTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"AC\", \n   \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/room-type": {
+      "post": {
+        "tags": [
+          "Room type API"
+        ],
+        "description": "<p>Create a room type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Hotel\", \n    \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View room type": {
+      "get": {
+        "tags": [
+          "Room type client"
+        ],
+        "description": "<p>View the list of room type</p><p>Here, user can able to delete the sepcific room type</p><p>Deleted after room type will removed from the table</p><p>Search the room type and sort the room type, status</p><p><img src='http://localhost:3000/assets/tech-img/room-type-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/Update the room type": {
+      "get": {
+        "tags": [
+          "Room type client"
+        ],
+        "description": "<p>Create/update the room type</p><p><img src='http://localhost:3000/assets/tech-img/room-type-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/room?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "Get the Room list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the room list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/room/{roomId}": {
+      "get": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "Get the specific room details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roomId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific room details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "Delete the specific room details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roomId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted room in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted property type success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "<p>Update the specific room details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "roomId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rooms": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "room_type": {
+                    "type": "string"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"rooms\":\"10000,10001,10003-10006\", \n \"property\":\"1\", \n \"room_type\":\"1\", \n \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/room": {
+      "post": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "<p>Create a room details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rooms": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "room_type": {
+                    "type": "string"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"rooms\":\"10000,10001,10003-10006\", \n \"property\":\"1\", \n \"room_type\":\"1\", \n \"is_active\":\"Y\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/bulk-import": {
+      "post": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "<p>Create a bulk room details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "import-file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "room_type": {
+                    "type": "string"
+                  },
+                  "is-active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "Send bulk import data"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/get-property-list": {
+      "get": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "Get the property type list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the property list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "show the property in property dropdown list",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/get-room-type-list": {
+      "get": {
+        "tags": [
+          "Room API"
+        ],
+        "description": "Get the room type list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the room type list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "show the room type in room type dropdown list",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View room": {
+      "get": {
+        "tags": [
+          "Room client"
+        ],
+        "description": "<p>View the list of rooms</p><p>Here, user can able to delete the sepcific room</p><p>Deleted after room will removed from the table</p><p>Search the room and sort the room number,room type, property name, availability and status</p><p><img src='http://localhost:3000/assets/tech-img/room-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/Update the room": {
+      "get": {
+        "tags": [
+          "Room client"
+        ],
+        "description": "<p>Create/update the room</p><p><img src='http://localhost:3000/assets/tech-img/room-create-update.png' width='100%' /></p>"
+      }
+    },
+    "Create bulk import room": {
+      "get": {
+        "tags": [
+          "Room client"
+        ],
+        "description": "<p>Create bulk data from excel file</p><p><img src='http://localhost:3000/assets/tech-img/room-bulk-import.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/country?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Country API"
+        ],
+        "description": "Get the country list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the country list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/country/{countryId}": {
+      "get": {
+        "tags": [
+          "Country API"
+        ],
+        "description": "Get the specific country details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "countryId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific country details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Country API"
+        ],
+        "description": "Delete the specific country details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "countryId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted country in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted country success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Country API"
+        ],
+        "description": "<p>Update the specific country details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "countryId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "shortNameTwo": {
+                    "type": "string"
+                  },
+                  "countryId": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"country\":\"India\", \n \"shortName\":\"IND\", \n \"shortNameTwo\":\"IN\", \n \"countryId\":\"39\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/country": {
+      "post": {
+        "tags": [
+          "Country API"
+        ],
+        "description": "<p>Create a country details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "shortNameTwo": {
+                    "type": "string"
+                  },
+                  "countryId": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"country\":\"India\", \n \"shortName\":\"IND\", \n \"shortNameTwo\":\"IN\", \n \"countryId\":\"39\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View country": {
+      "get": {
+        "tags": [
+          "Country client"
+        ],
+        "description": "<p>View the list of country</p><p>Here, user can able to delete the sepcific country</p><p>Deleted after country type will removed from the table</p><p>Search the country type and sort the country, country three code, country two code, country number code and status</p><p><img src='http://localhost:3000/assets/tech-img/country-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update country": {
+      "get": {
+        "tags": [
+          "Country client"
+        ],
+        "description": "<p>Create/update the country</p><p><img src='http://localhost:3000/assets/tech-img/country-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/visit-purpose?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Visit purpose API"
+        ],
+        "description": "Get the visit purpose list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the visit purpose list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/visit-purpose/{visitPurposeId}": {
+      "get": {
+        "tags": [
+          "Visit purpose API"
+        ],
+        "description": "Get the specific visit purpose details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "visitPurposeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific visit purpose details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Visit purpose API"
+        ],
+        "description": "Delete the specific visit purpose details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "visitPurposeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted visit purpose in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted visit purpose success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Visit purpose API"
+        ],
+        "description": "<p>Update the specific visit purpose details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "visitPurposeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "visitId": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Business\", \n \"visitId\":\"0\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/visit-purpose": {
+      "post": {
+        "tags": [
+          "Visit purpose API"
+        ],
+        "description": "<p>Create a visit purpose details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "visitId": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Business\", \n \"visitId\":\"0\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View visit purpose": {
+      "get": {
+        "tags": [
+          "Visit purpose client"
+        ],
+        "description": "<p>View the list of visit purpose</p><p>Here, user can able to delete the sepcific visit purpose</p><p>Deleted after visit purpose will removed from the table</p><p>Search the visit name and status</p><p><img src='http://localhost:3000/assets/tech-img/visit-purpose-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update visit purpose": {
+      "get": {
+        "tags": [
+          "Visit purpose client"
+        ],
+        "description": "<p>Create/update the visit purpose</p><p><img src='http://localhost:3000/assets/tech-img/visit-purpose-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/document-type?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Document type API"
+        ],
+        "description": "Get the document type list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the document type list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/document-type/{documentTypeId}": {
+      "get": {
+        "tags": [
+          "Document type API"
+        ],
+        "description": "Get the specific document type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documentTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific document type details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Document type API"
+        ],
+        "description": "Delete the specific document type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documentTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted document type in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted document type success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Document type API"
+        ],
+        "description": "<p>Update the specific document type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documentTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Passport\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/document-type": {
+      "post": {
+        "tags": [
+          "Document type API"
+        ],
+        "description": "<p>Create a document type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Passport\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View document type": {
+      "get": {
+        "tags": [
+          "Document type client"
+        ],
+        "description": "<p>View the list of document type</p><p>Here, user can able to delete the sepcific document type</p><p>Deleted after document type will removed from the table</p><p>Search the document type name and status</p><p><img src='http://localhost:3000/assets/tech-img/document-type-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update document type": {
+      "get": {
+        "tags": [
+          "Document type client"
+        ],
+        "description": "<p>Create/update the document type</p><p><img src='http://localhost:3000/assets/tech-img/document-type-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/visa-type?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "Visa type API"
+        ],
+        "description": "Get the visa type list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the visa type list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/visa-type/{visaTypeId}": {
+      "get": {
+        "tags": [
+          "Visa type API"
+        ],
+        "description": "Get the specific visa type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "visaTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific visa type details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Visa type API"
+        ],
+        "description": "Delete the specific visa type details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "visaTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted visa type in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted visa type success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Visa type API"
+        ],
+        "description": "<p>Update the specific visa type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "visaTypeId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Business\", \n \"shortName\":\"B\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/visa-type": {
+      "post": {
+        "tags": [
+          "Visa type API"
+        ],
+        "description": "<p>Create a visa type details</p><p>is_active: A-Active, D-Deactive</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "shortName": {
+                    "type": "string"
+                  },
+                  "is_active": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"name\":\"Business\", \n \"shortName\":\"B\", \n \"is_active\":\"A\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View visa type": {
+      "get": {
+        "tags": [
+          "Visa type client"
+        ],
+        "description": "<p>View the list of visa type</p><p>Here, user can able to delete the sepcific visa type</p><p>Deleted after visa type will removed from the table</p><p>Search the visa type name and status</p><p><img src='http://localhost:3000/assets/tech-img/visa-type-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update visa type": {
+      "get": {
+        "tags": [
+          "Visa type client"
+        ],
+        "description": "<p>Create/update the visa type</p><p><img src='http://localhost:3000/assets/tech-img/visa-type-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/user?total-page={perPage}": {
+      "get": {
+        "tags": [
+          "User management API"
+        ],
+        "description": "Get the user list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the user list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Show the all details in the table",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/user/{userId}": {
+      "get": {
+        "tags": [
+          "User management API"
+        ],
+        "description": "Get the specific user details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the specific user details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User management API"
+        ],
+        "description": "Delete the specific user details",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Remove the deleted user in table list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the deleted user success details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "User management API"
+        ],
+        "description": "<p>Update the specific user details</p><p>is_active: A-Active, D-Deactive</p><p><strong>Front office</strong></p><ul><li>userPermission[0] => Dashboard</li><li>userPermission[1] => Document</li><li>userPermission[2] => Profile</li><li>userPermission[3] => Room change</li><li>userPermission[4] => Room checkout</li><li>userPermission[5] => Quick checkin</li></ul> <p><strong>Back office</strong></p><ul><li>userPermission[6] => User management</li><li>userPermission[7] => Property</li><li>userPermission[8] =>Property type</li><li>userPermission[9] => Room type</li><li>userPermission[10] => Visit purpose</li><li>userPermission[11] => Visa type</li><li>userPermission[12] => Document type</li><li>userPermission[13] => Country</li><li>userPermission[14] => Master room</li></ul><p><strong>Report</strong></p><ul><li>userPermission[15] => Report check-in</li><li>userPermission[16] => Report check-out</li><li>userPermission[17] => Report In-house</li><li>userPermission[18] => Report monthly</li><li>userPermission[19] => Report nationality</li><li>userPermission[20] => Report processed</li><li>userPermission[21] => Report room change</li></ul>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "isActive": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "userPermission[0][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][delete]": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"firstName\": \"Jay\", \n \"lastName\": \"murugan\", \n \"email\": \"jay+15@rayi.in\", \n \"password\": \"123@Rdiddd\", \n \"phone\": \"123456788888\", \n \"isActive\": \"Y\", \n \"property\": \"1\", \n \"userPermission[0][slug]\": \"dashboard\", \n \"userPermission[0][view]\": \"Y\", \n \"userPermission[0][create]\": \"N\", \n \"userPermission[0][edit]\": \"N\", \n \"userPermission[0][delete]\": \"N\", \n \"userPermission[1][slug]\": \"document-details\", \n \"userPermission[1][view]\": \"Y\", \n \"userPermission[1][create]\": \"Y\", \n \"userPermission[1][edit]\": \"Y\", \n \"userPermission[1][delete]\": \"Y\", \n \"userPermission[2][slug]\": \"profile\", \n \"userPermission[2][view]\": \"Y\", \n \"userPermission[2][create]\": \"Y\", \n \"userPermission[2][edit]\": \"Y\", \n \"userPermission[2][delete]\": \"N\", \n \"userPermission[3][slug]\": \"room-change\", \n \"userPermission[3][view]\": \"Y\", \n \"userPermission[3][create]\": \"Y\", \n \"userPermission[3][edit]\": \"N\", \n \"userPermission[3][delete]\": \"N\", \n \"userPermission[4][slug]\": \"room-checkout\", \n \"userPermission[4][view]\": \"Y\", \n \"userPermission[4][create]\": \"Y\", \n \"userPermission[4][edit]\": \"N\", \n \"userPermission[4][delete]\": \"N\", \n \"userPermission[5][slug]\": \"quick-checkin\", \n \"userPermission[5][view]\": \"Y\", \n \"userPermission[5][create]\": \"Y\", \n \"userPermission[5][edit]\": \"Y\", \n \"userPermission[5][delete]\": \"Y\", \n \"userPermission[6][slug]\": \"user\", \n \"userPermission[6][view]\": \"Y\", \n \"userPermission[6][create]\": \"Y\", \n \"userPermission[6][edit]\": \"Y\", \n \"userPermission[6][delete]\": \"Y\", \n \"userPermission[7][slug]\": \"property\", \n \"userPermission[7][view]\": \"Y\", \n \"userPermission[7][create]\": \"Y\", \n \"userPermission[7][edit]\": \"Y\", \n \"userPermission[7][delete]\": \"Y\", \n \"userPermission[8][slug]\": \"property-type\", \n \"userPermission[8][view]\": \"Y\", \n \"userPermission[8][create]\": \"Y\", \n \"userPermission[8][edit]\": \"Y\", \n \"userPermission[8][delete]\": \"Y\", \n \"userPermission[9][slug]\": \"room-type\", \n \"userPermission[9][view]\": \"Y\", \n \"userPermission[9][create]\": \"Y\", \n \"userPermission[9][edit]\": \"Y\", \n \"userPermission[9][delete]\": \"Y\", \n \"userPermission[10][slug]\": \"visit-purpose\", \n \"userPermission[10][view]\": \"Y\", \n \"userPermission[10][create]\": \"Y\", \n \"userPermission[10][edit]\": \"Y\", \n \"userPermission[10][delete]\": \"Y\", \n \"userPermission[11][slug]\": \"visa-type\", \n \"userPermission[11][view]\": \"Y\", \n \"userPermission[11][create]\": \"Y\", \n \"userPermission[11][edit]\": \"Y\", \n \"userPermission[11][delete]\": \"Y\", \n \"userPermission[12][slug]\": \"document-type\", \n \"userPermission[12][view]\": \"Y\", \n \"userPermission[12][create]\": \"Y\", \n \"userPermission[12][edit]\": \"Y\", \n \"userPermission[12][delete]\": \"Y\", \n \"userPermission[13][slug]\": \"country\", \n \"userPermission[13][view]\": \"Y\", \n \"userPermission[13][create]\": \"Y\", \n \"userPermission[13][edit]\": \"Y\", \n \"userPermission[13][delete]\": \"Y\", \n \"userPermission[14][slug]\": \"room\", \n \"userPermission[14][view]\": \"Y\", \n \"userPermission[14][create]\": \"Y\", \n \"userPermission[14][edit]\": \"Y\", \n \"userPermission[14][delete]\": \"Y\", \n \"userPermission[15][slug]\": \"report-checkin\", \n \"userPermission[15][view]\": \"Y\", \n \"userPermission[15][create]\": \"Y\", \n \"userPermission[15][edit]\": \"N\", \n \"userPermission[15][delete]\": \"N\", \n \"userPermission[16][slug]\": \"report-checkout\", \n \"userPermission[16][view]\": \"Y\", \n \"userPermission[16][create]\": \"Y\", \n \"userPermission[16][edit]\": \"N\", \n \"userPermission[16][delete]\": \"N\", \n \"userPermission[17][slug]\": \"report-inhouse\", \n \"userPermission[17][view]\": \"Y\", \n \"userPermission[17][create]\": \"Y\", \n \"userPermission[17][edit]\": \"N\", \n \"userPermission[17][delete]\": \"N\", \n \"userPermission[18][slug]\": \"report-monthly\", \n \"userPermission[18][view]\": \"Y\", \n \"userPermission[18][create]\": \"Y\", \n \"userPermission[18][edit]\": \"N\", \n \"userPermission[18][delete]\": \"N\", \n \"userPermission[19][slug]\": \"report-nationality\", \n \"userPermission[19][view]\": \"Y\", \n \"userPermission[19][create]\": \"Y\", \n \"userPermission[19][edit]\": \"N\", \n \"userPermission[19][delete]\": \"N\", \n \"userPermission[20][slug]\": \"report-processed\", \n \"userPermission[20][view]\": \"Y\", \n \"userPermission[20][create]\": \"Y\", \n \"userPermission[20][edit]\": \"N\", \n \"userPermission[20][delete]\": \"N\", \n \"userPermission[21][slug]\": \"report-room-change\", \n \"userPermission[21][view]\": \"Y\", \n \"userPermission[21][create]\": \"Y\", \n \"userPermission[21][edit]\": \"N\", \n \"userPermission[21][delete]\": \"N\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the updated message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/user": {
+      "post": {
+        "tags": [
+          "User management API"
+        ],
+        "description": "<p>Create a user details</p><p>is_active: A-Active, D-Deactive</p><p><strong>Front office</strong></p><ul><li>userPermission[0] => Dashboard</li><li>userPermission[1] => Document</li><li>userPermission[2] => Profile</li><li>userPermission[3] => Room change</li><li>userPermission[4] => Room checkout</li><li>userPermission[5] => Quick checkin</li></ul> <p><strong>Back office</strong></p><ul><li>userPermission[6] => User management</li><li>userPermission[7] => Property</li><li>userPermission[8] =>Property type</li><li>userPermission[9] => Room type</li><li>userPermission[10] => Visit purpose</li><li>userPermission[11] => Visa type</li><li>userPermission[12] => Document type</li><li>userPermission[13] => Country</li><li>userPermission[14] => Master room</li></ul><p><strong>Report</strong></p><ul><li>userPermission[15] => Report check-in</li><li>userPermission[16] => Report check-out</li><li>userPermission[17] => Report In-house</li><li>userPermission[18] => Report monthly</li><li>userPermission[19] => Report nationality</li><li>userPermission[20] => Report processed</li><li>userPermission[21] => Report room change</li></ul>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "isActive": {
+                    "type": "string"
+                  },
+                  "property": {
+                    "type": "string"
+                  },
+                  "userPermission[0][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[0][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[1][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[2][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[3][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[4][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[5][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[6][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[7][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[8][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[9][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[10][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[11][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[12][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[13][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[14][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[15][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[16][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[17][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[18][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[19][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[20][delete]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][slug]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][view]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][create]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][edit]": {
+                    "type": "string"
+                  },
+                  "userPermission[21][delete]": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"firstName\": \"Jay\", \n \"lastName\": \"murugan\", \n \"email\": \"jay+15@rayi.in\", \n \"password\": \"123@Rdiddd\", \n \"phone\": \"123456788888\", \n \"isActive\": \"Y\", \n \"property\": \"1\", \n \"userPermission[0][slug]\": \"dashboard\", \n \"userPermission[0][view]\": \"Y\", \n \"userPermission[0][create]\": \"N\", \n \"userPermission[0][edit]\": \"N\", \n \"userPermission[0][delete]\": \"N\", \n \"userPermission[1][slug]\": \"document-details\", \n \"userPermission[1][view]\": \"Y\", \n \"userPermission[1][create]\": \"Y\", \n \"userPermission[1][edit]\": \"Y\", \n \"userPermission[1][delete]\": \"Y\", \n \"userPermission[2][slug]\": \"profile\", \n \"userPermission[2][view]\": \"Y\", \n \"userPermission[2][create]\": \"Y\", \n \"userPermission[2][edit]\": \"Y\", \n \"userPermission[2][delete]\": \"N\", \n \"userPermission[3][slug]\": \"room-change\", \n \"userPermission[3][view]\": \"Y\", \n \"userPermission[3][create]\": \"Y\", \n \"userPermission[3][edit]\": \"N\", \n \"userPermission[3][delete]\": \"N\", \n \"userPermission[4][slug]\": \"room-checkout\", \n \"userPermission[4][view]\": \"Y\", \n \"userPermission[4][create]\": \"Y\", \n \"userPermission[4][edit]\": \"N\", \n \"userPermission[4][delete]\": \"N\", \n \"userPermission[5][slug]\": \"quick-checkin\", \n \"userPermission[5][view]\": \"Y\", \n \"userPermission[5][create]\": \"Y\", \n \"userPermission[5][edit]\": \"Y\", \n \"userPermission[5][delete]\": \"Y\", \n \"userPermission[6][slug]\": \"user\", \n \"userPermission[6][view]\": \"Y\", \n \"userPermission[6][create]\": \"Y\", \n \"userPermission[6][edit]\": \"Y\", \n \"userPermission[6][delete]\": \"Y\", \n \"userPermission[7][slug]\": \"property\", \n \"userPermission[7][view]\": \"Y\", \n \"userPermission[7][create]\": \"Y\", \n \"userPermission[7][edit]\": \"Y\", \n \"userPermission[7][delete]\": \"Y\", \n \"userPermission[8][slug]\": \"property-type\", \n \"userPermission[8][view]\": \"Y\", \n \"userPermission[8][create]\": \"Y\", \n \"userPermission[8][edit]\": \"Y\", \n \"userPermission[8][delete]\": \"Y\", \n \"userPermission[9][slug]\": \"room-type\", \n \"userPermission[9][view]\": \"Y\", \n \"userPermission[9][create]\": \"Y\", \n \"userPermission[9][edit]\": \"Y\", \n \"userPermission[9][delete]\": \"Y\", \n \"userPermission[10][slug]\": \"visit-purpose\", \n \"userPermission[10][view]\": \"Y\", \n \"userPermission[10][create]\": \"Y\", \n \"userPermission[10][edit]\": \"Y\", \n \"userPermission[10][delete]\": \"Y\", \n \"userPermission[11][slug]\": \"visa-type\", \n \"userPermission[11][view]\": \"Y\", \n \"userPermission[11][create]\": \"Y\", \n \"userPermission[11][edit]\": \"Y\", \n \"userPermission[11][delete]\": \"Y\", \n \"userPermission[12][slug]\": \"document-type\", \n \"userPermission[12][view]\": \"Y\", \n \"userPermission[12][create]\": \"Y\", \n \"userPermission[12][edit]\": \"Y\", \n \"userPermission[12][delete]\": \"Y\", \n \"userPermission[13][slug]\": \"country\", \n \"userPermission[13][view]\": \"Y\", \n \"userPermission[13][create]\": \"Y\", \n \"userPermission[13][edit]\": \"Y\", \n \"userPermission[13][delete]\": \"Y\", \n \"userPermission[14][slug]\": \"room\", \n \"userPermission[14][view]\": \"Y\", \n \"userPermission[14][create]\": \"Y\", \n \"userPermission[14][edit]\": \"Y\", \n \"userPermission[14][delete]\": \"Y\", \n \"userPermission[15][slug]\": \"report-checkin\", \n \"userPermission[15][view]\": \"Y\", \n \"userPermission[15][create]\": \"Y\", \n \"userPermission[15][edit]\": \"N\", \n \"userPermission[15][delete]\": \"N\", \n \"userPermission[16][slug]\": \"report-checkout\", \n \"userPermission[16][view]\": \"Y\", \n \"userPermission[16][create]\": \"Y\", \n \"userPermission[16][edit]\": \"N\", \n \"userPermission[16][delete]\": \"N\", \n \"userPermission[17][slug]\": \"report-inhouse\", \n \"userPermission[17][view]\": \"Y\", \n \"userPermission[17][create]\": \"Y\", \n \"userPermission[17][edit]\": \"N\", \n \"userPermission[17][delete]\": \"N\", \n \"userPermission[18][slug]\": \"report-monthly\", \n \"userPermission[18][view]\": \"Y\", \n \"userPermission[18][create]\": \"Y\", \n \"userPermission[18][edit]\": \"N\", \n \"userPermission[18][delete]\": \"N\", \n \"userPermission[19][slug]\": \"report-nationality\", \n \"userPermission[19][view]\": \"Y\", \n \"userPermission[19][create]\": \"Y\", \n \"userPermission[19][edit]\": \"N\", \n \"userPermission[19][delete]\": \"N\", \n \"userPermission[20][slug]\": \"report-processed\", \n \"userPermission[20][view]\": \"Y\", \n \"userPermission[20][create]\": \"Y\", \n \"userPermission[20][edit]\": \"N\", \n \"userPermission[20][delete]\": \"N\", \n \"userPermission[21][slug]\": \"report-room-change\", \n \"userPermission[21][view]\": \"Y\", \n \"userPermission[21][create]\": \"Y\", \n \"userPermission[21][edit]\": \"N\", \n \"userPermission[21][delete]\": \"N\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the created message",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "View user management": {
+      "get": {
+        "tags": [
+          "User management client"
+        ],
+        "description": "<p>View the list of user</p><p>Here, user can able to delete the sepcific user</p><p>Deleted after user will removed from the table</p><p>Search the user name and status</p><p><img src='http://localhost:3000/assets/tech-img/user-management-list.png' width='100%' /></p>"
+      }
+    },
+    "Create/update user management": {
+      "get": {
+        "tags": [
+          "User management client"
+        ],
+        "description": "<p>Create/update the user</p><p><img src='http://localhost:3000/assets/tech-img/user-management-create-update.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/document-details?total-page={perPage}&fileter-option={filterOption}": {
+      "get": {
+        "tags": [
+          "Document details API"
+        ],
+        "description": "<p>Get the document details and show in the table</p><p><strong>Filter option :</strong> all | foreign | processed | exist-document</p>",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "filterOption",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the details and show the output in the table"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/property/get-property-details": {
+      "get": {
+        "tags": [
+          "Report API"
+        ],
+        "description": "<p>Get the property details and add the all report property drop down filed</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the property details "
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the input field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/report/check-in?total-page={perPage}": {
+      "post": {
+        "tags": [
+          "Report check-in API"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Get the check in report</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "type": "integer"
+                  },
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"fromDate\":\"22/03/2021\", \n \"endDate\":\"25/03/2021\", \n \"property\":1}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Report check-in": {
+      "get": {
+        "tags": [
+          "Report check-in client"
+        ],
+        "description": "<p>View the list of check-in report</p><p><p>Sort the table columns</p><p><img src='http://localhost:3000/assets/tech-img/report-check-in.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/report/check-out?total-page={perPage}": {
+      "post": {
+        "tags": [
+          "Report checkout API"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Get the checkout report</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "type": "integer"
+                  },
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"fromDate\":\"22/03/2021\", \n \"endDate\":\"25/03/2021\", \n \"property\":1}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Report checkout": {
+      "get": {
+        "tags": [
+          "Report checkout client"
+        ],
+        "description": "<p>View the list of checkout report</p><p><p>Sort the table columns</p><p><img src='http://localhost:3000/assets/tech-img/report-check-out.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/report/in-house?total-page={perPage}": {
+      "post": {
+        "tags": [
+          "Report in-house API"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Get the in-house report</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "type": "integer"
+                  },
+                  "fromDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"fromDate\":\"22/03/2021\",  \n \"property\":1}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Report in-house": {
+      "get": {
+        "tags": [
+          "Report in-house client"
+        ],
+        "description": "<p>View the list of in-house report</p><p><p>Sort the table columns</p><p><img src='http://localhost:3000/assets/tech-img/report-in-house-guest.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/report/monthly?total-page={perPage}": {
+      "post": {
+        "tags": [
+          "Report monthly API"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Get the monthly report</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "type": "integer"
+                  },
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"fromDate\":\"22/03/2021\", \n \"endDate\":\"25/03/2021\", \n \"property\":1}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Report monthly": {
+      "get": {
+        "tags": [
+          "Report monthly client"
+        ],
+        "description": "<p>View the list of monthly report</p><p><p>Sort the table columns</p><p><img src='http://localhost:3000/assets/tech-img/report-monthly.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/report/processed-record?total-page={perPage}": {
+      "post": {
+        "tags": [
+          "Report processed record API"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Get the processed record report</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "type": "integer"
+                  },
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"fromDate\":\"22/03/2021\", \n \"endDate\":\"25/03/2021\", \n \"property\":1}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Report processed record": {
+      "get": {
+        "tags": [
+          "Report processed record client"
+        ],
+        "description": "<p>View the list of processed record report</p><p><p>Sort the table columns</p><p><img src='http://localhost:3000/assets/tech-img/report-processed.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/report/room-change?total-page={perPage}": {
+      "post": {
+        "tags": [
+          "Report room change API"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "perPage",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Get the room change report</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "property": {
+                    "type": "integer"
+                  },
+                  "fromDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"fromDate\":\"22/03/2021\", \n \"endDate\":\"25/03/2021\", \n \"property\":1}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Report room change": {
+      "get": {
+        "tags": [
+          "Report room change client"
+        ],
+        "description": "<p>View the list of room change report</p><p><p>Sort the table columns</p><p><img src='http://localhost:3000/assets/tech-img/report-processed.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/profile/{id}": {
+      "put": {
+        "tags": [
+          "Profile"
+        ],
+        "description": "Update profile",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n    \"firstName\":\"Rayi company\",\n    \"lastName\":\"Shiva\"\n,\n    \"email\":\"newadmin@rayi.in\"\n,\n    \"password\":\"123\"\n,\n    \"phone\":\"12345678\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "Profile client frontend": {
+      "get": {
+        "tags": [
+          "Profile client"
+        ],
+        "description": "<p>When user click update button validate the form if the form is valid then update the profile details</p><p><img src='http://localhost:3000/assets/tech-img/profile.png' width='100%' /></p>"
+      }
+    },
+    "/v1/api/room/check-in/all-list": {
+      "get": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "description": "Get the room list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the room list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "show the room dropdown list",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/get-drop-down-list": {
+      "get": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "description": "Get the country, document type, visit purpose, visa type list",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the country, document type, visit purpose, visa type list"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "show the country, document type, visit purpose, visa type dropdown list",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/get-user-property": {
+      "get": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "description": "Get the user property details",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              },
+              "examples": {
+                "success": {
+                  "value": "Get the user property details"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Get the user property details",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/document-details": {
+      "post": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "description": "<p>Create new quick checkin</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "duration_of_stay": {
+                    "type": "integer"
+                  },
+                  "duration_stay_india": {
+                    "type": "integer"
+                  },
+                  "date_of_arrival_in_india": {
+                    "type": "string"
+                  },
+                  "arriving_from": {
+                    "type": "string"
+                  },
+                  "next_destination": {
+                    "type": "string"
+                  },
+                  "native_country_address": {
+                    "type": "string"
+                  },
+                  "arrived_from_port": {
+                    "type": "string"
+                  },
+                  "arrived_at_port": {
+                    "type": "string"
+                  },
+                  "address_in_india": {
+                    "type": "string"
+                  },
+                  "register_no": {
+                    "type": "string"
+                  },
+                  "rfid_room_key": {
+                    "type": "string"
+                  },
+                  "c_form_no": {
+                    "type": "string"
+                  },
+                  "room_id": {
+                    "type": "integer"
+                  },
+                  "adult": {
+                    "type": "integer"
+                  },
+                  "child": {
+                    "type": "integer"
+                  },
+                  "check_in_date_time": {
+                    "type": "string"
+                  },
+                  "given_name": {
+                    "type": "string"
+                  },
+                  "family_name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "nationality": {
+                    "type": "string"
+                  },
+                  "dob": {
+                    "type": "string"
+                  },
+                  "visit_purpose": {
+                    "type": "string"
+                  },
+                  "nationality_by_birth": {
+                    "type": "string"
+                  },
+                  "parentage": {
+                    "type": "string"
+                  },
+                  "document_type": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "passport_number": {
+                    "type": "string"
+                  },
+                  "passport_date_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_valid_till": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "visa_number": {
+                    "type": "string"
+                  },
+                  "visa_date_of_issue": {
+                    "type": "string"
+                  },
+                  "visa_valid_till": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_city": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "type_of_visa": {
+                    "type": "string"
+                  },
+                  "visa_no_of_entry": {
+                    "type": "string"
+                  },
+                  "profile-photo": {
+                    "type": "string"
+                  },
+                  "attachments-secondary": {
+                    "type": "string"
+                  },
+                  "attachments-primary": {
+                    "type": "string"
+                  },
+                  "gid": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "room-occupied-status": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"duration_of_stay\":\"1\", \n \"duration_stay_india\":\"1\", \n \"date_of_arrival_in_india\":\"30/09/2021\", \n \"arriving_from\":\"104\", \n \"next_destination\":\"\", \n \"native_country_address\":\"\", \n \"arrived_from_port\":\"\", \n \"arrived_at_port\":\"\", \n \"address_in_india\":\"12, jk street, chennai, 600001\", \n \"register_no\":\"Rayi001\", \n \"rfid_room_key\":\"\", \n \"c_form_no\":\"\", \n \"room_id\":\"4\", \n \"adult\":\"\", \n \"child\":\"\", \n \"check_in_date_time\":\"30/09/2021 14:11\", \n \"given_name\":\"tttt\", \n \"family_name\":\"\", \n \"gender\":\"\", \n \"nationality\":\"104\", \n \"dob\":\"\", \n \"visit_purpose\":\"\", \n \"nationality_by_birth\":\"\", \n \"parentage\":\"\", \n \"document_type\":\"\", \n \"email\":\"info@jkhotel.in\", \n \"passport_number\":\"\", \n \"passport_date_of_issue\":\"\", \n \"passport_valid_till\":\"\", \n \"passport_place_of_issue\":\"\", \n \"passport_place_of_issue_country\":\"\", \n \"visa_number\":\"\", \n \"visa_date_of_issue\":\"\", \n \"visa_valid_till\":\"\", \n \"visa_place_of_issue_city\":\"\", \n \"visa_place_of_issue_country\":\"\", \n \"type_of_visa\":\"\", \n \"visa_no_of_entry\":\"\", \n \"profile-photo\":\"\", \n \"attachments-secondary\":\"\", \n \"attachments-primary\":\"\", \n \"gid\":\"undefined\", \n \"action\":\"create\", \n \"phone\":\"333333333333\", \n \"room-occupied-status\":\"N\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/document-details/{documentId}": {
+      "put": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documentId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Update quick checkin</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "duration_of_stay": {
+                    "type": "integer"
+                  },
+                  "duration_stay_india": {
+                    "type": "integer"
+                  },
+                  "date_of_arrival_in_india": {
+                    "type": "string"
+                  },
+                  "arriving_from": {
+                    "type": "string"
+                  },
+                  "next_destination": {
+                    "type": "string"
+                  },
+                  "native_country_address": {
+                    "type": "string"
+                  },
+                  "arrived_from_port": {
+                    "type": "string"
+                  },
+                  "arrived_at_port": {
+                    "type": "string"
+                  },
+                  "address_in_india": {
+                    "type": "string"
+                  },
+                  "register_no": {
+                    "type": "string"
+                  },
+                  "rfid_room_key": {
+                    "type": "string"
+                  },
+                  "c_form_no": {
+                    "type": "string"
+                  },
+                  "room_id": {
+                    "type": "integer"
+                  },
+                  "adult": {
+                    "type": "integer"
+                  },
+                  "child": {
+                    "type": "integer"
+                  },
+                  "check_in_date_time": {
+                    "type": "string"
+                  },
+                  "given_name": {
+                    "type": "string"
+                  },
+                  "family_name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "nationality": {
+                    "type": "string"
+                  },
+                  "dob": {
+                    "type": "string"
+                  },
+                  "visit_purpose": {
+                    "type": "string"
+                  },
+                  "nationality_by_birth": {
+                    "type": "string"
+                  },
+                  "parentage": {
+                    "type": "string"
+                  },
+                  "document_type": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "passport_number": {
+                    "type": "string"
+                  },
+                  "passport_date_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_valid_till": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "visa_number": {
+                    "type": "string"
+                  },
+                  "visa_date_of_issue": {
+                    "type": "string"
+                  },
+                  "visa_valid_till": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_city": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "type_of_visa": {
+                    "type": "string"
+                  },
+                  "visa_no_of_entry": {
+                    "type": "string"
+                  },
+                  "profile-photo": {
+                    "type": "string"
+                  },
+                  "attachments-secondary": {
+                    "type": "string"
+                  },
+                  "attachments-primary": {
+                    "type": "string"
+                  },
+                  "gid": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "room-occupied-status": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"duration_of_stay\":\"1\", \n \"duration_stay_india\":\"1\", \n \"date_of_arrival_in_india\":\"30/09/2021\", \n \"arriving_from\":\"104\", \n \"next_destination\":\"\", \n \"native_country_address\":\"\", \n \"arrived_from_port\":\"\", \n \"arrived_at_port\":\"\", \n \"address_in_india\":\"12, jk street, chennai, 600001\", \n \"register_no\":\"Rayi001\", \n \"rfid_room_key\":\"\", \n \"c_form_no\":\"\", \n \"room_id\":\"4\", \n \"adult\":\"\", \n \"child\":\"\", \n \"check_in_date_time\":\"30/09/2021 14:11\", \n \"given_name\":\"tttt\", \n \"family_name\":\"\", \n \"gender\":\"\", \n \"nationality\":\"104\", \n \"dob\":\"\", \n \"visit_purpose\":\"\", \n \"nationality_by_birth\":\"\", \n \"parentage\":\"\", \n \"document_type\":\"\", \n \"email\":\"info@jkhotel.in\", \n \"passport_number\":\"\", \n \"passport_date_of_issue\":\"\", \n \"passport_valid_till\":\"\", \n \"passport_place_of_issue\":\"\", \n \"passport_place_of_issue_country\":\"\", \n \"visa_number\":\"\", \n \"visa_date_of_issue\":\"\", \n \"visa_valid_till\":\"\", \n \"visa_place_of_issue_city\":\"\", \n \"visa_place_of_issue_country\":\"\", \n \"type_of_visa\":\"\", \n \"visa_no_of_entry\":\"\", \n \"profile-photo\":\"\", \n \"attachments-secondary\":\"\", \n \"attachments-primary\":\"\", \n \"gid\":\"undefined\", \n \"action\":\"create\", \n \"phone\":\"333333333333\", \n \"room-occupied-status\":\"N\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/document-details/reprocess/{documentId}": {
+      "put": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "documentId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Re-process the document</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "duration_of_stay": {
+                    "type": "integer"
+                  },
+                  "duration_stay_india": {
+                    "type": "integer"
+                  },
+                  "date_of_arrival_in_india": {
+                    "type": "string"
+                  },
+                  "arriving_from": {
+                    "type": "string"
+                  },
+                  "next_destination": {
+                    "type": "string"
+                  },
+                  "native_country_address": {
+                    "type": "string"
+                  },
+                  "arrived_from_port": {
+                    "type": "string"
+                  },
+                  "arrived_at_port": {
+                    "type": "string"
+                  },
+                  "address_in_india": {
+                    "type": "string"
+                  },
+                  "register_no": {
+                    "type": "string"
+                  },
+                  "rfid_room_key": {
+                    "type": "string"
+                  },
+                  "c_form_no": {
+                    "type": "string"
+                  },
+                  "room_id": {
+                    "type": "integer"
+                  },
+                  "adult": {
+                    "type": "integer"
+                  },
+                  "child": {
+                    "type": "integer"
+                  },
+                  "check_in_date_time": {
+                    "type": "string"
+                  },
+                  "given_name": {
+                    "type": "string"
+                  },
+                  "family_name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "nationality": {
+                    "type": "string"
+                  },
+                  "dob": {
+                    "type": "string"
+                  },
+                  "visit_purpose": {
+                    "type": "string"
+                  },
+                  "nationality_by_birth": {
+                    "type": "string"
+                  },
+                  "parentage": {
+                    "type": "string"
+                  },
+                  "document_type": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "passport_number": {
+                    "type": "string"
+                  },
+                  "passport_date_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_valid_till": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "visa_number": {
+                    "type": "string"
+                  },
+                  "visa_date_of_issue": {
+                    "type": "string"
+                  },
+                  "visa_valid_till": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_city": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "type_of_visa": {
+                    "type": "string"
+                  },
+                  "visa_no_of_entry": {
+                    "type": "string"
+                  },
+                  "profile-photo": {
+                    "type": "string"
+                  },
+                  "attachments-secondary": {
+                    "type": "string"
+                  },
+                  "attachments-primary": {
+                    "type": "string"
+                  },
+                  "gid": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "room-occupied-status": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"duration_of_stay\":\"1\", \n \"duration_stay_india\":\"1\", \n \"date_of_arrival_in_india\":\"30/09/2021\", \n \"arriving_from\":\"104\", \n \"next_destination\":\"\", \n \"native_country_address\":\"\", \n \"arrived_from_port\":\"\", \n \"arrived_at_port\":\"\", \n \"address_in_india\":\"12, jk street, chennai, 600001\", \n \"register_no\":\"Rayi001\", \n \"rfid_room_key\":\"\", \n \"c_form_no\":\"\", \n \"room_id\":\"4\", \n \"adult\":\"\", \n \"child\":\"\", \n \"check_in_date_time\":\"30/09/2021 14:11\", \n \"given_name\":\"tttt\", \n \"family_name\":\"\", \n \"gender\":\"\", \n \"nationality\":\"104\", \n \"dob\":\"\", \n \"visit_purpose\":\"\", \n \"nationality_by_birth\":\"\", \n \"parentage\":\"\", \n \"document_type\":\"\", \n \"email\":\"info@jkhotel.in\", \n \"passport_number\":\"\", \n \"passport_date_of_issue\":\"\", \n \"passport_valid_till\":\"\", \n \"passport_place_of_issue\":\"\", \n \"passport_place_of_issue_country\":\"\", \n \"visa_number\":\"\", \n \"visa_date_of_issue\":\"\", \n \"visa_valid_till\":\"\", \n \"visa_place_of_issue_city\":\"\", \n \"visa_place_of_issue_country\":\"\", \n \"type_of_visa\":\"\", \n \"visa_no_of_entry\":\"\", \n \"profile-photo\":\"\", \n \"attachments-secondary\":\"\", \n \"attachments-primary\":\"\", \n \"gid\":\"undefined\", \n \"action\":\"create\", \n \"phone\":\"333333333333\", \n \"room-occupied-status\":\"N\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/api/document-details/add-guest/{parentDocId}": {
+      "put": {
+        "tags": [
+          "Quick checkin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "parentDocId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "description": "<p>Add new guest</p>",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "duration_of_stay": {
+                    "type": "integer"
+                  },
+                  "duration_stay_india": {
+                    "type": "integer"
+                  },
+                  "date_of_arrival_in_india": {
+                    "type": "string"
+                  },
+                  "arriving_from": {
+                    "type": "string"
+                  },
+                  "next_destination": {
+                    "type": "string"
+                  },
+                  "native_country_address": {
+                    "type": "string"
+                  },
+                  "arrived_from_port": {
+                    "type": "string"
+                  },
+                  "arrived_at_port": {
+                    "type": "string"
+                  },
+                  "address_in_india": {
+                    "type": "string"
+                  },
+                  "register_no": {
+                    "type": "string"
+                  },
+                  "rfid_room_key": {
+                    "type": "string"
+                  },
+                  "c_form_no": {
+                    "type": "string"
+                  },
+                  "room_id": {
+                    "type": "integer"
+                  },
+                  "adult": {
+                    "type": "integer"
+                  },
+                  "child": {
+                    "type": "integer"
+                  },
+                  "check_in_date_time": {
+                    "type": "string"
+                  },
+                  "given_name": {
+                    "type": "string"
+                  },
+                  "family_name": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "nationality": {
+                    "type": "string"
+                  },
+                  "dob": {
+                    "type": "string"
+                  },
+                  "visit_purpose": {
+                    "type": "string"
+                  },
+                  "nationality_by_birth": {
+                    "type": "string"
+                  },
+                  "parentage": {
+                    "type": "string"
+                  },
+                  "document_type": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "passport_number": {
+                    "type": "string"
+                  },
+                  "passport_date_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_valid_till": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue": {
+                    "type": "string"
+                  },
+                  "passport_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "visa_number": {
+                    "type": "string"
+                  },
+                  "visa_date_of_issue": {
+                    "type": "string"
+                  },
+                  "visa_valid_till": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_city": {
+                    "type": "string"
+                  },
+                  "visa_place_of_issue_country": {
+                    "type": "string"
+                  },
+                  "type_of_visa": {
+                    "type": "string"
+                  },
+                  "visa_no_of_entry": {
+                    "type": "string"
+                  },
+                  "profile-photo": {
+                    "type": "string"
+                  },
+                  "attachments-secondary": {
+                    "type": "string"
+                  },
+                  "attachments-primary": {
+                    "type": "string"
+                  },
+                  "gid": {
+                    "type": "string"
+                  },
+                  "action": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "room-occupied-status": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "success": {
+                  "value": "{\n \"duration_of_stay\":\"1\", \n \"duration_stay_india\":\"1\", \n \"date_of_arrival_in_india\":\"30/09/2021\", \n \"arriving_from\":\"104\", \n \"next_destination\":\"\", \n \"native_country_address\":\"\", \n \"arrived_from_port\":\"\", \n \"arrived_at_port\":\"\", \n \"address_in_india\":\"12, jk street, chennai, 600001\", \n \"register_no\":\"Rayi001\", \n \"rfid_room_key\":\"\", \n \"c_form_no\":\"\", \n \"room_id\":\"4\", \n \"adult\":\"\", \n \"child\":\"\", \n \"check_in_date_time\":\"30/09/2021 14:11\", \n \"given_name\":\"tttt\", \n \"family_name\":\"\", \n \"gender\":\"\", \n \"nationality\":\"104\", \n \"dob\":\"\", \n \"visit_purpose\":\"\", \n \"nationality_by_birth\":\"\", \n \"parentage\":\"\", \n \"document_type\":\"\", \n \"email\":\"info@jkhotel.in\", \n \"passport_number\":\"\", \n \"passport_date_of_issue\":\"\", \n \"passport_valid_till\":\"\", \n \"passport_place_of_issue\":\"\", \n \"passport_place_of_issue_country\":\"\", \n \"visa_number\":\"\", \n \"visa_date_of_issue\":\"\", \n \"visa_valid_till\":\"\", \n \"visa_place_of_issue_city\":\"\", \n \"visa_place_of_issue_country\":\"\", \n \"type_of_visa\":\"\", \n \"visa_no_of_entry\":\"\", \n \"profile-photo\":\"\", \n \"attachments-secondary\":\"\", \n \"attachments-primary\":\"\", \n \"gid\":\"undefined\", \n \"action\":\"create\", \n \"phone\":\"333333333333\", \n \"room-occupied-status\":\"N\"}"
+                },
+                "failer": {
+                  "value": "Show the failure message in popup"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Set the details in the table field",
+              "content": {
+                "application/json; charset=utf-8": {
+                  "schema": {
+                    "type": "string"
+                  },
+                  "examples": {}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Quick check-in": {
+      "get": {
+        "tags": [
+          "Quick checkin client"
+        ],
+        "description": "<p>Quick check-in form</p><p><img src='http://localhost:3000/assets/tech-img/quick-check-in.png' width='100%' /></p>"
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <h2 class="heading-bold m-0">Rooms</h2>
+                </div>
+                <div class="col-6 text-right">
+                    <% if(permission[0].create==='Y' ){ %>
+                        <div class="form-group m-0">
+                            <a href="<%- baseUrl -%>room/bulk-import"
+                                class="btn scan-btn small-btn passport-scan-bg-green passport-scan-text-color-white mr-2"><i
+                                    class="fa fa-plus"></i> Bulk import</a>
+                            <a href="<%- baseUrl -%>room/create"
+                                class="btn scan-btn small-btn passport-scan-bg-green passport-scan-text-color-white responsive-mt-15"><i
+                                    class="fa fa-plus"></i> Create</a>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 passport-scan-bg-white br-15 p-4 pb-4">
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-end mb-2">
+                    <div class="form-group mr-2">
+                        <select id="show-record" class="form-control no-ob">
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="search" id="search" class="form-control no-ob" placeholder="Search">
+                    </div>
+                    <div class="form-group ml-3">
+                        <button type="button"
+                            class="btn scan-btn btn-search passport-scan-bg-green passport-scan-text-color-white">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="user-table" data-classes="table">
+                            <thead>
+                                <tr>
+                                    <th data-field="id">#</th>
+                                    <th data-field="name" data-sortable="true" class="text-right">Room number</th>
+                                    <th data-field="room_type" data-sortable="true">Room type</th>
+                                    <th data-field="property_name" data-sortable="true">Property name</th>
+                                    <th data-field="availability" data-sortable="true">Availability</th>
+                                    <th data-field="status" data-sortable="false">Status</th>
+                                    <th data-field="action">Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="loadPagination row  mt-4 mb-5"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var pagePermission = JSON.parse(`<%- JSON.stringify(permission[0]) -%>`);
+            var url = new URL(window.location.href);
+            var searchParams = new URLSearchParams(url.search);
+            $(document).ready(function () {
+                searchParams.get('per-page') ? $('#show-record').val(searchParams.get('per-page')) : '';
+                getList();
+                $('.btn-search').click(function () {
+                    getList();
+                });
+
+                $('#show-record').change(function () {
+                    window.location.href = `${baseUrl}room?per-page=${$('option:selected', this).val()}`;
+                    getList();
+                });
+            });
+            function getList() {
+                var page = searchParams.get('page');
+                var pageId = page ? `&page=${page}` : '';
+                var beforeQ = page ? '&' : '&';
+                var search = $('#search').val() !== "" ? (beforeQ + encodeURI(`search=${$('#search').val()}`)) : '';
+
+                $.ajax({
+                    url: `${apiUrl}room?total-page=${$('#show-record option:selected').val()}${pageId}${search}`,
+                    method: 'get',
+                    dataType: 'json',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer <%- userDetails.token -%>');
+                    },
+                    success: function (res) {
+                        if (res.status === true) {
+                            var myData = [];
+
+                            $.each(res.data, function (ind, row) {
+                                var _editBtn = pagePermission.edit === 'Y' ? `<a class="mr-2" href="<%- baseUrl -%>room/edit/${row.room_id}"><i class="fa fa-pencil"></i></a>` : '';
+                                var _deleteBtn = pagePermission.edit === 'Y' ? `<a class="text-danger" href="javascript:;" onclick="deleteRoom(${row.room_id})"><i class="fa fa-trash"></i></a>` : '';
+                                myData.push({
+                                    "id": (parseInt(res.offset) + parseInt(ind + 1)),
+                                    "name": row.name,
+                                    "room_type": row.room_type,
+                                    "property_name": row.property_name,
+                                    "availability": row.room_status === 'N' ? '<span class="badge badge-success text-small">Vaccant</span>' : '<span class="badge badge-secondary text-small">Occupied</span>',
+                                    "status": row.is_active ==='A'? '<span class="badge badge-success text-small">Active</span>' : '<span class="badge badge-secondary text-small">Deactive</span>',
+                                    "action": `${_editBtn} ${_deleteBtn}`
+                                });
+                            });
+                            $('table').bootstrapTable('destroy');
+                            $('table').bootstrapTable({
+                                data: myData
+                            });
+
+                            bindPagination(page, res.totalPages, 'room');
+
+                        }
+                    }
+                });
+            }
+            function deleteRoom(id) {
+                cuteAlert({
+                    type: "question",
+                    title: "Delete the room",
+                    message: "Are you sure do you want to delete?",
+                    confirmText: "Yes",
+                    cancelText: "No"
+                }).then((e) => {
+                    if (e == 'confirm') {
+                        $.ajax({
+                            url: `${apiUrl}room/${id}`,
+                            type: 'delete',
+                            dataType: 'json',
+                            headers: {
+                                "Authorization": "Bearer <%- userDetails.token -%>"
+                            },
+                            success: function (res) {
+                                cuteAlert({
+                                    type: res.status ? "success" : "error",
+                                    title: "Delete room",
+                                    message: res.msg,
+                                    buttonText: "Ok"
+                                }).then(() => {
+                                    res.status ? getList() : null;
+                                })
+                            }, complete: function () {
+
+                            }
+                        })
+                    }
+                })
+
+
+            }
+        </script>
+
+        <%- include ('../template/footer') -%>

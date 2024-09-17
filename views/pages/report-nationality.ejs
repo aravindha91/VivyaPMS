@@ -1,0 +1,125 @@
+<%- include ('../template/header') -%>
+    <%- include ('../template/navbar') -%>
+        <div class="container-fluid container-fluid-width mt-3">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="heading-bold m-0"><span class="color-grey">Report</span><span class="ml-3 mr-3 color-grey">/</span>Nationality wise occupancy report</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group m-0 text-right">
+                        <button class="btn small-btn  mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white" type="button"><i class="fa fa-file-excel-o"></i> Export excel</button>
+                        <button class="btn small-btn  mr-3 scan-btn passport-scan-bg-green passport-scan-text-color-white" type="button"><i class="fa fa-file-pdf-o"></i> Export pdf</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width mt-3 mb-3">
+           <div class="row">
+               <div class="col-md-12 passport-scan-bg-gray br-15 responsive-m-3 responsive-col-12 p-4 pb-32">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <form>
+                                <div class="form-row">
+                                    <div class="col-md-4 form-group">
+                                        <label>Property</label>
+                                        <select class="form-control">
+                                            <option>Hilton</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>Nationality</label>
+                                        <select class="form-control">
+                                            <option>Select Nationality</Select></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 form-group">
+                                        <label>From date</label>
+                                        <input type="text" placeholder="DD/MM/YYYY" id="from-date"
+                                            name="from-date" class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4 form-group">
+                                        <label>To date</label>
+                                        <input type="text" placeholder="DD/MM/YYYY" id="to-date"
+                                            name="to-date" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-4 form-group mt-26">
+                                        <button class="btn form-submit-btn small-btn scan-btn passport-scan-bg-green passport-scan-text-color-white" type="submit">View report</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <p class="m-0 font-s-13">Hilton</p>
+                            <p class="m-0 font-s-13">80, Annasalai, crosscutroad, chennai</p>
+                            <p class="m-0 font-s-13">Chennai</p>
+                            <p class="m-0 font-s-13">Pin : 600008</p>
+                            <p class="m-0 font-s-13">Phone : 1234567890</p>
+                        </div>
+                    </div>
+               </div>
+           </div>
+           <div class="row mt-4">
+                <div class="col-md-12 passport-scan-bg-gray br-15 responsive-m-3 responsive-col-12 p-4">
+                    <p class="font-s-13 font-bold color-green">Report date : 01/01/2020 To 19/06/2020</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Country name</th>
+                                    <th>Arrivals</th>
+                                    <th>Arriva share %</th>
+                                    <th>Room nights</th>
+                                    <th>Room nights share percent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>TMP-20180920105510</td>
+                                    <td>Unknown document</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>TMP-20180920105510</td>
+                                    <td>Unknown document</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>TMP-20180920105510</td>
+                                    <td>Unknown document</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>TMP-20180920105510</td>
+                                    <td>Unknown document</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid container-fluid-width">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item disabled"><a href="#" class="page-link">First</a></li>
+                        <li class="disabled page-item">
+                            <a href="javascript:;" class="page-link">Prev</a>
+                        </li><li class="page-item disabled"><a class="page-link disabled" href="#">1</a></li> <li class="disabled page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item disabled"><a class="page-link" href="#">Last</a></li></ul>
+                </div>
+            </div>
+        </div>
+        
+    <%- include ('../template/footer') -%>

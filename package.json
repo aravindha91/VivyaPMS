@@ -1,0 +1,56 @@
+{
+  "name": "passport-scan",
+  "version": "1.0.0",
+  "description": "Password scan",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "keywords": [
+    "Web and api"
+  ],
+  "author": "jayamurugan l",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/ai-form-recognizer": "^3.2.0",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "^4.3.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.1",
+    "form-data": "^4.0.0",
+    "html-pdf": "^3.0.1",
+    "html-to-pdfmake": "^2.3.1",
+    "imagemagick": "^0.1.3",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
+    "multer": "^1.4.1",
+    "mysql": "^2.17.1",
+    "mysql2": "^3.9.1",
+    "node-excel-export": "^1.4.4",
+    "node-fetch": "^2.6.1",
+    "nodemailer": "^6.7.7",
+    "pdf-creator-node": "^2.3.5",
+    "pdfmake": "^0.1.71",
+    "phantomjs-prebuilt": "^2.1.13",
+    "qs": "^6.10.1",
+    "querystring": "^0.2.1",
+    "read-excel-file": "^5.2.8",
+    "request": "^2.88.2",
+    "serve-favicon": "^2.5.0",
+    "swagger-jsdoc": "^6.0.0",
+    "swagger-ui-express": "^4.1.6",
+    "wkhtmltopdf": "^0.4.0"
+  },
+  "devDependencies": {
+    "fancybox": "^3.0.1"
+  }
+}
